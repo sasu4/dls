@@ -11,10 +11,14 @@ class Auth extends CI_Controller
 
 	function __construct()
 	{
+            global $phpbb_root_path, $phpEx, $user, $auth, $cache, $db, $config, $template, $table_prefix;
+            
+            
 		parent::__construct();
 		
 		$this->load->library('Form_validation');
 		$this->load->library('DX_Auth');
+                
 		
 		$this->load->helper('url');
 		$this->load->helper('form');
@@ -89,7 +93,7 @@ class Auth extends CI_Controller
 			if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember')))
 			{
 				// Redirect to homepage
-				redirect('title', 'location');
+				ciredirect('title', 'location');
 			}
 			else
 			{
@@ -123,7 +127,7 @@ class Auth extends CI_Controller
 		{
 			$data['auth_message'] = 'You are already logged in.';
 			$this->load->view($this->dx_auth->logged_in_view, $data);
-                        redirect('home', 'location');
+                        ciredirect('home', 'location');
 		}
 	}
 	
@@ -132,7 +136,7 @@ class Auth extends CI_Controller
 		$this->dx_auth->logout();
 		
                 $this->session->set_flashdata('mesg', 'You have been logged out.');
-                redirect('title');
+                ciredirect('title');
 		//$data['auth_message'] = 'You have been logged out.';		
 		//$this->load->view($this->dx_auth->logout_view, $data);
 	}
@@ -161,7 +165,9 @@ class Auth extends CI_Controller
 
 			// Run form validation and register user if it's pass the validation
 			if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email')))
-			{	
+			{
+                            $this->load->library('Phpbb_bridge');
+                            $this->phpbb_bridge->user_add($val->set_value('email'),$val->set_value('username'),$val->set_value('password'),2);
 				// Set success message accordingly
 				if ($this->dx_auth->email_activation)
 				{
@@ -294,7 +300,7 @@ class Auth extends CI_Controller
 			if ($val->run() AND $this->dx_auth->cancel_account($val->set_value('password')))
 			{
 				// Redirect to homepage
-				redirect('', 'location');
+				ciredirect('', 'location');
 			}
 			else
 			{

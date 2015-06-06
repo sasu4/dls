@@ -15,8 +15,8 @@
 |
 */
 
-$config['DX_website_name'] = 'Regulus';
-$config['DX_webmaster_email'] = 'system@chocobo-team.eu';
+$config['DX_website_name'] = 'DLS';
+$config['DX_webmaster_email'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ $config['DX_salt'] = '5BaD|Xiy1C=_iKHN|hndYmJUFUS%YILWw^-Dv~2xdxkKxVogG_JM2bAWNT
 |
 */
  
-$config['DX_email_activation'] = TRUE; 
+$config['DX_email_activation'] = FALSE; 
 $config['DX_email_activation_expire'] = 60*60*24*2; 
 $config['DX_email_account_details'] = TRUE; 
 
