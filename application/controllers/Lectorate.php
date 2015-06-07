@@ -8,18 +8,22 @@ class Lectorate extends CI_Controller {
     }
     
     function index() {
-        $id = $this->uri->segment(3);
-        print_r($id);
-        $this->lect($id);
+        $this->load->model('Model_lectorate','lectorate');
+    
+        $data['list'] = $this->lectorate->get_lectorates();
+        $this->load->view('header');
+        $this->load->view('lectorates',$data);
+        $this->load->view('footer');
     }
     
-    function lect($id) {
+    function lect() {
         $this->load->model('Model_lectorate','lectorate');
-        
+        $id = $this->uri->segment(3);
         $data['list'] = $this->lectorate->get_lectorate($id);
+        $data['id'] = $id;
         
         $this->load->view('header');
-        $this->load->view('lectora',$data);
+        $this->load->view('lectorate',$data);
         $this->load->view('footer');
     }
 }
