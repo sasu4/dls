@@ -101,6 +101,58 @@ class Backend extends CI_Controller
 		// Load view
 		$this->load->view('backend/users', $data);
 	}
+        
+        function waiting_users() {
+            $this->load->model('model_user','user');
+            
+            /* Database related */
+		
+		// If activate button pressed
+		if ($this->input->post('activate'))
+		{
+			// Search checkbox in post array
+			foreach ($_POST as $key => $value)
+			{
+				// If checkbox found
+				if (substr($key, 0, 9) == 'checkbox_')
+				{
+					// Check if user exist, $value is username
+					if ($query = $this->user->get_login($value) AND $query->num_rows() == 1)
+					{
+						// Activate user
+						$this->user->activate($value);
+					}
+				}				
+			}
+		}
+                
+                /* Showing page to user */
+		
+		// Get offset and limit for page viewing
+		$offset = (int) $this->uri->segment(3);
+		// Number of record showing per page
+		$row_count = 10;
+		
+		// Get all unactivated users
+		$data['users'] = $this->user->get_all($offset, $row_count)->result();
+		
+		// Pagination config
+		$p_config['base_url'] = '/backend/waiting_users/';
+		$p_config['uri_segment'] = 3;
+		$p_config['num_links'] = 2;
+		$p_config['total_rows'] = $this->user->get_all()->num_rows();
+		$p_config['per_page'] = $row_count;
+				
+		// Init pagination
+		$this->pagination->initialize($p_config);		
+		// Create pagination links
+		$data['pagination'] = $this->pagination->create_links();
+		
+		// Load view
+                $this->load->view('header');
+		$this->load->view('backend/waiting_users', $data);
+                $this->load->view('footer');
+        }
 	
 	function unactivated_users()
 	{

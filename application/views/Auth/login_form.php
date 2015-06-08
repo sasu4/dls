@@ -35,12 +35,12 @@ $confirmation_code = array(
 
 
 <dl>	
-	<dt><?php echo form_label('Username', $username['id']);?></dt>
+	<dt><?php echo form_label('Email', $username['id']);?></dt>
 	<dd>
 		<?php echo form_input($username)?>
     <?php echo form_error($username['name']); ?>
 	</dd>
-
+        
   <dt><?php echo form_label('Password', $password['id']);?></dt>
 	<dd>
 		<?php echo form_password($password)?>

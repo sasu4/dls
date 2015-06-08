@@ -1,9 +1,23 @@
 <?php
-$username = array(
-	'name'	=> 'username',
-	'id'	=> 'username',
+//$username = array(
+//	'name'	=> 'username',
+//	'id'	=> 'username',
+//	'size'	=> 30,
+//	'value' =>  set_value('username')
+//);
+
+$first_name = array(
+	'name'	=> 'first_name',
+	'id'	=> 'first_name',
 	'size'	=> 30,
-	'value' =>  set_value('username')
+	'value' => set_value('first_name')
+);
+
+$surname = array(
+	'name'	=> 'surname',
+	'id'	=> 'surname',
+	'size'	=> 30,
+	'value' => set_value('surname')
 );
 
 $password = array(
@@ -36,10 +50,22 @@ $email = array(
 <?php echo form_open($this->uri->uri_string())?>
 
 <dl>
-	<dt><?php echo form_label('Username', $username['id']);?></dt>
+<!--	<dt><?php echo form_label('Username', $username['id']);?></dt>
 	<dd>
 		<?php echo form_input($username)?>
     <?php echo form_error($username['name']); ?>
+	</dd>-->
+        
+        <dt><?php echo form_label('First name', $first_name['id']);?></dt>
+	<dd>
+		<?php echo form_input($first_name)?>
+    <?php echo form_error($first_name['name']); ?>
+	</dd>
+        
+        <dt><?php echo form_label('Surname', $surname['id']);?></dt>
+	<dd>
+		<?php echo form_input($surname)?>
+    <?php echo form_error($surname['name']); ?>
 	</dd>
 
 	<dt><?php echo form_label('Password', $password['id']);?></dt>

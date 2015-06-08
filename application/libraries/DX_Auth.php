@@ -853,6 +853,10 @@ class DX_Auth
 					// Set ban reason
 					$this->_ban_reason = $row->ban_reason;
 				}
+                                elseif($row->activated==0) {
+                                    // Set error message
+                                    $this->_auth_error = 'Váš účet čaká na schválenie administrátorom.';
+                                }
 				// If it's not a banned user then try to login
 				else
 				{					
@@ -929,7 +933,7 @@ class DX_Auth
 		$this->ci->session->sess_destroy();		
 	}
 
-	function register($username, $password, $email)
+	function register($password, $email, $first_name, $surname)
 	{		
 		// Load Models
 		$this->ci->load->model('dx_auth/users', 'users');
@@ -937,6 +941,8 @@ class DX_Auth
 
 		$this->ci->load->helper('url');
 		
+                $username = $email;
+                
 		// Default return value
 		$result = FALSE;
 
@@ -945,6 +951,8 @@ class DX_Auth
 			'username'				=> $username,			
 			'password'				=> crypt($this->_encode($password)),
 			'email'						=> $email,
+                        'name'                                          => $first_name,
+                        'surname'                                       => $surname,
 			'last_ip'					=> $this->ci->input->ip_address()
 		);
 
@@ -962,7 +970,7 @@ class DX_Auth
 			// Create user 
 			$insert = $this->ci->users->create_user($new_user);
 			// Trigger event
-			$this->user_activated($this->ci->db->insert_id());				
+			//$this->user_activated($this->ci->db->insert_id());				
 		}
 		
 		if ($insert)

@@ -93,10 +93,17 @@ class Auth extends CI_Controller
 			if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember')))
 			{
 				// Redirect to homepage
-				ciredirect('title', 'location');
+				ciredirect('home', 'location');
 			}
 			else
 			{
+                            // Check if the user is activated or not
+                            $this->load->model('model_user');
+                            if($val->set_value('username')) {
+                            if ($this->model_user->is_activated($val->set_value('username'))) {
+                                // Redirect to banned uri
+				$this->dx_auth->deny_access();
+                            } }
 				// Check if the user is failed logged in because user is banned user or not
 				if ($this->dx_auth->is_banned())
 				{
@@ -121,7 +128,8 @@ class Auth extends CI_Controller
 					// Load login page view
 					$this->load->view($this->dx_auth->login_view, $data);
 				}
-			}
+                            
+                        }
 		}
 		else
 		{
@@ -149,7 +157,9 @@ class Auth extends CI_Controller
 			$val = $this->form_validation;
 			
 			// Set form validation rules
-			$val->set_rules('username', 'Username', 'trim|required|min_length['.$this->min_username.']|max_length['.$this->max_username.']|callback_username_check|alpha_dash');
+			//$val->set_rules('username', 'Username', 'trim|required|min_length['.$this->min_username.']|max_length['.$this->max_username.']|callback_username_check|alpha_dash');
+                        $val->set_rules('first_name', 'First name', 'trim|required|min_length['.$this->min_username.']|max_length['.$this->max_username.']|alpha_dash');
+                        $val->set_rules('surname', 'Surname', 'trim|required|min_length['.$this->min_username.']|max_length['.$this->max_username.']|alpha_dash');
 			$val->set_rules('password', 'Password', 'trim|required|min_length['.$this->min_password.']|max_length['.$this->max_password.']|matches[confirm_password]');
 			$val->set_rules('confirm_password', 'Confirm Password', 'trim|required');
 			$val->set_rules('email', 'Email', 'trim|required|valid_email|callback_email_check');
@@ -161,13 +171,13 @@ class Auth extends CI_Controller
 				// IMPORTANT: Do not change 'recaptcha_response_field' because it's used by reCAPTCHA API,
 				// This is because the limitation of reCAPTCHA, not DX Auth library
 				$val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|required|callback_recaptcha_check');
-			}
+			}                        
 
 			// Run form validation and register user if it's pass the validation
-			if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email')))
+			if ($val->run() AND $this->dx_auth->register($val->set_value('password'), $val->set_value('email'), $val->set_value('first_name'), $val->set_value('surname')))
 			{
-                            $this->load->library('Phpbb_bridge');
-                            $this->phpbb_bridge->user_add($val->set_value('email'),$val->set_value('username'),$val->set_value('password'),2);
+                            //$this->load->library('Phpbb_bridge');
+                            //$this->phpbb_bridge->user_add($val->set_value('email'),$val->set_value('username'),$val->set_value('password'),2);
 				// Set success message accordingly
 				if ($this->dx_auth->email_activation)
 				{
