@@ -1,0 +1,1 @@
+<?php //aktivity, mozno by bolo fajn pouzit checkbox
