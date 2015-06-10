@@ -1,6 +1,6 @@
 <h2>Typy štúdia</h2>
 <p>Bližšie charakterizujte  konkrétne typy štúdia slovenského jazyka.</p>
-<table>
+<table style="max-width: 800px;">
     <?php echo form_open(); ?>
     <tr>
         <td><?php echo form_label('Typ štúdia');?></td>

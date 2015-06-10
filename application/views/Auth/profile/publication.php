@@ -1,6 +1,6 @@
 <h2>Publikácie</h2>
 <p>Uveďte všetky publikácie, ktoré sa týkajú slovenského jazyka a kultúry a vznikli v rámci Vášho pracoviska. Zo zoznamu vyberte všetky relevantné kategórie a uveďte bibliografický údaj v podobe: <br>Priezvisko, Meno. Rok. Názov publikácie. In Názov zborníku/časopisu. Mesto : Vydavateľstvo, rok, s. od-do. ISBN. (Opäť nás zaujímajú predovšetkým aktivity za posledné tri roky.)</p>
-<table>
+<table style="max-width: 800px;">
     <?php echo form_open(); ?>
     <tr>
         <td><?php echo form_label('Publikácia');?></td>

@@ -1,6 +1,6 @@
 <h2>Študenti</h2>
 <p>Aký je celkový počet študentov a študentiek študujúcich na jednotlivých stupňoch štúdia (špecifikujte, či ide o samostatný odbor alebo súčasť širšieho štúdia)?</p>
-<table>
+<table style="max-width: 800px;">
     <?php echo form_open(); ?>
     <tr>
         <td><?php echo form_label('Bakalárske');?></td>
@@ -28,7 +28,7 @@
     </tr>
 </table>
 <p>Aký je momentálny počet študentov podľa stupňa jazykovej kompetencie?</p>
-<table>
+<table style="max-width: 800px;">
     <tr>
         <td><?php echo form_label('Úplní začiatočníci (A1)');?></td>
         <td><?php echo form_input('a1',$a1);?></td>

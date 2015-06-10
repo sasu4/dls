@@ -84,3 +84,16 @@ define('EXIT_USER_INPUT', 7); // invalid user input
 define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+/*
+ * Database table names for profile
+ */
+
+define('DB_ACTIV','profil_activity');
+define('DB_ADDIT','profil_additional');
+define('DB_CTG','profil_category');
+define('DB_HEAD','profil_head');
+define('DB_PUBL','profil_publication');
+define('DB_STUDENT','profil_students');
+define('DB_STUDY','profil_study');

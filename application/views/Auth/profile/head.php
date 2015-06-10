@@ -1,6 +1,6 @@
 <h2>Vedúci pracoviska</h2>
 <p>Uveďte meno, priezvisko, tituly a odborné zameranie vedúceho/vedúcej pracoviska, napíšte jej/jeho krátky profesijný profil a uveďte odkaz na internetovú stránku – ak je k dispozícii, prípadne uveďte aj e-mail.</p>
-<table>
+<table style="max-width: 800px;">
     <?php echo form_open(); ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>

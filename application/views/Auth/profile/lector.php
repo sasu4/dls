@@ -1,5 +1,5 @@
 <h2>Profil</h2>
-<table>
+<table style="max-width: 800px;">
     <?php echo form_open(); ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>

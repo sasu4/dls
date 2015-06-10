@@ -16,7 +16,7 @@ class Model_lectorate extends CI_Model {
     }
    
     function add_lectorate($data) {
-        $this->db->add('lectorate',$data);
+        $this->db->insert('lectorate',$data);
     }
     
     /**
@@ -31,7 +31,7 @@ class Model_lectorate extends CI_Model {
     
     function get_countries() {
         $this->db->distinct();
-        $this->db->select('id_country');
+        $this->db->select('country_id');
         $this->db->from('lectorate');
         return $this->db->get();
     }
@@ -48,5 +48,59 @@ class Model_lectorate extends CI_Model {
             }
         }
         return $data;
+    }
+    
+    function get_lectorate_id($user) {
+        $this->db->select('id');
+        $this->db->from('lectorate');
+        $this->db->where('created',$user);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->id;
+            }
+        }
+        return $value;
+    }
+    
+    function get_country_drop() {
+        $this->db->select('name');
+        $this->db->from('country');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $dropdowns = $query->result();
+            foreach ($dropdowns as $dropdown)
+            {
+                $dropdownlist[$dropdown->name] = $dropdown->name;
+            }
+            $finaldropdown = $dropdownlist;
+            return $finaldropdown;
+        }
+    }
+    
+    function get_country_id($name) {
+        $this->db->select('id');
+        $this->db->from('country');
+        $this->db->where('name',$name);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->id;
+            }
+        }
+        return $value;
+    }
+    
+    function get_country_name($id) {
+        $this->db->select('name');
+        $this->db->from('country');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->name;
+            }
+        }
+        return $value;
     }
 }

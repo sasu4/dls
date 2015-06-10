@@ -2,10 +2,17 @@
 
 class Model_user extends CI_Model {
     
-    function get_profile() {
-        $this->db->select('*');
-        $this->db->from('user_profile');
-        return $this->db->get();
+    function get_lectorate($id) {
+        $this->db->select('lectorate_id');
+        $this->db->from('users');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            $value = $query->row()->lectorate_id;
+        } else {
+            $value = NULL;
+        }        
+        return $value;
     }
     
     function get_login($login) {
@@ -29,6 +36,16 @@ class Model_user extends CI_Model {
     function activate($login) {
         $data = array('activated'=>1);
         $this->db->where('email',$login);
+        $this->db->update('users',$data);
+    }
+    
+    /**
+	 * Update user
+	 *
+	 * @return void
+     */ 
+    function update_user($id, $data) {
+        $this->db->where('id',$id);
         $this->db->update('users',$data);
     }
     
