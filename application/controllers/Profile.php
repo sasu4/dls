@@ -77,21 +77,113 @@ class Profile extends CI_Controller {
   }
   
   public function types_of_study() {
+      $data = $this->profil->study($this->lectorate);
       $this->load->view('header');
-      $this->load->view('Auth/profile/types_study');
+      $this->load->view('Auth/profile/types_study',$data);
       $this->load->view('footer');
+  }
+  
+  public function edit_types() {
+    $id = $this->input->post('id');
+    if($id==NULL) {
+        $data = array(
+            'type' => $this->input->post('type'),
+            'target_group' => $this->input->post('target_group'),
+            'period' => $this->input->post('period'),
+            'info' => $this->input->post('info'),
+            'lectorate_id' => $this->lectorate,
+            'created' => $this->user_id
+        );
+        $this->db->set('date_created', 'NOW()', FALSE);
+        $this->profile->add_profile_table(DB_STUDY,$data);
+    } else {
+        $data = array(
+            'type' => $this->input->post('type'),
+            'target_group' => $this->input->post('target_group'),
+            'period' => $this->input->post('period'),
+            'info' => $this->input->post('info'),
+            'last_edited' => $this->user_id
+        );
+        $this->profile->update_profile_table(DB_STUDY,$id,$data);
+    }
+    ciredirect('profile');
   }
   
   public function publication() {
+      $data = $this->profil->publicat($this->lectorate);
       $this->load->view('header');
-      $this->load->view('Auth/profile/publication');
+      $this->load->view('Auth/profile/publication',$data);
       $this->load->view('footer');
   }
   
+  public function edit_publication() {
+    $id = $this->input->post('id');
+    //tu by to bolo mozno lepsie natahovat priamo z DB, ale ako vyriesit potom pridavanie...
+    if($id==NULL) {
+        $data = array(
+            'publication_info' => $this->input->post('publication_info'),
+            'category' => $this->input->post('category'),
+            'year' => $this->input->post('year'),
+            'lectorate_id' => $this->lectorate,
+            'created' => $this->user_id
+        );
+        $this->db->set('date_created', 'NOW()', FALSE);
+        $this->profile->add_profile_table(DB_PUBL,$data);
+    } else {
+        $data = array(
+            'publication_info' => $this->input->post('publication'),
+            'category' => $this->input->post('category'),
+            'year' => $this->input->post('year'),
+            'last_edited' => $this->user_id
+        );
+        $this->profile->update_profile_table(DB_PUBL,$id,$data);
+    }
+    ciredirect('profile');
+  }
+  
   public function students() {
+      $data = $this->profil->students($this->lectorate);
       $this->load->view('header');
       $this->load->view('Auth/profile/students');
       $this->load->view('footer');
+  }
+  
+  public function edit_students() {
+    $id = $this->input->post('id');
+    if($id==NULL) {
+      $data = array(
+            'bc' => $this->input->post('bc'),
+            'mgr' => $this->input->post('mgr'),
+            'phd' => $this->input->post('phd'),
+            'nonsvk' => $this->input->post('nonsvk'),
+            'public' => $this->input->post('public'),
+            'a1' => $this->input->post('a1'),
+            'a2' => $this->input->post('a2'),
+            'b1' => $this->input->post('b1'),
+            'b2' => $this->input->post('b2'),
+            'c1' => $this->input->post('c1'),
+            'lectorate_id' => $this->lectorate,
+            'created' => $this->user_id
+        );
+        $this->db->set('date_created', 'NOW()', FALSE);
+        $this->profile->add_profile_table(DB_STUDENT,$data);
+    } else {
+        $data = array(
+            'bc' => $this->input->post('bc'),
+            'mgr' => $this->input->post('mgr'),
+            'phd' => $this->input->post('phd'),
+            'nonsvk' => $this->input->post('nonsvk'),
+            'public' => $this->input->post('public'),
+            'a1' => $this->input->post('a1'),
+            'a2' => $this->input->post('a2'),
+            'b1' => $this->input->post('b1'),
+            'b2' => $this->input->post('b2'),
+            'c1' => $this->input->post('c1'),
+            'last_edited' => $this->user_id
+        );
+        $this->profile->update_profile_table(DB_STUDENT,$id,$data);
+    }
+    ciredirect('profile');
   }
   
   public function additional() {

@@ -53,4 +53,81 @@ class Profil {
         }
         return $data;
     }
+    
+    function publicat($lec_id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_profile_table(DB_PUBL,$lec_id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                $data = array(
+                    'publication' => $row->publication_info,
+                    'year' => $row->year
+                );
+            }
+        } else {
+            $data = array(
+                'publication' => '',
+                'year' => ''
+            );
+        }
+        return $data;
+    }
+    
+    function students($lec_id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_profile_table(DB_STUDENT,$lec_id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                $data = array(
+                    'bc' => $row->bc,
+                    'mgr' => $row->mgr,
+                    'phd' => $row->phd,
+                    'nonsvk' => $row->nonsvk,
+                    'public' => $row->public,
+                    'a1' => $row->a1,
+                    'a2' => $row->a2,
+                    'b1' => $row->b1,
+                    'b2' => $row->b2,
+                    'c1' => $row->c1
+                );
+            }
+        } else {
+            $data = array(
+                'bc' => '',
+                'mgr' => '',
+                'phd' => '',
+                'nonsvk' => '',
+                'public' => '',
+                'a1' => '',
+                'a2' => '',
+                'b1' => '',
+                'b2' => '',
+                'c1' => ''
+            );
+        }
+        return $data;
+    }
+    
+    function study($lec_id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_profile_table(DB_STUDY,$lec_id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                $data = array(
+                    'type' => $row->type,
+                    'target_group' => $row->target_group,
+                    'period' => $row->period,
+                    'info' => $row->info
+                );
+            }
+        } else {
+            $data = array(
+                'type' => '',
+                'target_group' => '',
+                'period' => '',
+                'info' => ''
+            );
+        }
+        return $data;
+    }
 }

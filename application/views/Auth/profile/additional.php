@@ -17,7 +17,7 @@
         <td><?php echo form_input('comments',$comments);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_additional','Ulož'); ?></td>
+        <td><?php echo form_submit('profile/edit_additional','Uložiť'); ?></td>
     </tr>
 <?php
     echo form_close();
