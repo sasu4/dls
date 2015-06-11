@@ -29,10 +29,24 @@ class Profile extends CI_Controller {
   }
   
   public function activities() {
-      $data['query'] = $this->profile->get_activities($this->lectorate);
-      $this->load->view('header');
-      $this->load->view('Auth/profile/activity',$data);
-      $this->load->view('footer');
+    if ($this->input->post('add')) {
+        // Search checkbox in post array
+        foreach ($_POST as $key => $value) {
+            // If checkbox found
+            if (substr($key, 0, 9) == 'checkbox_') {
+                // Check if user exist, $value is username
+                if ($query = $this->user->get_login($value) AND $query->num_rows() == 1) {
+                    // Activate user
+                    $this->user->activate($value);
+                }
+            }				
+        }
+    }
+    $data['query'] = $this->profile->get_activities($this->lectorate);
+    $data['categ'] = $this->profile-> //nacitaj kategorie
+    $this->load->view('header');
+    $this->load->view('Auth/profile/activity',$data);
+    $this->load->view('footer');
   }
   
   public function workplace() {
