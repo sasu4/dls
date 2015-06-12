@@ -13,9 +13,9 @@
         <td><?php echo form_input('uni_name_o',$uni_name_o);?><br>
         <?php echo form_input('uni_name_s',$uni_name_s);?></td>
     </tr>
-</table>
-<p>Vyplňte identifikačné údaje pracoviska:</p>
-<table style="max-width: 800px; min-width: 800px;">
+    <tr>
+        <td colspan="2">Vyplňte identifikačné údaje pracoviska:</td>
+    </tr>
     <tr>
         <td><?php echo form_label('Ulica');?></td>
         <td><?php echo form_input('street',$street);?></td>

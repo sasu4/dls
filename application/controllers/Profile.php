@@ -30,25 +30,47 @@ class Profile extends CI_Controller {
   }
   
   public function activities() {
+      
+  }      
+  
+  public function add_activities($type) {
       //m:n
-    if ($this->input->post('add')) {
-        // Search checkbox in post array
-        foreach ($_POST as $key => $value) {
-            // If checkbox found
-            if (substr($key, 0, 9) == 'checkbox_') {
-                // Check if user exist, $value is username
-                if ($query = $this->user->get_login($value) AND $query->num_rows() == 1) {
-                    // Activate user
-                    $this->user->activate($value);
-                }
-            }				
-        }
+    //$data['query'] = $this->profile->get_activities($this->lectorate);
+    if($type==1)  {
+        $data['categ'] = $this->profile->get_categories_drop('Vzdelávanie');
+    } elseif($type==2) {
+        $data['categ'] = $this->profile->get_categories_drop('Veda');
+    } elseif($type==3) {
+        $data['categ'] = $this->profile->get_categories_drop('Kultúrne');
+    } else {
+        ciredirect('error_404');
     }
-    $data['query'] = $this->profile->get_activities($this->lectorate);
-    $data['categ'] = $this->profile->get_categories_drop(); //nacitaj kategorie
     $this->load->view('header');
-    $this->load->view('Auth/profile/activity',$data);
+    $this->load->view('Auth/profile/activity_add',$data);
     $this->load->view('footer');
+  }
+  
+  public function edit_activities() {
+      $id = $this->input->post('id');
+      if($id==NULL) {
+          $data = array(
+              'category_id' => $this->input->post('category_id'),
+              'info' => $this->input->post('info'),
+              'year' => $this->input->post('year'),
+              'lectorate_id' => $this->lectorate,
+              'created' => $this->user_id
+          );
+          $this->db->set('date_created', 'NOW()', FALSE);
+          $this->profile->add_profile_table(DB_ACTIV,$data);
+      } else {
+          $data = array(
+              'category_id' => $this->input->post('category_id'),
+              'info' => $this->input->post('info'),
+              'year' => $this->input->post('year'),
+              'last_edited' => $this->user_id
+                  );
+          $this->profile->update_profile_table(DB_ACTIV,$id,$data);
+      }          
   }
   
   public function workplace() {
@@ -105,7 +127,8 @@ public function edit_head() {
             'website' => $this->input->post('website'),
             'about' => $this->input->post('about'),
             'email' => $this->input->post('email'),
-            'created' => $this->user_id
+            'created' => $this->user_id,
+            'lectorate_id' => $this->lectorate
         );
         $this->db->set('date_created', 'NOW()', FALSE);
         $this->profile->add_profile_table(DB_HEAD,$data);
@@ -158,7 +181,7 @@ public function edit_head() {
   }
   
   public function publication() {
-      $data = $this->profil->publicat($this->lectorate);
+      $data['query'] = $this->profil->publicat($this->lectorate);
       $this->load->view('header');
       $this->load->view('Auth/profile/publication',$data);
       $this->load->view('footer');
@@ -192,7 +215,7 @@ public function edit_head() {
   public function students() {
       $data = $this->profil->students($this->lectorate);
       $this->load->view('header');
-      $this->load->view('Auth/profile/students');
+      $this->load->view('Auth/profile/students',$data);
       $this->load->view('footer');
   }
   

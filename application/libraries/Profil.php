@@ -71,6 +71,7 @@ class Profil {
                     'phd' => $row->phd,
                     'nonsvk' => $row->nonsvk,
                     'public' => $row->public,
+                    'year' => $row->year,
                     'a1' => $row->a1,
                     'a2' => $row->a2,
                     'b1' => $row->b1,
@@ -80,11 +81,13 @@ class Profil {
             }
         } else {
             $data = array(
+                'id' => NULL,
                 'bc' => '',
                 'mgr' => '',
                 'phd' => '',
                 'nonsvk' => '',
                 'public' => '',
+                'year' => '',
                 'a1' => '',
                 'a2' => '',
                 'b1' => '',
@@ -109,6 +112,7 @@ class Profil {
             }
         } else {
             $data = array(
+                'id' => NULL,
                 'type' => '',
                 'target_group' => '',
                 'period' => '',

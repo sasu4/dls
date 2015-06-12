@@ -27,9 +27,9 @@
         <td><?php echo form_label('Stav k roku');?></td>
         <td><?php echo form_input('year',$year);?></td>
     </tr>
-</table>
-<p>Aký je momentálny počet študentov podľa stupňa jazykovej kompetencie?</p>
-<table style="max-width: 800px;">
+    <tr>
+        <td columnspan="2">Aký je momentálny počet študentov podľa stupňa jazykovej kompetencie?</td>
+    </tr>
     <tr>
         <td><?php echo form_label('Úplní začiatočníci (A1)');?></td>
         <td><?php echo form_input('a1',$a1);?></td>
