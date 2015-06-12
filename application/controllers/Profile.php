@@ -15,6 +15,7 @@ class Profile extends CI_Controller {
         $this->load->model('model_user','user');
         $this->load->model('model_lectorate');
         $this->load->library('profil');
+        $this->load->library('Table');
         $this->user_id = $this->dx_auth->get_user_id();
         $this->lectorate = $this->user->get_lectorate($this->user_id);
         if($this->lectorate==NULL) {
@@ -29,6 +30,7 @@ class Profile extends CI_Controller {
   }
   
   public function activities() {
+      //m:n
     if ($this->input->post('add')) {
         // Search checkbox in post array
         foreach ($_POST as $key => $value) {
@@ -43,7 +45,7 @@ class Profile extends CI_Controller {
         }
     }
     $data['query'] = $this->profile->get_activities($this->lectorate);
-    $data['categ'] = $this->profile-> //nacitaj kategorie
+    $data['categ'] = $this->profile->get_categories_drop(); //nacitaj kategorie
     $this->load->view('header');
     $this->load->view('Auth/profile/activity',$data);
     $this->load->view('footer');
@@ -80,15 +82,47 @@ class Profile extends CI_Controller {
   }
   
   public function head() {
-      $data = $this->profil->head($this->lectorate);
+      $data['users'] = $this->user->get_user_drop();
+      $this->load->view('header');
+      $this->load->view('Auth/profile/head_choose',$data);
+      $this->load->view('footer');
+  }
+  
+  public function choose_head() {
+      $data['query'] = $this->user->get_user($this->input->post('user_id'));
       $this->load->view('header');
       $this->load->view('Auth/profile/head',$data);
       $this->load->view('footer');
   }
   
-  public function edit_head() {
-      $id = $this->input->post('id');
-  }
+public function edit_head() {
+    $id = $this->input->post('id');
+    if($id==NULL) {
+        $data = array(
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'expertise' => $this->input->post('expertise'),
+            'website' => $this->input->post('website'),
+            'about' => $this->input->post('about'),
+            'email' => $this->input->post('email'),
+            'created' => $this->user_id
+        );
+        $this->db->set('date_created', 'NOW()', FALSE);
+        $this->profile->add_profile_table(DB_HEAD,$data);
+    } else {
+        //asi by sa nemalo dovolit editovat, len sa zmeni na head
+        $data = array(
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'expertise' => $this->input->post('expertise'),
+            'website' => $this->input->post('website'),
+            'about' => $this->input->post('about'),
+            'head' => $this->input->post('head')
+        );
+        $this->profile->update_profile_table(DB_HEAD,$id,$data);
+    }
+    ciredirect('profile');
+}
   
   public function types_of_study() {
       $data = $this->profil->study($this->lectorate);

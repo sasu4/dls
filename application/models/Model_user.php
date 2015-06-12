@@ -68,4 +68,26 @@ class Model_user extends CI_Model {
         $value = $row->activated;
         return $value==='1';
     }
+    
+    function get_user_drop() {
+        $this->db->select('email, name, surname');
+        $this->db->from('users');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $dropdowns = $query->result();
+            foreach ($dropdowns as $dropdown)
+            {
+                $dropdownlist[$dropdown->email] = $dropdown->name.' '.$dropdown->surname;
+            }
+            $finaldropdown = $dropdownlist;
+            return $finaldropdown;
+        }
+    }
+    
+    function get_user($mail) {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('email',$mail);
+        return $this->db->get();
+    }
 }

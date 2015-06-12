@@ -9,6 +9,21 @@ class Model_profile extends CI_Model {
         return $this->db->get();
     }
     
+    function get_categories_drop() {
+        $this->db->select('id, description');
+        $this->db->from(DB_CTG);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            $dropdowns = $query->result();
+            foreach ($dropdowns as $dropdown)
+            {
+                $dropdownlist[$dropdown->id] = $dropdown->description;
+            }
+            $finaldropdown = $dropdownlist;
+            return $finaldropdown;
+        }
+    }
+    
     //add activities
     //update activities
     
