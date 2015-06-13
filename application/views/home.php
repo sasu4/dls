@@ -2,17 +2,31 @@
 
 <table align="center">
 <?php
+$id = 0;
 if ($coun->num_rows() > 0) {
     foreach ($coun->result() as $row) {
         $data = $this->lectorate->get_lectorate_c($row->country_id);
-        echo '<tr><td><b>';
-        echo anchor('country/'.$data['id'],$data['name']);
-        echo '</b></td></tr>';
+        if($id!=$row->country_id) {
+            if($id!=0) {
+                echo '</ul></td></tr>';
+            }
+            echo '<tr><td><b>';
+            echo anchor('country/'.$data['id'],$data['name']).'</b><ul>';
+            echo '<li>';
+            echo anchor('lectorate/'.$row->id,$row->name_orig);
+            echo '</li>';
+        } else {
+            echo '<li>';
+            echo anchor('lectorate/'.$row->id,$row->name_orig);
+            echo '</li>';
+        }
+        $id = $row->country_id;
     }
+    echo '</ul></td></tr>';
 }
 ?>
   
-    <tr><td><ul><li>Sofia</li></ul></td><td></td><td></td></tr>
+<!--    <tr><td><ul><li>Sofia</li></ul></td><td></td><td></td></tr>
     <tr><td><ul><li>Veľké Tarnovo</li></ul></td><td></td><td></td></tr>
     <tr><td><b>Čína</b></td><td></td><td></td></tr>
     <tr><td><b>Chorvátsko</b></td><td></td></tr>
@@ -31,8 +45,7 @@ if ($coun->num_rows() > 0) {
     <tr><td> Srbsko</td></tr>
     <tr><td> Taliansko</td></tr>
     <tr><td> USA - Spojené štáty americké</td></tr>
-    <tr><td> Ukrajina</td></tr>
-    </div>
+    <tr><td> Ukrajina</td></tr>-->
 </table>
 <?php
     echo anchor('home/pages/about','About');
