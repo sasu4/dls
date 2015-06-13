@@ -1,4 +1,39 @@
 <p>Welcome to The Slovakists Around the World Database.</p><br>
+
+<table align="center">
+<?php
+if ($coun->num_rows() > 0) {
+    foreach ($coun->result() as $row) {
+        $data = $this->lectorate->get_lectorate_c($row->country_id);
+        echo '<tr><td><b>';
+        echo anchor('country/'.$data['id'],$data['name']);
+        echo '</b></td></tr>';
+    }
+}
+?>
+  
+    <tr><td><ul><li>Sofia</li></ul></td><td></td><td></td></tr>
+    <tr><td><ul><li>Veľké Tarnovo</li></ul></td><td></td><td></td></tr>
+    <tr><td><b>Čína</b></td><td></td><td></td></tr>
+    <tr><td><b>Chorvátsko</b></td><td></td></tr>
+    <tr><td><b>Fínsko</b></td><td> Rumunsko</td></tr>
+    <tr><td><b>Francúzsko</b></td></tr>
+    <tr><td><ul><li>Clermont - Ferrand</li></ul></td><td></td><td></td></tr>
+    <tr><td><ul><li>Paríž</li></ul></td><td></td><td></td></tr>
+    <tr><td><ul><li>Štrasburg</li></ul></td><td></td><td></td></tr>
+    <tr><td><b>Maďarsko</b></td></tr>
+    <tr><td> Nemecko</td></tr>
+    <tr><td> Poľsko</td></tr>
+    <tr><td> Rakúsko</td></tr>
+    <tr><td> Rumunsko</td></tr>
+    <tr><td> Rusko</td></tr>
+    <tr><td> Slovinsko</td></tr>
+    <tr><td> Srbsko</td></tr>
+    <tr><td> Taliansko</td></tr>
+    <tr><td> USA - Spojené štáty americké</td></tr>
+    <tr><td> Ukrajina</td></tr>
+    </div>
+</table>
 <?php
     echo anchor('home/pages/about','About');
     echo '<br>';
@@ -17,7 +52,7 @@
 <?php
 if ($list->num_rows() > 0) {
     foreach ($list->result() as $row) {
-        echo anchor('lectorate/lect/'.$row->id,$row->name);
+        echo anchor('lectorate/lect/'.$row->id,$row->name_orig);
         echo '<br>';
     }
 }?>
@@ -25,7 +60,7 @@ if ($list->num_rows() > 0) {
 <?php
 if ($coun->num_rows() > 0) {
     foreach ($coun->result() as $row) {
-        $data = $this->lectorate->get_lectorate_c($row->id_country);
+        $data = $this->lectorate->get_lectorate_c($row->country_id);
         echo anchor('country/'.$data['id'],$data['name']);
         echo '<br>';
     }
