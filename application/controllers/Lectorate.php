@@ -28,6 +28,7 @@ class Lectorate extends CI_Controller {
     }
     
     function new_lectorate() {
+        //osetrit ak uz ma pouzivatel lektorat
         if(!$this->dx_auth->is_logged_in()) {
             ciredirect('home');
         }

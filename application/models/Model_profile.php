@@ -9,6 +9,21 @@ class Model_profile extends CI_Model {
         return $this->db->get();
     }
     
+    function get_categorie_info($id) {
+        $this->db->select('id, type, description');
+        $this->db->from(DB_CTG);
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $data['type'] = $row->type;
+                $data['description'] = $row->description;
+                $data['id'] = $row->id;
+            }
+        }
+        return $data;
+    }
+    
     function get_categories_drop($type) {
         $this->db->select('id, description');
         $this->db->from(DB_CTG);

@@ -30,12 +30,15 @@ class Profile extends CI_Controller {
   }
   
   public function activities() {
-      
+    $data['query'] = $this->profile->get_activities($this->lectorate);
+    $this->load->view('header');
+    $this->load->view('Auth/profile/activity',$data);
+    $this->load->view('footer');
   }      
   
   public function add_activities($type) {
       //m:n
-    //$data['query'] = $this->profile->get_activities($this->lectorate);
+    //
     if($type==1)  {
         $data['categ'] = $this->profile->get_categories_drop('Vzdelávanie');
     } elseif($type==2) {
@@ -70,7 +73,8 @@ class Profile extends CI_Controller {
               'last_edited' => $this->user_id
                   );
           $this->profile->update_profile_table(DB_ACTIV,$id,$data);
-      }          
+      }     
+      ciredirect('profile');
   }
   
   public function workplace() {

@@ -1,14 +1,29 @@
 <h2>Aktivity</h2>
 <p></p>
-<?php //aktivity, mozno by bolo fajn pouzit checkbox
-    $this->table->set_heading('Kategória', 'Viac informácií', 'Rok', '');
-    echo form_open();
-    foreach ($query->result() as $row) {
-        $this->table->add_row(
-                form_dropdown('category_id',$cat),  //kategorie 
-                form_textarea('info',$row->info), 
-                form_input('year',$row->year),
-                form_hidden('id',$row->id).form_submit('')
-            );
+<table style="max-width: 800px;">
+    <tr>
+        <td colspan="2">Kategória</td>
+        <td>Informácie o aktivite</td>
+        <td>Platné pre rok</td>
+        <td> </td>
+    </tr>
+    <?php
+    if($query->num_rows()>0) {
+        foreach($query->result() as $row) {
+            echo form_open('profile/edit_activities');
+            echo form_hidden('id',$row->id);
+            $data = $this->profile->get_categorie_info($row->category_id);
+            ?>
+    <tr>
+        <td><?php echo form_input('type',$data['type']);?></td>
+        <td><?php echo form_input('despcription',$data['description']);?></td>
+        <td><?php echo form_textarea('info',$row->info);?></td>
+        <td><?php echo form_input('year',$row->year);?></td>
+        <td><?php echo form_submit('profile/edit_activities','Upraviť');?></td>
+    </tr>
+    <?php
+    echo form_close();
+        }
     }
-    echo $this->table->generate(); 
+    ?>
+</table>

@@ -30,8 +30,8 @@ class Model_lectorate extends CI_Model {
     }
     
     function get_countries() {
-        $this->db->distinct();
-        $this->db->select('country_id');
+        $this->db->order_by('country_id');
+        $this->db->select('*');
         $this->db->from('lectorate');
         return $this->db->get();
     }

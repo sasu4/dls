@@ -7,7 +7,7 @@
     echo '<li>'.anchor('profile/types_of_study','Typy štúdia').'</li>';
     echo '<li>'.anchor('profile/publication','Publikácie').'</li>';
     echo '<li>'.anchor('profile/students','Študenti').'</li>';
-    echo '<li>'.'Aktivity'.'<ul>';
+    echo '<li>'.anchor('profile/activities','Aktivity').'<ul>';
         echo '<li>'.anchor('profile/add_activities/1','Vzdelávanie').'</li>';
         echo '<li>'.anchor('profile/add_activities/2','Veda').'</li>';
         echo '<li>'.anchor('profile/add_activities/3','Kultúra').'</li>';
