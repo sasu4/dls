@@ -7,7 +7,7 @@ if($query->num_rows()>0) {
         echo $row->univ_orig;
         echo $row->univ_sk;
         echo $row->street;
-        echo $row->numb;
+        echo $row->number;
         echo $row->city;
         echo $row->country_id;
         echo $row->zip;

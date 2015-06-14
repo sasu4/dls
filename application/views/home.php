@@ -13,11 +13,11 @@ if ($coun->num_rows() > 0) {
             echo '<tr><td><b>';
             echo anchor('country/'.$data['id'],$data['name']).'</b><ul>';
             echo '<li>';
-            echo anchor('lectorate/'.$row->id,$row->name_orig);
+            echo anchor('profile/lectorate/'.$row->id,$row->name_orig);
             echo '</li>';
         } else {
             echo '<li>';
-            echo anchor('lectorate/'.$row->id,$row->name_orig);
+            echo anchor('profile/lectorate/'.$row->id,$row->name_orig);
             echo '</li>';
         }
         $id = $row->country_id;
