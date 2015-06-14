@@ -1,7 +1,7 @@
 <h2>Doplňujúce informácie</h2>
 <p>Akékoľvek aktuálne informácie týkajúce sa lektorátu, pracoviska alebo Vášho lektorského pôsobenia, ktoré by ste radi prezentovali na našej stránke, môžete uviesť tu. </p>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_additional'); 
+    <?php echo form_open('profile_edit/edit_additional'); 
         echo form_hidden('id',$id);
     ?>
     <tr>
@@ -17,7 +17,7 @@
         <td><?php echo form_input('comments',$comments);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_additional','Uložiť'); ?></td>
+        <td><?php echo form_submit('profile_edit/edit_additional','Uložiť'); ?></td>
     </tr>
 <?php
     echo form_close();

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Profile extends CI_Controller {
+class Profile_edit extends CI_Controller {
     
     var $lectorate; //id of lectorate coresponding to user
     var $user_id;
@@ -15,7 +15,6 @@ class Profile extends CI_Controller {
         $this->load->model('model_user','user');
         $this->load->model('model_lectorate');
         $this->load->library('profil');
-        $this->load->library('Table');
         $this->user_id = $this->dx_auth->get_user_id();
         $this->lectorate = $this->user->get_lectorate($this->user_id);
         if($this->lectorate==NULL) {
@@ -35,6 +34,27 @@ class Profile extends CI_Controller {
     $this->load->view('Auth/profile/activity',$data);
     $this->load->view('footer');
   }      
+  
+  public function lector() {
+    $data['query'] = $this->user->get_user_profil($this->user_id);
+    $data['countries'] = $this->model_lectorate->get_country_drop();
+    $this->load->view('header');
+    $this->load->view('Auth/profile/lector',$data);
+    $this->load->view('footer');  
+  }
+  
+  public function lector_edit() {
+      $id = $this->input->post('id');
+      $country = $this->model_lectorate->get_country_id($this->input->post('country_id'));
+      $data = array(
+        'name' => $this->input->post('name'),
+        'surname' => $this->input->post('surname'),
+        'telephone' => $this->input->post('telephone'),
+        'country_id' => $country
+    );
+    $this->profile->update_profile_table('users',$id,$data);
+    ciredirect('profile_edit');
+  }
   
   public function add_activities($type) {
       //m:n
@@ -74,7 +94,7 @@ class Profile extends CI_Controller {
                   );
           $this->profile->update_profile_table(DB_ACTIV,$id,$data);
       }     
-      ciredirect('profile');
+      ciredirect('profile_edit');
   }
   
   public function workplace() {
@@ -104,7 +124,7 @@ class Profile extends CI_Controller {
         'last_edited' => $this->user_id
     );
     $this->profile->update_profile_table('lectorate',$id,$data);
-    ciredirect('profile');
+    ciredirect('profile_edit');
   }
   
   public function head() {
@@ -148,7 +168,7 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_HEAD,$id,$data);
     }
-    ciredirect('profile');
+    ciredirect('profile_edit');
 }
   
   public function types_of_study() {
@@ -181,7 +201,7 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_STUDY,$id,$data);
     }
-    ciredirect('profile');
+    ciredirect('profile_edit');
   }
   
   public function publication() {
@@ -213,7 +233,7 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_PUBL,$id,$data);
     }
-    ciredirect('profile');
+    ciredirect('profile_edit');
   }
   
   public function students() {
@@ -258,7 +278,7 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_STUDENT,$id,$data);
     }
-    ciredirect('profile');
+    ciredirect('profile_edit');
   }
   
   public function additional() {
@@ -289,6 +309,6 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_ADDIT,$id,$data);
     }
-    ciredirect('profile');
+    ciredirect('profile_edit');
   }
 }

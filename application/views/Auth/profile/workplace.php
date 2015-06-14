@@ -1,6 +1,6 @@
 <h2>Pracovisko</h2>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_workplace'); 
+    <?php echo form_open('profile_edit/edit_workplace'); 
         echo form_hidden('id',$id);
     ?>
     <tr>
@@ -54,7 +54,7 @@
         <td><?php echo form_textarea('focus',$focus);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_workplace','Uložiť'); ?></td>
+        <td><?php echo form_submit('profile_edit/edit_workplace','Uložiť'); ?></td>
     </tr>
 <?php
     echo form_close();

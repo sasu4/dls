@@ -31,6 +31,7 @@ class Profil {
     
     function work($lec_id) {
         $this->Profil();
+        $this->ci->load->model('model_lectorate');
         $query = $this->ci->profile->get_lectorate('lectorate',$lec_id);
         if($query->num_rows()>0) {
             foreach ($query->result() as $row) {
@@ -43,7 +44,7 @@ class Profil {
                     'street' => $row->street,
                     'numb' => $row->number,
                     'city' => $row->city,
-                    'c_sel' => $row->country_id,
+                    'c_sel' => $this->ci->model_lectorate->get_country_name($row->country_id),
                     'psc' => $row->zip,
                     'tel' => $row->telephone,
                     'web' => $row->website,

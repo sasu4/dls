@@ -5,7 +5,7 @@ if($query->num_rows()>0) {
     foreach($query->result() as $row) {
 ?>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_head'); 
+    <?php echo form_open('profile_edit/edit_head'); 
     echo form_hidden('id',$row->id);
     echo form_hidden('head',1);
     ?>
@@ -36,7 +36,7 @@ if($query->num_rows()>0) {
         <td><?php echo form_input('website',$row->website);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_head','Potvrdiť'); ?></td>
+        <td><?php echo form_submit('profile_edit/edit_head','Potvrdiť'); ?></td>
     </tr>
 <?php
     echo form_close();
@@ -45,7 +45,7 @@ if($query->num_rows()>0) {
 <?php }
 } else {?>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_head'); 
+    <?php echo form_open('profile_edit/edit_head'); 
     ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>
@@ -72,7 +72,7 @@ if($query->num_rows()>0) {
         <td><?php echo form_input('website','');?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_head','Potvrdiť'); ?></td>
+        <td><?php echo form_submit('profile_edit/edit_head','Potvrdiť'); ?></td>
     </tr>
 <?php
     echo form_close();

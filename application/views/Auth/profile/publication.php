@@ -5,7 +5,7 @@
         foreach($query->result() as $row) {
             ?>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_publication');
+    <?php echo form_open('profile_edit/edit_publication');
         echo form_hidden('id',$row->id);?>
     <tr>
         <td><?php echo form_label('Publikácia');?></td>
@@ -34,7 +34,7 @@
         <td><?php echo form_input('year',$row->year);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_publication','Uložiť');?></td>
+        <td><?php echo form_submit('profile_edit/edit_publication','Uložiť');?></td>
     </tr>
 </table>
 <?php 
@@ -43,7 +43,7 @@
     } else {
 ?>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_publication');
+    <?php echo form_open('profile_edit/edit_publication');
         echo form_hidden('id',NULL);?>
     <tr>
         <td><?php echo form_label('Publikácia');?></td>
@@ -72,7 +72,7 @@
         <td><?php echo form_input('year','');?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_publication','Uložiť');?></td>
+        <td><?php echo form_submit('profile_edit/edit_publication','Uložiť');?></td>
     </tr>
 </table>
     <?php } ?>

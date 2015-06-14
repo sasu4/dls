@@ -1,7 +1,7 @@
 <h2>Typy štúdia</h2>
 <p>Bližšie charakterizujte  konkrétne typy štúdia slovenského jazyka.</p>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_study'); 
+    <?php echo form_open('profile_edit/edit_study'); 
     echo form_hidden('id',$id);
     $type = array(
         'Slovakistika ako samostatný odbor/program',
@@ -29,7 +29,7 @@
         <td><?php echo form_textarea('info',$info);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_study','Uložiť'); ?></td>
+        <td><?php echo form_submit('profile_edit/edit_study','Uložiť'); ?></td>
     </tr>
 <?php
     echo form_close();

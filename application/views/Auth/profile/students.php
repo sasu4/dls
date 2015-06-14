@@ -1,7 +1,7 @@
 <h2>Študenti</h2>
 <p>Aký je celkový počet študentov a študentiek študujúcich na jednotlivých stupňoch štúdia (špecifikujte, či ide o samostatný odbor alebo súčasť širšieho štúdia)?</p>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_students'); 
+    <?php echo form_open('profile_edit/edit_students'); 
     echo form_hidden('id',$id);?>
     <tr>
         <td><?php echo form_label('Bakalárske');?></td>
@@ -51,7 +51,7 @@
         <td><?php echo form_input('c1',$c1);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_students','Uložiť'); ?></td>
+        <td><?php echo form_submit('profile_edit/edit_students','Uložiť'); ?></td>
     </tr>
 <?php
     echo form_close();

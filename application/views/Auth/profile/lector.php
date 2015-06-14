@@ -1,34 +1,40 @@
 <h2>Profil</h2>
+<?php 
+if($query->num_rows()>0) {
+    foreach($query->result() as $row) {
+?>
 <table style="max-width: 800px;">
-    <?php echo form_open(); ?>
+    <?php echo form_open('profile_edit/lector_edit');
+    echo form_hidden('id',$row->id);
+    $country = $this->model_lectorate->get_country_name($row->country_id);?>
     <tr>
         <td><?php echo form_label('Meno');?></td>
-        <td><?php echo form_input('first_name',$name);?></td>
+        <td><?php echo form_input('name',$row->name);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Priezvisko');?></td>
-        <td><?php echo form_input('surname',$surname);?></td>
+        <td><?php echo form_input('surname',$row->surname);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('E-mail');?></td>
-        <td><?php echo form_input('email',$email);?></td>
+        <td><?php echo form_input('email',$row->email);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Telefon');?></td>
-        <td><?php echo form_input('mobile',$mobile);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Pracovisko');?></td>
-        <td><?php echo form_dropdown();?></td>
+        <td><?php echo form_input('telephone',$row->telephone);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Krajina');?></td>
-        <td><?php echo form_dropdown();?></td>
+        <td><?php echo form_dropdown('country_id',$countries,$country);?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit(); ?></td>
+        <td><?php echo form_submit('profile_edit/lector_edit','Uložiť'); ?></td>
     </tr>
 <?php
     echo form_close();
 ?>
 </table>
+<?php 
+    }
+}
+?>

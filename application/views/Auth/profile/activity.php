@@ -10,7 +10,7 @@
     <?php
     if($query->num_rows()>0) {
         foreach($query->result() as $row) {
-            echo form_open('profile/edit_activities');
+            echo form_open('profile_edit/edit_activities');
             echo form_hidden('id',$row->id);
             $data = $this->profile->get_categorie_info($row->category_id);
             ?>
@@ -19,7 +19,7 @@
         <td><?php echo form_input('despcription',$data['description']);?></td>
         <td><?php echo form_textarea('info',$row->info);?></td>
         <td><?php echo form_input('year',$row->year);?></td>
-        <td><?php echo form_submit('profile/edit_activities','Upraviť');?></td>
+        <td><?php echo form_submit('profile_edit/edit_activities','Upraviť');?></td>
     </tr>
     <?php
     echo form_close();

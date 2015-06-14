@@ -1,7 +1,7 @@
 <h2>Aktivity</h2>
 <p></p>
 <table style="max-width: 800px;">
-    <?php echo form_open('profile/edit_activities');
+    <?php echo form_open('profile_edit/edit_activities');
     echo form_hidden('id',NULL);?>
     <tr>
         <td>Kategória</td>
@@ -16,7 +16,7 @@
         <td><?php echo form_input('year','');?></td>
     </tr>
     <tr>
-        <td><?php echo form_submit('profile/edit_activities','Pridať');?></td>
+        <td><?php echo form_submit('profile_edit/edit_activities','Pridať');?></td>
     </tr>
 </table>
 <?php 
