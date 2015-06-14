@@ -40,6 +40,20 @@ class Model_profile extends CI_Model {
         }
     }
     
+    function get_head_id($email,$lec){
+        $this->db->select('id');
+        $this->db->from(DB_HEAD);
+        $this->db->where('email',$email);
+        $this->db->where('lectorate_id',$lec);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->id;
+            }
+        }
+        return $value;
+    }
+    
     //add activities
     //update activities
     

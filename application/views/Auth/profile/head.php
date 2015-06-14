@@ -46,6 +46,7 @@ if($query->num_rows()>0) {
 } else {?>
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/edit_head'); 
+    echo form_hidden('id',NULL);
     ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>

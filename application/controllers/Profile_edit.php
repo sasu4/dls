@@ -156,6 +156,9 @@ public function edit_head() {
         );
         $this->db->set('date_created', 'NOW()', FALSE);
         $this->profile->add_profile_table(DB_HEAD,$data);
+        $id_head = $this->profile->get_head_id($data['email'],$this->lectorate);
+        $data2['head_id'] = $id_head;
+        $this->profile->update_profile_table('lectorate',$this->lectorate,$data2);
     } else {
         //asi by sa nemalo dovolit editovat, len sa zmeni na head
         $data = array(
@@ -178,7 +181,7 @@ public function edit_head() {
       $this->load->view('footer');
   }
   
-  public function edit_types() {
+  public function edit_study() {
     $id = $this->input->post('id');
     if($id==NULL) {
         $data = array(

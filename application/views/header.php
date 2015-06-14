@@ -15,7 +15,14 @@
 <body>
     <div class="navbar"><right>
         <?php if(!$this->dx_auth->is_logged_in()) {
-            echo anchor('auth/login','Prihlásenie');
+            echo anchor('home','Domov');
+            echo ' | '.anchor('auth/login','Prihlásenie');
+        } elseif($this->dx_auth->is_admin()) {
+            echo $this->dx_auth->get_name();
+            echo ' ('.anchor('auth/logout','Odhlásenie').')';
+            echo ' | '.anchor('home','Domov');
+            echo ' | '.anchor('backend','Správa používateľov');
+            echo ' | '.anchor('admin','Správa lektorátov');
         } else {
             echo $this->dx_auth->get_name();
             echo ' ('.anchor('auth/logout','Odhlásenie').')';

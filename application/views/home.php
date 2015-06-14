@@ -61,22 +61,22 @@ if ($coun->num_rows() > 0) {
     echo anchor('home/pages/more','More activities');
 ?>
 <br>
-<h2>Lectorates</h2>
+<!--<h2>Lectorates</h2>-->
 <?php
-if ($list->num_rows() > 0) {
-    foreach ($list->result() as $row) {
-        echo anchor('lectorate/lect/'.$row->id,$row->name_orig);
-        echo '<br>';
-    }
-}?>
-<h2>Countries</h2>
+//if ($list->num_rows() > 0) {
+//    foreach ($list->result() as $row) {
+//        echo anchor('lectorate/lect/'.$row->id,$row->name_orig);
+//        echo '<br>';
+//    }
+//}?>
+<!--<h2>Countries</h2>-->
 <?php
-if ($coun->num_rows() > 0) {
-    foreach ($coun->result() as $row) {
-        $data = $this->lectorate->get_lectorate_c($row->country_id);
-        echo anchor('country/'.$data['id'],$data['name']);
-        echo '<br>';
-    }
-}
+//if ($coun->num_rows() > 0) {
+//    foreach ($coun->result() as $row) {
+//        $data = $this->lectorate->get_lectorate_c($row->country_id);
+//        echo anchor('country/'.$data['id'],$data['name']);
+//        echo '<br>';
+//    }
+//}
 
     

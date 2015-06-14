@@ -28,9 +28,10 @@
 		
 		echo form_open($this->uri->uri_string());
 				
-		echo form_submit('ban', 'Ban user');
-		echo form_submit('unban', 'Unban user');
-		echo form_submit('reset_pass', 'Reset password');
+		echo form_submit('ban', 'Udeliť ban');
+		echo form_submit('unban', 'Zrušiť ban');
+		echo form_submit('reset_pass', 'Resetovať heslo');
+                echo form_submit('backend/waiting_users','Aktivovať používateľov');
 		
 		echo '<hr/>';
 		

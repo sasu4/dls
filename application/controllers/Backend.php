@@ -27,7 +27,9 @@ class Backend extends CI_Controller
 	function users()
 	{
 		$this->load->model('dx_auth/users', 'users');			
-		
+		if (isset($_POST['backend/waiting_users'])) {
+                    ciredirect('backend/waiting_users');
+                }
 		// Search checkbox in post array
 		foreach ($_POST as $key => $value)
 		{
@@ -99,7 +101,9 @@ class Backend extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 		
 		// Load view
+                $this->load->view('header');
 		$this->load->view('backend/users', $data);
+                $this->load->view('footer');
 	}
         
         function waiting_users() {
