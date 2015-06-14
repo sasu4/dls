@@ -432,6 +432,7 @@ class DX_Auth
 		$user = array(						
 			'DX_user_id'						=> $data->id,
 			'DX_username'						=> $data->username,
+                        'DX_name'                                               => $data->name,
 			'DX_role_id'						=> $data->role_id,			
 			'DX_role_name'					=> $role_data['role_name'],
 			'DX_parent_roles_id'		=> $role_data['parent_roles_id'],	// Array of parent role_id
@@ -672,6 +673,12 @@ class DX_Auth
 	function get_role_id()
 	{
 		return $this->ci->session->userdata('DX_role_id');
+	}
+        
+        // Get user name
+	function get_name()
+	{
+		return $this->ci->session->userdata('DX_name');
 	}
 	
 	// Get user role name

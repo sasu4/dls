@@ -144,7 +144,7 @@ class Auth extends CI_Controller
 		$this->dx_auth->logout();
 		
                 $this->session->set_flashdata('mesg', 'You have been logged out.');
-                ciredirect('title');
+                ciredirect('home');
 		//$data['auth_message'] = 'You have been logged out.';		
 		//$this->load->view($this->dx_auth->logout_view, $data);
 	}
