@@ -29,7 +29,7 @@
             echo $this->dx_auth->get_name();
             echo ' ('.anchor('auth/logout','Odhlásenie').')';
             echo ' | '.anchor('home','Domov');
-            echo ' | '.anchor('profile_edit','Upraviť profil');
+            echo ' | '.anchor('profile_edit','Upraviť lektorát');
         }
             ?>
         </div>
