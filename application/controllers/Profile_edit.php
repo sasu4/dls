@@ -64,9 +64,25 @@ class Profile_edit extends CI_Controller {
     $this->load->view('footer');
   }      
   
+  public function activity_more() {
+      $id = $this->uri->segment(3);
+      $data = $this->profil->activ($id);
+      $type = $this->profile->get_category($data['category_id']);
+      if($type=='Vzdelávanie')  {
+          $data['categ'] = $this->profile->get_categories_drop('Vzdelávanie');
+      } elseif($type=='Veda') {
+          $data['categ'] = $this->profile->get_categories_drop('Veda');
+      } elseif($type=='Kultúrne') {
+          $data['categ'] = $this->profile->get_categories_drop('Kultúrne');
+      } else {
+          ciredirect('error_404');
+      }
+      $this->load->view('header');
+      $this->load->view('Auth/profile/activity_add',$data);
+      $this->load->view('footer');
+  }
+  
   public function add_activities($type) {
-      //m:n
-    //
     if($type==1)  {
         $data['categ'] = $this->profile->get_categories_drop('Vzdelávanie');
     } elseif($type==2) {
@@ -144,10 +160,17 @@ class Profile_edit extends CI_Controller {
    */
   
   public function head() {
-      $data['users'] = $this->user->get_user_drop();
-      $this->load->view('header');
-      $this->load->view('Auth/profile/head_choose',$data);
-      $this->load->view('footer');
+      if($this->profil->is_head($this->lectorate)) {
+          $data['query'] = $this->profil->get_head($this->lectorate);
+          $this->load->view('header');
+          $this->load->view('Auth/profile/head',$data);
+          $this->load->view('footer');
+      } else {
+          $data['users'] = $this->user->get_user_drop();
+          $this->load->view('header');
+          $this->load->view('Auth/profile/head_choose',$data);
+          $this->load->view('footer');
+      }
   }
   
   public function choose_head() {
@@ -178,11 +201,6 @@ public function edit_head() {
     } else {
         //asi by sa nemalo dovolit editovat, len sa zmeni na head
         $data = array(
-            'name' => $this->input->post('name'),
-            'surname' => $this->input->post('surname'),
-            'expertise' => $this->input->post('expertise'),
-            'website' => $this->input->post('website'),
-            'about' => $this->input->post('about'),
             'head' => $this->input->post('head')
         );
         $this->profile->update_profile_table(DB_HEAD,$id,$data);
@@ -195,7 +213,15 @@ public function edit_head() {
  */
   
   public function types_of_study() {
-      $data = $this->profil->study($this->lectorate);
+      $data['query'] = $this->profil->studie($this->lectorate);
+      $this->load->view('header');
+      $this->load->view('Auth/profile/types_studies',$data);
+      $this->load->view('footer');
+  }
+  
+  public function study_more() {
+      $id = $this->uri->segment(3);
+      $data = $this->profil->study($id);
       $this->load->view('header');
       $this->load->view('Auth/profile/types_study',$data);
       $this->load->view('footer');
@@ -298,6 +324,7 @@ public function edit_head() {
             'phd' => $this->input->post('phd'),
             'nonsvk' => $this->input->post('nonsvk'),
             'public' => $this->input->post('public'),
+            'year' => $this->input->post('year'),
             'a1' => $this->input->post('a1'),
             'a2' => $this->input->post('a2'),
             'b1' => $this->input->post('b1'),
@@ -315,6 +342,7 @@ public function edit_head() {
             'phd' => $this->input->post('phd'),
             'nonsvk' => $this->input->post('nonsvk'),
             'public' => $this->input->post('public'),
+            'year' => $this->input->post('year'),
             'a1' => $this->input->post('a1'),
             'a2' => $this->input->post('a2'),
             'b1' => $this->input->post('b1'),

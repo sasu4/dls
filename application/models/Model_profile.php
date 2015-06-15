@@ -24,6 +24,19 @@ class Model_profile extends CI_Model {
         return $data;
     }
     
+    function get_category($id) {
+        $this->db->select('type');
+        $this->db->from(DB_CTG);
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->type;
+            }
+        }
+        return $value;
+    }
+    
     function get_categories_drop($type) {
         $this->db->select('id, description');
         $this->db->from(DB_CTG);
@@ -38,6 +51,13 @@ class Model_profile extends CI_Model {
             $finaldropdown = $dropdownlist;
             return $finaldropdown;
         }
+    }
+    
+    function get_head($id) {
+        $this->db->select('*');
+        $this->db->from(DB_HEAD);
+        $this->db->where('id',$id);
+        return $this->db->get();
     }
     
     function get_head_id($email,$lec){

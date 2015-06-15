@@ -6,6 +6,24 @@ class Profil {
         $this->ci->load->model('model_profile','profile');
     }
     
+    function activ($id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_profile_table_id(DB_ACTIV,$id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                $data = array(
+                    'id' => $row->id,
+                    'info' => $row->info,
+                    'category_id' => $row->category_id,
+                    'year' => $row->year,
+                );
+            }
+        } else {
+            ciredirect('show_404');
+        }
+        return $data;
+    }
+    
     function addit($lec_id) {
         $this->Profil();
         $query = $this->ci->profile->get_profile_table(DB_ADDIT,$lec_id);
@@ -106,12 +124,13 @@ class Profil {
         return $data;
     }
     
-    function study($lec_id) {
+    function study($id) {
         $this->Profil();
-        $query = $this->ci->profile->get_profile_table(DB_STUDY,$lec_id);
+        $query = $this->ci->profile->get_profile_table_id(DB_STUDY,$id);
         if($query->num_rows()>0) {
             foreach ($query->result() as $row) {
                 $data = array(
+                    'id' => $row->id,
                     'type' => $row->type,
                     'target_group' => $row->target_group,
                     'period' => $row->period,
@@ -128,5 +147,45 @@ class Profil {
             );
         }
         return $data;
+    }
+    
+    function studie($lec_id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_profile_table(DB_STUDY,$lec_id);
+        return $query;
+    }
+    
+    function is_head($lec_id) {
+        $this->Profil();
+        $value = FALSE;
+        $query = $this->ci->profile->get_lectorate('lectorate',$lec_id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                if($row->head_id!=NULL) {
+                    $value = TRUE;
+                } 
+                if($row->head_user!=NULL) {
+                    $value = TRUE;
+                }
+            }
+        }
+        return $value;
+    }
+    
+    function get_head($lec_id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_lectorate('lectorate',$lec_id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                if($row->head_id!=NULL) {
+                    $value = $this->ci->profile->get_head($row->head_id);
+                } 
+                if($row->head_user!=NULL) {
+                    $this->ci->load->model('model_user');
+                    $value = $this->ci->model_user->get_user_profile($row->head_user);
+                }
+            }
+        }
+        return $value;
     }
 }

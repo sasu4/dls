@@ -1,29 +1,17 @@
 <h2>Aktivity</h2>
 <p></p>
 <table style="max-width: 800px;">
-    <tr>
-        <td colspan="2">Kategória</td>
-        <td>Informácie o aktivite</td>
-        <td>Platné pre rok</td>
-        <td> </td>
-    </tr>
-    <?php
-    if($query->num_rows()>0) {
+<?php 
+    if($query->num_rows() > 0) {
         foreach($query->result() as $row) {
-            echo form_open('profile_edit/edit_activities');
-            echo form_hidden('id',$row->id);
-            $data = $this->profile->get_categorie_info($row->category_id);
             ?>
     <tr>
-        <td><?php echo form_input('type',$data['type']);?></td>
-        <td><?php echo form_input('despcription',$data['description']);?></td>
-        <td><?php echo form_textarea('info',$row->info);?></td>
-        <td><?php echo form_input('year',$row->year);?></td>
-        <td><?php echo form_submit('profile_edit/edit_activities','Upraviť');?></td>
+        <td><?php echo anchor('profile_edit/activity_more/'.$row->id,$row->info);?></td>
     </tr>
-    <?php
-    echo form_close();
-        }
-    }
-    ?>
+    <tr><td>&nbsp;</td></tr>
+        <?php } 
+    }?>
+    <tr><td><?php echo anchor('profile_edit/add_activities/1','Pridať aktivitu kategórie <i>Vzdelávanie</i>');?></td></tr>
+    <tr><td><?php echo anchor('profile_edit/add_activities/2','Pridať aktivitu kategórie <i>Veda</i>');?></td></tr>
+    <tr><td><?php echo anchor('profile_edit/add_activities/3','Pridať aktivitu kategórie <i>Kultúra</i>');?></td></tr>
 </table>

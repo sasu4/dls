@@ -11,19 +11,23 @@ if($query->num_rows()>0) {
     ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>
-        <td><?php echo form_input('name',$row->name);?></td>
+        <td><?php $nam = array('name'=>'name','value'=>$row->name,'disabled'=>'true');
+        echo form_input($nam);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Priezvisko');?></td>
-        <td><?php echo form_input('surname',$row->surname);?></td>
+        <td><?php $sur = array('name'=>'surname','value'=>$row->surname,'disabled'=>'true');
+        echo form_input($sur);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Odborné zameranie');?></td>
-        <td><?php echo form_textarea('expertise',$row->expertise);?></td>
+        <td><?php $exper = array('name'=>'expertise','value'=>$row->expertise,'disabled'=>'true');
+        echo form_textarea($exper);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Profil');?></td>
-        <td><?php echo form_textarea('about',$row->about);?></td>
+        <td><?php $about = array('name'=>'about','value'=>$row->about,'disabled'=>'true');
+        echo form_textarea($about);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('E-mail');?></td>
@@ -33,7 +37,8 @@ if($query->num_rows()>0) {
     </tr>
     <tr>
         <td><?php echo form_label('Webová stránka');?></td>
-        <td><?php echo form_input('website',$row->website);?></td>
+        <td><?php $web = array('name'=>'website','value'=>$row->website,'disabled'=>'true');
+        echo form_input($web);?></td>
     </tr>
     <tr>
         <td><?php echo form_submit('profile_edit/edit_head','Potvrdiť'); ?></td>
