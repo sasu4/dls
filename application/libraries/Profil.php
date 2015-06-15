@@ -61,12 +61,19 @@ class Profil {
         return $query;
     }
     
+    function publicat_one($id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_profile_table_id(DB_PUBL,$id);
+        return $query;
+    }
+    
     function students($lec_id) {
         $this->Profil();
         $query = $this->ci->profile->get_profile_table(DB_STUDENT,$lec_id);
         if($query->num_rows()>0) {
             foreach ($query->result() as $row) {
                 $data = array(
+                    'id' => $row->id,
                     'bc' => $row->bc,
                     'mgr' => $row->mgr,
                     'phd' => $row->phd,

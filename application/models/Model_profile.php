@@ -64,6 +64,13 @@ class Model_profile extends CI_Model {
         return $this->db->get();
     }
     
+    function get_profile_table_id($table,$id) {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->where('id',$id);
+        return $this->db->get();
+    }
+    
     function get_lectorate($table,$lec_id) {
         $this->db->select('*');
         $this->db->from($table);

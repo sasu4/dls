@@ -28,12 +28,9 @@ class Profile_edit extends CI_Controller {
     $this->load->view('footer');
   }
   
-  public function activities() {
-    $data['query'] = $this->profile->get_activities($this->lectorate);
-    $this->load->view('header');
-    $this->load->view('Auth/profile/activity',$data);
-    $this->load->view('footer');
-  }      
+  /*
+   * Sprava lektora
+   */
   
   public function lector() {
     $data['query'] = $this->user->get_user_profil($this->user_id);
@@ -55,6 +52,17 @@ class Profile_edit extends CI_Controller {
     $this->profile->update_profile_table('users',$id,$data);
     ciredirect('profile_edit');
   }
+  
+  /*
+   * Sprava aktivit
+   */
+  
+  public function activities() {
+    $data['query'] = $this->profile->get_activities($this->lectorate);
+    $this->load->view('header');
+    $this->load->view('Auth/profile/activity',$data);
+    $this->load->view('footer');
+  }      
   
   public function add_activities($type) {
       //m:n
@@ -97,6 +105,10 @@ class Profile_edit extends CI_Controller {
       ciredirect('profile_edit');
   }
   
+  /*
+   * Sprava pracoviska / lektoratu
+   */
+  
   public function workplace() {
       $data = $this->profil->work($this->lectorate);
       $data['countries'] = $this->model_lectorate->get_country_drop();
@@ -126,6 +138,10 @@ class Profile_edit extends CI_Controller {
     $this->profile->update_profile_table('lectorate',$id,$data);
     ciredirect('profile_edit');
   }
+  
+  /*
+   * Sprava veduceho pracoviska
+   */
   
   public function head() {
       $data['users'] = $this->user->get_user_drop();
@@ -173,6 +189,10 @@ public function edit_head() {
     }
     ciredirect('profile_edit');
 }
+
+/*
+ * Sprava typov studia
+ */
   
   public function types_of_study() {
       $data = $this->profil->study($this->lectorate);
@@ -207,8 +227,27 @@ public function edit_head() {
     ciredirect('profile_edit');
   }
   
+  /*
+   * Sprava publikacii
+   */
+  
   public function publication() {
       $data['query'] = $this->profil->publicat($this->lectorate);
+      $this->load->view('header');
+      $this->load->view('Auth/profile/publications',$data);
+      $this->load->view('footer');
+  }
+  
+  public function publication_more() {
+      $id = $this->uri->segment(3);
+      $data['query'] = $this->profil->publicat_one($id);
+      $this->load->view('header');
+      $this->load->view('Auth/profile/publication',$data);
+      $this->load->view('footer');
+  }
+  
+  public function add_publication() {
+      $data['query'] = $this->profil->publicat(0);
       $this->load->view('header');
       $this->load->view('Auth/profile/publication',$data);
       $this->load->view('footer');
@@ -238,6 +277,10 @@ public function edit_head() {
     }
     ciredirect('profile_edit');
   }
+  
+  /*
+   * Sprava studentov
+   */
   
   public function students() {
       $data = $this->profil->students($this->lectorate);
@@ -283,6 +326,10 @@ public function edit_head() {
     }
     ciredirect('profile_edit');
   }
+  
+  /*
+   * Sprava dalsich informacii
+   */
   
   public function additional() {
       $data = $this->profil->addit($this->lectorate);

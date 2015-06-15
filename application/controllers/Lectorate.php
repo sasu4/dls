@@ -29,7 +29,7 @@ class Lectorate extends CI_Controller {
     
     function new_lectorate() {
         //osetrit ak uz ma pouzivatel lektorat
-        $lectorate = $this->user->get_lectorate($this->user_id);
+        $lectorate = $this->user->get_lectorate($this->dx_auth->get_user_id());
         if($lectorate!=NULL) {
             ciredirect('home');
         }
