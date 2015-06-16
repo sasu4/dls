@@ -46,7 +46,7 @@ $email = array(
 <html>
 <body>
 
-<fieldset><legend>Register</legend>
+<fieldset><legend>Registrácia</legend>
 <?php echo form_open($this->uri->uri_string())?>
 
 <dl>
@@ -56,31 +56,31 @@ $email = array(
     <?php echo form_error($username['name']); ?>
 	</dd>-->
         
-        <dt><?php echo form_label('First name', $first_name['id']);?></dt>
+        <dt><?php echo form_label('Meno', $first_name['id']);?></dt>
 	<dd>
 		<?php echo form_input($first_name)?>
     <?php echo form_error($first_name['name']); ?>
 	</dd>
         
-        <dt><?php echo form_label('Surname', $surname['id']);?></dt>
+        <dt><?php echo form_label('Priezvisko', $surname['id']);?></dt>
 	<dd>
 		<?php echo form_input($surname)?>
     <?php echo form_error($surname['name']); ?>
 	</dd>
 
-	<dt><?php echo form_label('Password', $password['id']);?></dt>
+	<dt><?php echo form_label('Heslo', $password['id']);?></dt>
 	<dd>
 		<?php echo form_password($password)?>
     <?php echo form_error($password['name']); ?>
 	</dd>
 
-	<dt><?php echo form_label('Confirm Password', $confirm_password['id']);?></dt>
+	<dt><?php echo form_label('Potvrdiť heslo', $confirm_password['id']);?></dt>
 	<dd>
 		<?php echo form_password($confirm_password);?>
 		<?php echo form_error($confirm_password['name']); ?>
 	</dd>
 
-	<dt><?php echo form_label('Email Address', $email['id']);?></dt>
+	<dt><?php echo form_label('Email', $email['id']);?></dt>
 	<dd>
 		<?php echo form_input($email);?>
 		<?php echo form_error($email['name']); ?>
@@ -113,7 +113,7 @@ $email = array(
 <?php endif; ?>
 
 	<dt></dt>
-	<dd><?php echo form_submit('register','Register');?></dd>
+	<dd><?php echo form_submit('register','Registrovať');?></dd>
 </dl>
 
 <?php echo form_close()?>

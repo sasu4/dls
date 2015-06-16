@@ -28,7 +28,7 @@ $confirmation_code = array(
 
 ?>
 
-<fieldset><legend>Login</legend>
+<fieldset><legend>Prihlásenie</legend>
 <?php echo form_open($this->uri->uri_string())?>
 <br>
 <?php echo $this->dx_auth->get_auth_error(); ?>
@@ -41,7 +41,7 @@ $confirmation_code = array(
     <?php echo form_error($username['name']); ?>
 	</dd>
         
-  <dt><?php echo form_label('Password', $password['id']);?></dt>
+  <dt><?php echo form_label('Heslo', $password['id']);?></dt>
 	<dd>
 		<?php echo form_password($password)?>
     <?php echo form_error($password['name']); ?>
@@ -62,17 +62,17 @@ $confirmation_code = array(
 
 	<dt></dt>
 	<dd>
-		<?php echo form_checkbox($remember);?> <?php echo form_label('Remember me', $remember['id']);?> 
-		<?php echo anchor($this->dx_auth->forgot_password_uri, 'Forgot password');?> 
+		<?php echo form_checkbox($remember);?> <?php echo form_label('Zapamätať prihlásenie', $remember['id']);?> 
+		<?php echo anchor($this->dx_auth->forgot_password_uri, 'Zabudnuté heslo');?> 
 		<?php
 			if ($this->dx_auth->allow_registration) {
-				echo anchor($this->dx_auth->register_uri, 'Register');
+				echo anchor($this->dx_auth->register_uri, 'Registrácia');
 			};
 		?>
 	</dd>
 
 	<dt></dt>
-	<dd><?php echo form_submit('login','Login');?></dd>
+	<dd><?php echo form_submit('login','Prihlásiť');?></dd>
 </dl>
 
 <?php echo form_close()?>
