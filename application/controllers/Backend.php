@@ -125,6 +125,8 @@ class Backend extends CI_Controller
 					{
 						// Activate user
 						$this->user->activate($value);
+                                                log_message('error', 'Aktivovany ucet '.$value);
+                                                $this->upozornenie($value);
 					}
 				}				
 			}
@@ -329,4 +331,33 @@ class Backend extends CI_Controller
 		// Load view
 		$this->load->view('backend/custom_permissions', $data);
 	}
+        
+        
+        function upozornenie($email) {
+            $this->load->library('email');
+            
+            $config['protocol']    = 'smtp';
+            $config['smtp_host']    = 'ssl://smtp.gmail.com';
+            $config['smtp_port']    = '465';
+            $config['smtp_timeout'] = '7';
+            $config['smtp_user']    = 'lubomir.benko@gmail.com';
+            $config['smtp_pass']    = 'L88jzt!@';
+            $config['charset']    = 'utf-8';
+            $config['newline']    = "\r\n";
+            $config['mailtype'] = 'text'; // or html
+            $config['validation'] = TRUE; // bool whether to validate email or not      
+            $this->email->initialize($config);
+
+            $this->email->from('lubomir.benko@gmail.com', 'DLS Info');
+            $this->email->to($email);
+
+            $this->email->subject('Aktivácia účtu');
+            $sprava = "Dobrý deň,\r\n"
+                    . "Váš účet na DLS - Database of Lectors and Lectorates bol aktivovaný administrátorom. "
+                    . "Po prihlásení môžete vytvoriť profil pre Váš lektorát.\r\n";
+            $sprava .= "Táto správa bola vygenerovaná automaticky systémom. Prosím neodpovedajte na ňu.";
+            $this->email->message($sprava);
+
+            $this->email->send();
+        }
 }
