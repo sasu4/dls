@@ -19,7 +19,7 @@ class Auth extends CI_Controller
 		$this->load->library('Form_validation');
 		$this->load->library('DX_Auth');
                 
-		
+		$this->load->config('dx_auth');
 		$this->load->helper('url');
 		$this->load->helper('form');
 	}
@@ -126,7 +126,9 @@ class Auth extends CI_Controller
 					}
 					
 					// Load login page view
+                                        $this->load->view('header');
 					$this->load->view($this->dx_auth->login_view, $data);
+                                        $this->load->view('footer');
 				}
                             
                         }
@@ -187,14 +189,16 @@ class Auth extends CI_Controller
 				{					
 					$data['auth_message'] = 'You have successfully registered. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
 				}
-				
+				$this->upozornenie($val->set_value('email'));
 				// Load registration success page
 				$this->load->view($this->dx_auth->register_success_view, $data);
 			}
 			else
 			{
 				// Load registration page
+                                $this->load->view('header');
 				$this->load->view('Auth/register_form');
+                                $this->load->view('footer');
 			}
 		}
 		elseif ( ! $this->dx_auth->allow_registration)
@@ -354,5 +358,31 @@ class Auth extends CI_Controller
 		}
 	}
 
+        
+        function upozornenie($email) {
+            $this->load->library('email');
+            
+            $config['protocol']    = 'smtp';
+            $config['smtp_host']    = 'ssl://smtp.gmail.com';
+            $config['smtp_port']    = '465';
+            $config['smtp_timeout'] = '7';
+            $config['smtp_user']    = 'lubomir.benko@gmail.com';
+            $config['smtp_pass']    = 'L88jzt!@';
+            $config['charset']    = 'utf-8';
+            $config['newline']    = "\r\n";
+            $config['mailtype'] = 'text'; // or html
+            $config['validation'] = TRUE; // bool whether to validate email or not      
+            $this->email->initialize($config);
 
+            $this->email->from('lubomir.benko@gmail.com', 'DLS Info');
+            $this->email->to($this->config->item('DX_webmaster_email'));
+
+            $this->email->subject('Nová registrácia');
+            $sprava = "Dobrý deň,\r\n"
+                    . "v systéme DLS - Database of Lectors and Lectorates sa zaregistroval nový používateľ pod emailom ".$email.". "
+                    . "Aby sa mohol prihlásiť do systému, je nutné aktivovať jeho účet.\r\n";
+            $this->email->message($sprava);
+
+            $this->email->send();
+        }
 }
