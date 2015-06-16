@@ -175,10 +175,13 @@ class Profile_edit extends CI_Controller {
   
   public function choose_head() {
       $user = $this->input->post('user_id');
-      if($user>0) {
+      $id = $this->user->get_user_id($user);
+      if($id>0) {
           $data['edit'] = FALSE;
+          $data['can_update'] = FALSE;
       } else {
           $data['edit'] = TRUE;
+          $data['can_update'] = TRUE;
       }
       $data['query'] = $this->user->get_user($user);
       $this->load->view('header');
@@ -212,6 +215,10 @@ public function edit_head() {
                 'head' => $this->input->post('head')
             );
             $this->user->update_user($id,$data);
+            $data2 = array(
+                'head_user' => $id
+            );
+            $this->profile->update_profile_table('lectorate',$this->lectorate,$data2);
         } else {
             $data = array(
                 'name' => $this->input->post('name'),

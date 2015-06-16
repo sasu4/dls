@@ -7,8 +7,9 @@ if($query->num_rows()>0) {
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/edit_head'); 
     echo form_hidden('id',$row->id);
-    echo form_hidden('head',1);
-    echo $edit;
+    if(!$can_update) {
+        echo form_hidden('head',1);
+    }    
     ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>
@@ -31,23 +32,38 @@ if($query->num_rows()>0) {
     </tr>
     <tr>
         <td><?php echo form_label('Odborné zameranie');?></td>
-        <td><?php $exper = array('name'=>'expertise','value'=>$row->expertise,'disabled'=>$edit);
+        <td><?php if($edit) {
+            $exper = array('name'=>'expertise','value'=>$row->expertise);
+        } else {
+            $exper = array('name'=>'expertise','value'=>$row->expertise,'readonly'=>'false');
+        }
         echo form_textarea($exper);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Profil');?></td>
-        <td><?php $about = array('name'=>'about','value'=>$row->about,'disabled'=>$edit);
+        <td><?php if($edit) {
+            $about = array('name'=>'about','value'=>$row->about);
+        } else {
+            $about = array('name'=>'about','value'=>$row->about,'readonly'=>'false');
+        }        
         echo form_textarea($about);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('E-mail');?></td>
-        <td><?php 
-            $emaill = array('name'=>'email','value'=>$row->email,'disabled'=>$edit);
-            echo form_input($emaill);?></td>
+        <td><?php if($edit) {
+            $emaill = array('name'=>'email','value'=>$row->email);
+        } else {
+            $emaill = array('name'=>'email','value'=>$row->email,'readonly'=>'false');
+        }
+        echo form_input($emaill);?></td>
     </tr>
     <tr>
         <td><?php echo form_label('Webová stránka');?></td>
-        <td><?php $web = array('name'=>'website','value'=>$row->website,'disabled'=>$edit);
+        <td><?php if($edit) {
+            $web = array('name'=>'website','value'=>$row->website);
+        } else {
+            $web = array('name'=>'website','value'=>$row->website,'readonly'=>'false');
+        }
         echo form_input($web);?></td>
     </tr>
     <tr>

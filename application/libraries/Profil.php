@@ -180,11 +180,13 @@ class Profil {
                 if($row->head_id!=NULL) {
                     $value['query'] = $this->ci->profile->get_head($row->head_id);
                     $value['edit'] = TRUE;
+                    $value['can_update'] = TRUE;
                 } 
                 if($row->head_user!=NULL) {
                     $this->ci->load->model('model_user');
                     $value['query'] = $this->ci->model_user->get_user_profile($row->head_user);
                     $value['edit'] = FALSE;
+                    $value['can_update'] = FALSE;
                 }
             }
         }

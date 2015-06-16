@@ -91,7 +91,20 @@ class Model_user extends CI_Model {
         return $this->db->get();
     }
     
-    function get_user_profil($id) {
+    function get_user_id($mail) {
+        $this->db->select('id');
+        $this->db->from('users');
+        $this->db->where('email',$mail);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            $value = $query->row()->id;
+        } else {
+            $value = NULL;
+        }        
+        return $value;
+    }
+    
+    function get_user_profile($id) {
         $this->db->select('*');
         $this->db->from('users');
         $this->db->where('id',$id);
