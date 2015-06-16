@@ -187,11 +187,13 @@ class Auth extends CI_Controller
 				}
 				else
 				{					
-					$data['auth_message'] = 'You have successfully registered. '.anchor(site_url($this->dx_auth->login_uri), 'Login');
+					$data['auth_message'] = 'Úspešne ste sa zaregistrovali. Váš účet bude čoskoro aktivovaný správcom systému.';
 				}
 				$this->upozornenie($val->set_value('email'));
 				// Load registration success page
+                                $this->load->view('header');
 				$this->load->view($this->dx_auth->register_success_view, $data);
+                                $this->load->view('footer');
 			}
 			else
 			{
