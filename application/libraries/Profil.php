@@ -178,11 +178,13 @@ class Profil {
         if($query->num_rows()>0) {
             foreach ($query->result() as $row) {
                 if($row->head_id!=NULL) {
-                    $value = $this->ci->profile->get_head($row->head_id);
+                    $value['query'] = $this->ci->profile->get_head($row->head_id);
+                    $value['edit'] = TRUE;
                 } 
                 if($row->head_user!=NULL) {
                     $this->ci->load->model('model_user');
-                    $value = $this->ci->model_user->get_user_profile($row->head_user);
+                    $value['query'] = $this->ci->model_user->get_user_profile($row->head_user);
+                    $value['edit'] = FALSE;
                 }
             }
         }

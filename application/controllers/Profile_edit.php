@@ -161,7 +161,7 @@ class Profile_edit extends CI_Controller {
   
   public function head() {
       if($this->profil->is_head($this->lectorate)) {
-          $data['query'] = $this->profil->get_head($this->lectorate);
+          $data = $this->profil->get_head($this->lectorate);
           $this->load->view('header');
           $this->load->view('Auth/profile/head',$data);
           $this->load->view('footer');
@@ -174,7 +174,13 @@ class Profile_edit extends CI_Controller {
   }
   
   public function choose_head() {
-      $data['query'] = $this->user->get_user($this->input->post('user_id'));
+      $user = $this->input->post('user_id');
+      if($user>0) {
+          $data['edit'] = FALSE;
+      } else {
+          $data['edit'] = TRUE;
+      }
+      $data['query'] = $this->user->get_user($user);
       $this->load->view('header');
       $this->load->view('Auth/profile/head',$data);
       $this->load->view('footer');
@@ -200,10 +206,24 @@ public function edit_head() {
         $this->profile->update_profile_table('lectorate',$this->lectorate,$data2);
     } else {
         //asi by sa nemalo dovolit editovat, len sa zmeni na head
-        $data = array(
-            'head' => $this->input->post('head')
-        );
-        $this->profile->update_profile_table(DB_HEAD,$id,$data);
+        $hed = $this->input->post('head');
+        if($hed==1) {
+            $data = array(
+                'head' => $this->input->post('head')
+            );
+            $this->user->update_user($id,$data);
+        } else {
+            $data = array(
+                'name' => $this->input->post('name'),
+                'surname' => $this->input->post('surname'),
+                'expertise' => $this->input->post('expertise'),
+                'website' => $this->input->post('website'),
+                'about' => $this->input->post('about'),
+                'email' => $this->input->post('email'),
+                'last_edited' => $this->user_id
+            );
+            $this->profile->update_profile_table(DB_HEAD,$id,$data);
+        }
     }
     ciredirect('profile_edit');
 }
