@@ -15,8 +15,8 @@
 |
 */
 
-$config['DX_website_name'] = 'DLS';
-$config['DX_webmaster_email'] = '';
+$config['DX_website_name'] = 'DLS - Database of Slovak Lectors and Lectorates';
+$config['DX_webmaster_email'] = 'lubomir.benko@gmail.com';
 
 /*
 |--------------------------------------------------------------------------
