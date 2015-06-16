@@ -36,8 +36,9 @@ class Lectorate extends CI_Controller {
         if(!$this->dx_auth->is_logged_in()) {
             ciredirect('home');
         }
+        $data['countries'] = $this->lectorate->get_country_drop();
         $this->load->view('header');
-        $this->load->view('new_lectorate');
+        $this->load->view('new_lectorate',$data);
         $this->load->view('footer');
     }
     
@@ -46,9 +47,11 @@ class Lectorate extends CI_Controller {
             ciredirect('home');
         }
         $id = $this->dx_auth->get_user_id();
+        $country = $this->lectorate->get_country_id($this->input->post('country_id'));
         $data = array(
             'name_orig' => $this->input->post('lect_name_o'),
             'name_sk' => $this->input->post('lect_name_s'),
+            'country_id' => $country,
             'public' => 1,
             'created' => $id
         );

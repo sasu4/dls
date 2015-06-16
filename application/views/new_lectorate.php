@@ -11,6 +11,10 @@
         <td><?php echo form_input('lect_name_s','');?></td>
     </tr>
     <tr>
+        <td><?php echo form_label('Krajina, v ktorej sa lektorát nachádza:');?></td>
+        <td><?php echo form_dropdown('country_id',$countries);?></td>
+    </tr>
+    <tr>
         <td><?php echo form_submit('lectorate/add_lect','Vytvoriť'); ?></td>
     </tr>
 <?php
