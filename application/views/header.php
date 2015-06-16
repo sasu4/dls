@@ -7,14 +7,14 @@
 
     <meta name="description" content="">
 
-    <title>CodeIgniter Bootstrap</title>
-
+    <title>DLS - Database of Slovak Lectors and Lectorates</title>
+    <link href="/assets/images/sasicon.png" rel="shortcut icon" />
     <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
 </head>
 <body>
     <div class="navbar">
-        <img src="/assets/images/saslogo.png"> <span style="color: #F7AA26"><font size="6">Database of Slovak Lectorates</font></span>
+        <img src="/assets/images/saslogo.png"> <span style="color: #F7AA26"><font size="6">Database of Slovak Lectors and Lectorates</font></span>
         <div style="position: absolute; right: 0px; width: 300px;">
         <?php if(!$this->dx_auth->is_logged_in()) {
             echo anchor('home','Domov');
