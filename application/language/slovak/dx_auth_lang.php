@@ -20,22 +20,17 @@ $lang['auth_activate_subject'] = "%s aktivácia";
 $lang['auth_forgot_password_subject'] = "Žiadosť o zmenu hesla";
 
 // Email content
-$lang['auth_account_content'] = "Welcome to %s,
+$lang['auth_account_content'] = "Vitajte na stránke %s,
 
-Thank you for registering. Your account was successfully created.
+Ďakujeme za Vašu registráciu. Váš účet bol vytvorený a čaká na schválenie administrátorom.
 
-You can login with either your username or email address:
+Na stránke sa môžete po schválení prihlásiť pomocou emailu %s:
 
-Login: %s
 Email: %s
-Password: %s
+Heslo: %s
 
-You can try logging in now by going to %s
-
-We hope that you enjoy your stay with us.
-
-Regards,
-The %s Team";
+S pozdravom,
+%s";
 
 $lang['auth_activate_content'] = "Welcome to %s,
 
@@ -58,19 +53,19 @@ The %s Team";
 
 $lang['auth_forgot_password_content'] = "%s,
 
-You have requested your password to be changed, because you forgot the password.
-Please follow this link in order to complete change password process:
+Požiadali ste o zmenu hesla, pretože ste zabudli heslo.
+Prosím použite odkaz nižšie na dokončenie zmeny hesla:
 %s
 
-Your New Password: %s
-Key for Activation: %s
+Vaše nové heslo: %s
+Klúč na aktiváciu: %s
 
-After you successfully complete the process, you can change this new password into password that you want.
+Po úspešnom dokončení procesu, môžete zmeniť heslo na akékoľvek heslo.
 
-If you have any more problems with gaining access to your account please contact %s.
+V prípade ďalších problémov s prístupom k Vášmu účtu, kontaktujte prosím %s.
 
-Regards,
-The %s Team";
+S pozdravom,
+%s";
 
 /* End of file dx_auth_lang.php */
 /* Location: ./application/language/english/dx_auth_lang.php */
