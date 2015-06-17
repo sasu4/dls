@@ -16,7 +16,7 @@
 */
 
 $config['DX_website_name'] = 'DLS - Database of Slovak Lectors and Lectorates';
-$config['DX_webmaster_email'] = 'lubomir.benko@gmail.com';
+$config['DX_webmaster_email'] = 'dls@e-slovak.sk';
 
 /*
 |--------------------------------------------------------------------------
