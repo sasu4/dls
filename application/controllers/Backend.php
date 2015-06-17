@@ -11,6 +11,7 @@ class Backend extends CI_Controller
 		$this->load->library('Pagination');
 		$this->load->library('DX_Auth');
 		
+                $this->load->config('dx_auth');
 		$this->load->helper('form');
 		$this->load->helper('url');
 		
@@ -336,19 +337,7 @@ class Backend extends CI_Controller
         function upozornenie($email) {
             $this->load->library('email');
             
-            $config['protocol']    = 'smtp';
-            $config['smtp_host']    = 'ssl://smtp.gmail.com';
-            $config['smtp_port']    = '465';
-            $config['smtp_timeout'] = '7';
-            $config['smtp_user']    = 'lubomir.benko@gmail.com';
-            $config['smtp_pass']    = 'L88jzt!@';
-            $config['charset']    = 'utf-8';
-            $config['newline']    = "\r\n";
-            $config['mailtype'] = 'text'; // or html
-            $config['validation'] = TRUE; // bool whether to validate email or not      
-            $this->email->initialize($config);
-
-            $this->email->from('lubomir.benko@gmail.com', 'DLS Info');
+            $this->email->from($this->config->item('DX_webmaster_email'), 'DLS System');
             $this->email->to($email);
 
             $this->email->subject('Aktivácia účtu');

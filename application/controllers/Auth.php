@@ -174,7 +174,7 @@ class Auth extends CI_Controller
 				// This is because the limitation of reCAPTCHA, not DX Auth library
 				$val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|required|callback_recaptcha_check');
 			}                        
-
+                        ini_set('display_errors',0);
 			// Run form validation and register user if it's pass the validation
 			if ($val->run() AND $this->dx_auth->register($val->set_value('password'), $val->set_value('email'), $val->set_value('first_name'), $val->set_value('surname')))
 			{
@@ -363,20 +363,8 @@ class Auth extends CI_Controller
         
         function upozornenie($email) {
             $this->load->library('email');
-            
-            $config['protocol']    = 'smtp';
-            $config['smtp_host']    = 'ssl://smtp.gmail.com';
-            $config['smtp_port']    = '465';
-            $config['smtp_timeout'] = '7';
-            $config['smtp_user']    = 'lubomir.benko@gmail.com';
-            $config['smtp_pass']    = 'L88jzt!@';
-            $config['charset']    = 'utf-8';
-            $config['newline']    = "\r\n";
-            $config['mailtype'] = 'text'; // or html
-            $config['validation'] = TRUE; // bool whether to validate email or not      
-            $this->email->initialize($config);
 
-            $this->email->from('lubomir.benko@gmail.com', 'DLS Info');
+            $this->email->from($this->config->item('DX_webmaster_email'), 'DLS System');
             $this->email->to($this->config->item('DX_webmaster_email'));
 
             $this->email->subject('Nová registrácia');
