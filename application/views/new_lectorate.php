@@ -11,8 +11,16 @@
         <td><?php echo form_input('lect_name_s','');?></td>
     </tr>
     <tr>
-        <td><?php echo form_label('Krajina, v ktorej sa lektorát nachádza:');?></td>
+        <td><?php echo form_label('Krajina');?></td>
         <td><?php echo form_dropdown('country_id',$countries);?></td>
+    </tr>
+    <tr>
+        <td><?php echo form_label('Typ organizácie');?></td>
+        <td><?php $type = array(
+                'lektorát' => 'lektorát',
+                'iné' => 'iné'
+            );
+        echo form_dropdown('organization',$type);?></td>
     </tr>
     <tr>
         <td><?php echo form_submit('lectorate/add_lect','Vytvoriť'); ?></td>

@@ -52,6 +52,7 @@ class Lectorate extends CI_Controller {
             'name_orig' => $this->input->post('lect_name_o'),
             'name_sk' => $this->input->post('lect_name_s'),
             'country_id' => $country,
+            'organization' => $this->input->post('organization'),
             'public' => 1,
             'created' => $id
         );
