@@ -652,7 +652,7 @@ class DX_Auth
 		}
 		else
 		{
-			redirect($this->ci->config->item('DX_deny_uri'), 'location');			
+			redirect($this->ci->config->item('DX_login_uri'), 'location');			
 		}
 		exit;
 	}
