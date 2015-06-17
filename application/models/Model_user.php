@@ -64,8 +64,11 @@ class Model_user extends CI_Model {
         $this->db->from('users');
         $this->db->where('email',$username);
         $query = $this->db->get();
-        $row = $query->row();
-        $value = $row->activated;
+        $value = 0;
+        if($query->num_rows()>0) {
+            $row = $query->row();
+            $value = $row->activated;
+        }
         return $value==='1';
     }
     
