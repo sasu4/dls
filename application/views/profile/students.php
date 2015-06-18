@@ -1,4 +1,4 @@
-<table cellspacing="50" cellpadding="10">
+<table class="table table-hover">
 <?php
 if($query->num_rows()>0) {
     foreach($query->result() as $row) {?>
@@ -30,14 +30,16 @@ if($query->num_rows()>0) {
     <td><b>&nbsp;</b></td>
     <td>&nbsp;</td>
 </tr>
-<tr>
+</table>
+<!--<tr>
     <td><b>&nbsp;</b></td>
     <td>&nbsp;</td>
 </tr>
 <tr>
     <td><b>&nbsp;</b></td>
     <td>&nbsp;</td>
-</tr>
+</tr>--><br><br><br>
+<table class="table table-hover">
 <tr>
     <td><b>A1</b></td>
     <td><?php echo $row->a1 ?></td>
