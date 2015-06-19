@@ -14,6 +14,19 @@ class Model_lectorate extends CI_Model {
         $this->db->where('id',$id);
         return $this->db->get();
     }
+    
+    function get_name($id) {
+        $this->db->select('name_orig');
+        $this->db->from('lectorate');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->name_orig;
+            }
+        }
+        return $value;
+    }
    
     function add_lectorate($data) {
         $this->db->insert('lectorate',$data);

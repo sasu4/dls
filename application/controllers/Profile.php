@@ -6,6 +6,7 @@ class Profile extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('model_profile','profile');
+        $this->load->model('model_lectorate');
     }
 
   public function index() {
@@ -40,6 +41,7 @@ class Profile extends CI_Controller {
           ciredirect('show_404');
       }
       $data['idl'] = $id;
+      $data['name'] = $this->model_lectorate->get_name($id);
       $this->load->view('header');
       $this->load->view('profile/navigation',$data);
       $this->load->view('profile/'.$title,$data);

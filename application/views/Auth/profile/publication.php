@@ -14,16 +14,16 @@
     <tr>
         <?php 
             $cat = array(
-                'odborná monografia',
-                'príspevok v zborníku',
-                'príspevok v odbornom časopise',
-                'popularizačná práca',
-                'učebnica',
-                'didaktická príručka',
-                'cvičebnica',
-                'manuál pre študentov',
-                'preklad',
-                'iné'
+                'odborná monografia'=>'odborná monografia',
+                'príspevok v zborníku'=>'príspevok v zborníku',
+                'príspevok v odbornom časopise'=>'príspevok v odbornom časopise',
+                'popularizačná práca'=>'popularizačná práca',
+                'učebnica'=>'učebnica',
+                'didaktická príručka'=>'didaktická príručka',
+                'cvičebnica'=>'cvičebnica',
+                'manuál pre študentov'=>'manuál pre študentov',
+                'preklad'=>'preklad',
+                'iné'=>'iné'
             );
         ?>
         <td><?php echo form_label('Kategória');?></td>
