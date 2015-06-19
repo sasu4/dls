@@ -1,4 +1,7 @@
 <table class="table table-hover">
+    <h1>
+        <?php echo $name ?>
+    </h1>
 <?php
 if($query->num_rows()>0) {
     foreach($query->result() as $row) {?>
@@ -38,7 +41,7 @@ if($query->num_rows()>0) {
 <tr>
     <td><b>&nbsp;</b></td>
     <td>&nbsp;</td>
-</tr>--><br><br><br>
+</tr>--><br><br>
 <table class="table table-hover">
 <tr>
     <td><b>A1</b></td>

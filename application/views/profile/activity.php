@@ -1,4 +1,7 @@
 <table class="table table-hover">
+    <h1>
+        <?php echo $name ?>
+    </h1>
 <?php
 if($query->num_rows()>0) {
     foreach($query->result() as $row) {

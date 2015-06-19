@@ -3,7 +3,7 @@
 if($query->num_rows()>0) {
     foreach($query->result() as $row) {?>
     <h1>
-<?php echo $row->name_orig ?>
+        <?php echo $row->name_orig ?>
     </h1>
 <tr>
     <td><b>Name </b></td>
