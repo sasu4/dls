@@ -1,5 +1,5 @@
-<p>Welcome to The Slovakists Around the World Database.</p><br>
-
+<p>Welcome to The Slovakists Around the World Database.</p>
+<h4><?php echo $typ;?></h4>
 <table>
 <?php
 $id = 0;
@@ -26,6 +26,13 @@ if ($coun->num_rows() > 0) {
 }
 ?>
 </table>
+<br>
+<p><i><?php if($typ=='Lektorát') {
+    echo anchor('home/other','Zobraziť iné ogranizácie');
+} else {
+    echo anchor('home','Zobraziť lektoráty');
+}
+?></i></p>
 <?php
 //    echo anchor('home/pages/about','About');
 //    echo '<br>';

@@ -46,6 +46,17 @@ class Model_lectorate extends CI_Model {
         $this->db->order_by('country_id');
         $this->db->select('*');
         $this->db->from('lectorate');
+        $this->db->where('public',1);
+        $this->db->where('organization','lektorát');
+        return $this->db->get();
+    }
+    
+    function get_countries_other() {
+        $this->db->order_by('country_id');
+        $this->db->select('*');
+        $this->db->from('lectorate');
+        $this->db->where('public',1);
+        $this->db->where('organization','iné');
         return $this->db->get();
     }
     
