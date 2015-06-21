@@ -5,6 +5,14 @@ class Model_lectorate extends CI_Model {
     function get_lectorates() {
         $this->db->select('*');
         $this->db->from('lectorate');
+        $this->db->where('organization','lektorát');
+        return $this->db->get();
+    }
+    
+    function get_lectorates_other() {
+        $this->db->select('*');
+        $this->db->from('lectorate');
+        $this->db->where('organization','iné');
         return $this->db->get();
     }
     

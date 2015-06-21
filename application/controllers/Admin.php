@@ -11,6 +11,15 @@ class Admin extends CI_Controller {
 
     public function index() {
         $data['query']=$this->lectorate->get_lectorates();
+        $data['typ'] = 'Lektorát';
+        $this->load->view('header');
+        $this->load->view('admin/home',$data);
+        $this->load->view('footer');
+    }
+    
+    public function other() {
+        $data['query']=$this->lectorate->get_lectorates_other();
+        $data['typ'] = 'Ostatné organizácie';
         $this->load->view('header');
         $this->load->view('admin/home',$data);
         $this->load->view('footer');
