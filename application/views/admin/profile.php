@@ -1,14 +1,11 @@
-<p>Welcome to The Slovakists Around the World Database. Here you can modify your profile.</p><br>
-<ul>
-<?php
-    echo '<li>'.anchor('profile_edit/lector'.$id,'Môj profil').'</li>';
-    echo '<li>'.anchor('profile_edit/workplace'.$id,'Pracovisko').'</li>';
-    echo '<li>'.anchor('profile_edit/head'.$id,'Vedúci pracoviska').'</li>';
-    echo '<li>'.anchor('profile_edit/types_of_study'.$id,'Typy štúdia').'</li>';
-    echo '<li>'.anchor('profile_edit/publication'.$id,'Publikácie').'</li>';
-    echo '<li>'.anchor('profile_edit/students'.$id,'Študenti').'</li>';
-    echo '<li>'.anchor('profile_edit/activities'.$id,'Aktivity').'</li>';
-    echo '<li>'.anchor('profile_edit/additional'.$id,'Ďalšie informácie').'</li>';
-?>
-    </ul>
-<br>
+<div class="nav">
+    <?php 
+        echo anchor('admin/profile/'.$idl,'Základné informácie').' | ';
+        echo anchor('admin/pages/head/'.$idl,'Vedúci pracoviska').' | ';
+        echo anchor('admin/pages/types_study/'.$idl,'Druh štúdia').' | ';
+        echo anchor('admin/pages/students/'.$idl,'Študenti').' | ';
+        echo anchor('admin/pages/activity/'.$idl,'Aktivity').' | ';
+        echo anchor('admin/pages/publication/'.$idl,'Publikácie').' | ';
+        echo anchor('admin/pages/additional/'.$idl,'Ďalšie informácie');
+    ?>
+</div>

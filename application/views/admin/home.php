@@ -28,9 +28,9 @@ if ($query->num_rows() > 0) {
         ?></td>
         <td>
             <?php
-            echo form_open('admin/profile');
+            echo form_open('admin/profile/'.$row->id);
             echo form_hidden('id',$row->id);
-            echo form_submit('admin/profile','Upraviť profil');
+            echo form_submit('admin/profile/'.$row->id,'Upraviť profil');
             echo form_close();
             ?>
         </td>
