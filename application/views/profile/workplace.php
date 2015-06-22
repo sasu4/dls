@@ -35,8 +35,12 @@ if($query->num_rows()>0) {
 </tr>
 <tr>
     <td><b>Krajina </b></td>
-    <td><?php $cnt = $this->model_lectorate->get_lectorate_c($row->country_id);
-    echo $cnt['name'];?></td>
+    <td><?php if($row->country_id==0) {
+        echo '';
+    } else {
+        $cnt = $this->model_lectorate->get_lectorate_c($row->country_id);
+        echo $cnt['name'];
+    }?></td>
 </tr>
 <tr>
     <td><b>PSČ </b></td>
