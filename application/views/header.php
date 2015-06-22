@@ -18,17 +18,20 @@
         <div style="position: absolute; right: 0px; width: 300px;">
         <?php if(!$this->dx_auth->is_logged_in()) {
             echo anchor('home','Domov');
+            echo ' | '.anchor('lectors','Zoznam lektorov');
             echo ' | '.anchor('auth/login','Prihlásenie');
         } elseif($this->dx_auth->is_admin()) {
             echo $this->dx_auth->get_name();
             echo ' ('.anchor('auth/logout','Odhlásenie').')';
             echo ' | '.anchor('home','Domov');
+            echo ' | '.anchor('lectors','Zoznam lektorov');
             echo ' | '.anchor('backend','Správa používateľov');
             echo ' | '.anchor('admin','Správa lektorátov');
         } else {
             echo $this->dx_auth->get_name();
             echo ' ('.anchor('auth/logout','Odhlásenie').')';
             echo ' | '.anchor('home','Domov');
+            echo ' | '.anchor('lectors','Zoznam lektorov');
             echo ' | '.anchor('profile_edit','Upraviť lektorát');
         }
             ?>

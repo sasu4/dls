@@ -113,4 +113,10 @@ class Model_user extends CI_Model {
         $this->db->where('id',$id);
         return $this->db->get();
     }
+    
+    function get_users() {
+        $this->db->select('*');
+        $this->db->from('users');
+        return $this->db->get();
+    }
 }
