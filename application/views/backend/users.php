@@ -9,7 +9,7 @@
 		// Show error
 		echo validation_errors();
 		
-		$this->table->set_heading('', 'Username', 'Email', 'Role', 'Banned', 'Last IP', 'Last login', 'Created');
+		$this->table->set_heading('', 'Meno a priezvisko', 'Email', 'Rola', 'Zablokovaný', 'Posledná IP', 'Posledné prihlásenie', 'Vytvorený');
 		
 		foreach ($users as $user) 
 		{
@@ -17,7 +17,7 @@
 			
 			$this->table->add_row(
 				form_checkbox('checkbox_'.$user->id, $user->id),
-				$user->username, 
+				$user->name.' '.$user->surname, 
 				$user->email, 
 				$user->role_name, 			
 				$banned, 
@@ -31,7 +31,7 @@
 		echo form_submit('ban', 'Udeliť ban');
 		echo form_submit('unban', 'Zrušiť ban');
 		echo form_submit('reset_pass', 'Resetovať heslo');
-                echo form_submit('backend/waiting_users','Aktivovať používateľov');
+                echo anchor('backend/waiting_users','Prejsť na aktiváciu používateľov');
 		
 		echo '<hr/>';
 		

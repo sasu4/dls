@@ -5,7 +5,7 @@
 		// Show error
 		echo validation_errors();
 		
-		$this->table->set_heading('', 'First Name', 'Surname', 'Email', 'Register IP', 'Created');
+		$this->table->set_heading('', 'Meno ', 'Priezvisko ', 'Email', 'Registrovaný na IP', 'Vytvorený');
 		
 		foreach ($users as $user) 
 		{
@@ -20,7 +20,7 @@
 		
 		echo form_open($this->uri->uri_string());
 				
-		echo form_submit('activate', 'Activate User');
+		echo form_submit('activate', 'Aktivovať používateľov');
 		
 		echo '<hr/>';
 		
