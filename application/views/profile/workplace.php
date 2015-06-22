@@ -34,8 +34,9 @@ if($query->num_rows()>0) {
     <td><?php echo $row->city ?></td>
 </tr>
 <tr>
-    <td><b>ID krajiny </b></td>
-    <td><?php echo $row->country_id ?></td>
+    <td><b>Krajina </b></td>
+    <td><?php $cnt = $this->model_lectorate->get_lectorate_c($row->country_id);
+    echo $cnt['name'];?></td>
 </tr>
 <tr>
     <td><b>PSČ </b></td>
