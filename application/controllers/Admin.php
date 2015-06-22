@@ -7,6 +7,10 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->model('Model_lectorate','lectorate');
         $this->load->model('Model_profile','profil');
+        $this->load->model('Model_user','user');
+        if(!$this->user->is_admin()) {
+            ciredirect('home');
+        }
     }
 
     public function index() {
