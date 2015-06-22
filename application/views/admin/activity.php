@@ -1,32 +1,17 @@
-<table>
-<?php
-if($query->num_rows()>0) {
-    foreach($query->result() as $row) {
-        $data = $this->profile->get_categorie_info($row->category_id);
-        echo form_open();
-        ?>
+<h2>Aktivity</h2>
+<p></p>
+<table class="table table-hover">
+<?php 
+    if($query->num_rows() > 0) {
+        foreach($query->result() as $row) {
+            ?>
     <tr>
-        <td>Typ kategórie</td>
-        <td><?php echo form_input();?></td>
+        <td><?php echo anchor('admin/activity_more/'.$row->id,$row->info);?></td>
     </tr>
-    <tr>
-        <td>Popis kategórie</td>
-        <td><?php echo form_dropdown('description',$data['desctiption']);?></td>
-    </tr>
-    <tr>
-        <td>Viac informácií</td>
-        <td><?php echo form_textarea('info',$row->info);?></td>
-    </tr>
-    <tr>
-        <td>Platné pre rok</td>
-        <td><?php echo form_input('year',$row->year);?></td>
-    </tr>
-    <tr>
-        <td colspan="2"><?php echo form_submit();?></td>
-    </tr>
-    <?php
-    echo form_close();
-    }
-}
-?>
+    <tr><td>&nbsp;</td></tr>
+        <?php } 
+    }?>
+    <tr><td><?php echo anchor('admin/add_activities/1','Pridať aktivitu kategórie <i>Vzdelávanie</i>');?></td></tr>
+    <tr><td><?php echo anchor('admin/add_activities/2','Pridať aktivitu kategórie <i>Veda</i>');?></td></tr>
+    <tr><td><?php echo anchor('admin/add_activities/3','Pridať aktivitu kategórie <i>Kultúra</i>');?></td></tr>
 </table>

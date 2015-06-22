@@ -23,6 +23,7 @@ if($query->num_rows()>0) {
         <td><b>Platné pre rok </b></td>
         <td><?php echo $row->year; //platne pre rok?></td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
    <?php     
     }
 }

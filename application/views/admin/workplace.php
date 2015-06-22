@@ -1,4 +1,4 @@
-<table cellspacing="50" cellpadding="10">
+<table class="table table-hover">
 <?php
 if($query->num_rows()>0) {
     foreach($query->result() as $row) {

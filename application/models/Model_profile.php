@@ -9,6 +9,19 @@ class Model_profile extends CI_Model {
         return $this->db->get();
     }
     
+    function get_lectorate_id($table,$id) {
+        $this->db->select('lectorate_id');
+        $this->db->from($table);
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $value = $row->lectorate_id;
+            }
+        }
+        return $value;
+    }
+    
     function get_categorie_info($id) {
         $this->db->select('id, type, description');
         $this->db->from(DB_CTG);

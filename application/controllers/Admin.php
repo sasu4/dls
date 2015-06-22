@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
         $this->load->model('Model_lectorate','lectorate');
         $this->load->model('Model_profile','profile');
         $this->load->model('Model_user','user');
+        $this->load->library('profil');
         if(!$this->user->is_admin()) {
             ciredirect('home');
         }
@@ -42,6 +43,24 @@ class Admin extends CI_Controller {
         $this->load->view('header');
         $this->load->view('admin/profile',$data);
         $this->load->view('admin/workplace',$data);
+        $this->load->view('footer');
+    }
+    
+    public function activity_more() {
+        $id = $this->uri->segment(3);
+        $data = $this->profil->activ($id);
+        $type = $this->profile->get_category($data['category_id']);
+        if($type=='Vzdelávanie')  {
+            $data['categ'] = $this->profile->get_categories_drop('Vzdelávanie');
+        } elseif($type=='Veda') {
+            $data['categ'] = $this->profile->get_categories_drop('Veda');
+        } elseif($type=='Kultúrne') {
+            $data['categ'] = $this->profile->get_categories_drop('Kultúrne');
+        } else {
+            ciredirect('error_404');
+        }
+        $this->load->view('header');
+        $this->load->view('Auth/profile/activity_add',$data);
         $this->load->view('footer');
     }
     

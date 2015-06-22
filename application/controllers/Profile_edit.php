@@ -118,7 +118,12 @@ class Profile_edit extends CI_Controller {
                   );
           $this->profile->update_profile_table(DB_ACTIV,$id,$data);
       }     
-      ciredirect('profile_edit');
+      if($this->user->is_admin()) {
+          $lid = $this->profile->get_lectorate_id(DB_ACTIV,$id);
+          ciredirect('admin/page/activity/'.$lid);
+      } else {
+          ciredirect('profile_edit');
+      }
   }
   
   /*
