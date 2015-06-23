@@ -28,6 +28,14 @@ class Profile_edit extends CI_Controller {
     $this->load->view('footer');
   }
   
+    function id_lectorate() {
+        if($this->user->is_admin()) {
+            return $this->input->post('idl');
+        } else {
+            return $this->lectorate;
+        }
+   }
+  
   /*
    * Sprava lektora
    */
@@ -105,12 +113,7 @@ class Profile_edit extends CI_Controller {
   public function edit_activities() {
       $id = $this->input->post('id');
       if($id==NULL) {
-          //zmenit na jednu funkciu
-          if($this->user->is_admin()) {
-              $lid = $this->input->post('idl');
-          } else {
-              $lid = $this->lectorate;
-          }
+          $lid = $this->id_lectorate();
           $data = array(
               'category_id' => $this->input->post('category_id'),
               'info' => $this->input->post('info'),
@@ -284,11 +287,7 @@ public function edit_head() {
   public function edit_study() {
     $id = $this->input->post('id');
     if($id==NULL) {
-        if($this->user->is_admin()) {
-            $lid = $this->input->post('idl');
-        } else {
-            $lid = $this->lectorate;
-        }
+        $lid = $this->id_lectorate();
         $data = array(
             'type' => $this->input->post('type'),
             'target_group' => $this->input->post('target_group'),
@@ -353,11 +352,7 @@ public function edit_head() {
   public function edit_publication() {
     $id = $this->input->post('id');
     if($id==NULL) {
-        if($this->user->is_admin()) {
-            $lid = $this->input->post('idl');
-        } else {
-            $lid = $this->lectorate;
-        }
+        $lid = $this->id_lectorate();
         $data = array(
             'publication_info' => $this->input->post('publication_info'),
             'category' => $this->input->post('category'),
@@ -400,11 +395,7 @@ public function edit_head() {
   public function edit_students() {
     $id = $this->input->post('id');
     if($id==NULL) {
-        if($this->user->is_admin()) {
-            $lid = $this->input->post('idl');
-        } else {
-            $lid = $this->lectorate;
-        }
+        $lid = $this->id_lectorate();
         $data = array(
             'bc' => $this->input->post('bc'),
             'mgr' => $this->input->post('mgr'),
@@ -463,11 +454,7 @@ public function edit_head() {
   public function edit_additional() {
     $id = $this->input->post('id');
     if($id==NULL) {
-        if($this->user->is_admin()) {
-            $lid = $this->input->post('idl');
-        } else {
-            $lid = $this->lectorate;
-        }
+        $lid = $this->id_lectorate();
         $data = array(
             'info' => $this->input->post('info'),
             'plans' => $this->input->post('plans'),
