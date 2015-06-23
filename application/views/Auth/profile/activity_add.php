@@ -25,7 +25,8 @@
 } else {?>
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/edit_activities');
-    echo form_hidden('id',NULL);?>
+    echo form_hidden('id',NULL);
+    echo form_hidden('idl',$idl);?>
     <tr>
         <td>Kategória</td>
         <td><?php echo form_dropdown('category_id',$categ);?></td>

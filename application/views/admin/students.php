@@ -59,6 +59,65 @@ if($query->num_rows()>0) {
 <?php
 echo form_close();
     }
-}
+} else {
 ?>
+<table class="table table-hover"><?php
+    echo form_open('profile_edit/edit_students');
+    echo form_hidden('id',NULL);
+    echo form_hidden('idl',$idl);?>
+<tr>
+    <td><b>Bakalári</b></td>
+    <td><?php echo form_input('bc',''); ?></td>
+</tr>
+<tr>
+    <td><b>Magistri</b></td>
+    <td><?php echo form_input('mgr',''); ?></td>
+</tr>
+<tr>
+    <td><b>Doktorandi</b></td>
+    <td><?php echo form_input('phd',''); ?></td>
+</tr>
+<tr>
+    <td><b>Študenti inej národnosti</b></td>
+    <td><?php echo form_input('nonsvk',''); ?></td>
+</tr>
+<tr>
+    <td><b>Počet študentov v kurzoch pre verejnosť</b></td>
+    <td><?php echo form_input('public',''); ?></td>
+</tr>
+<tr>
+    <td><b>Stav k roku</b></td>
+    <td><?php echo form_input('year',''); ?></td>
+</tr>
+<tr>
+    <td columnspan="2">Aký je momentálny počet študentov podľa stupňa jazykovej kompetencie?</td>
+</tr>
+<tr>
+    <td><b>Úplní začiatočníci (A1)</b></td>
+    <td><?php echo form_input('a1',''); ?></td>
+</tr>
+<tr>
+    <td><b>Začiatočníci (A2)</b></td>
+    <td><?php echo form_input('a2',''); ?></td>
+</tr>
+<tr>
+    <td><b>Mierne pokročilí (B1)</b></td>
+    <td><?php echo form_input('b1',''); ?></td>
+</tr>
+<tr>
+    <td><b>Stredne pokročilí (B2)</b></td>
+    <td><?php echo form_input('b2',''); ?></td>
+</tr>
+<tr>
+    <td><b>Pokročilí (C1)</b></td>
+    <td><?php echo form_input('c1',''); ?></td>
+</tr>
+<tr>
+        <td colspan="2"><?php echo form_submit('profile_edit/edit_students','Uložiť');?></td>
+    </tr>
+</table>
+<?php
+echo form_close();
+ } ?>
+
 

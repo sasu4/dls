@@ -11,7 +11,7 @@
     <tr><td>&nbsp;</td></tr>
         <?php } 
     }?>
-    <tr><td><?php echo anchor('admin/add_activities/1','Pridať aktivitu kategórie <i>Vzdelávanie</i>');?></td></tr>
-    <tr><td><?php echo anchor('admin/add_activities/2','Pridať aktivitu kategórie <i>Veda</i>');?></td></tr>
-    <tr><td><?php echo anchor('admin/add_activities/3','Pridať aktivitu kategórie <i>Kultúra</i>');?></td></tr>
+    <tr><td><?php echo anchor('admin/add_activities/1/'.$idl,'Pridať aktivitu kategórie <i>Vzdelávanie</i>');?></td></tr>
+    <tr><td><?php echo anchor('admin/add_activities/2/'.$idl,'Pridať aktivitu kategórie <i>Veda</i>');?></td></tr>
+    <tr><td><?php echo anchor('admin/add_activities/3/'.$idl,'Pridať aktivitu kategórie <i>Kultúra</i>');?></td></tr>
 </table>
