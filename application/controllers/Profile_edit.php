@@ -33,7 +33,7 @@ class Profile_edit extends CI_Controller {
    */
   
   public function lector() {
-    $data['query'] = $this->user->get_user_profil($this->user_id);
+    $data['query'] = $this->user->get_user_profile($this->user_id);
     $data['countries'] = $this->model_lectorate->get_country_drop();
     $this->load->view('header');
     $this->load->view('Auth/profile/lector',$data);
@@ -92,6 +92,11 @@ class Profile_edit extends CI_Controller {
     } else {
         ciredirect('error_404');
     }
+    if($this->user->is_admin()) {
+          $data['idl'] = $this->uri->segment(4);
+      } else {
+          $data['idl'] = NULL;
+      }
     $this->load->view('header');
     $this->load->view('Auth/profile/activity_add',$data);
     $this->load->view('footer');
@@ -100,11 +105,16 @@ class Profile_edit extends CI_Controller {
   public function edit_activities() {
       $id = $this->input->post('id');
       if($id==NULL) {
+          if($this->user->is_admin()) {
+              $lid = $this->input->post('idl');
+          } else {
+              $lid = $this->lectorate;
+          }
           $data = array(
               'category_id' => $this->input->post('category_id'),
               'info' => $this->input->post('info'),
               'year' => $this->input->post('year'),
-              'lectorate_id' => $this->lectorate,
+              'lectorate_id' => $idl,
               'created' => $this->user_id
           );
           $this->db->set('date_created', 'NOW()', FALSE);
@@ -119,7 +129,9 @@ class Profile_edit extends CI_Controller {
           $this->profile->update_profile_table(DB_ACTIV,$id,$data);
       }     
       if($this->user->is_admin()) {
-          $lid = $this->profile->get_lectorate_id(DB_ACTIV,$id);
+          if(!isset($lid)) {
+              $lid = $this->profile->get_lectorate_id(DB_ACTIV,$id);
+          }
           ciredirect('admin/page/activity/'.$lid);
       } else {
           ciredirect('profile_edit');
@@ -370,7 +382,12 @@ public function edit_head() {
   public function edit_students() {
     $id = $this->input->post('id');
     if($id==NULL) {
-      $data = array(
+        if($this->user->is_admin()) {
+            $lid = $this->input->post('idl');
+        } else {
+            $lid = $this->lectorate;
+        }
+        $data = array(
             'bc' => $this->input->post('bc'),
             'mgr' => $this->input->post('mgr'),
             'phd' => $this->input->post('phd'),
@@ -382,7 +399,7 @@ public function edit_head() {
             'b1' => $this->input->post('b1'),
             'b2' => $this->input->post('b2'),
             'c1' => $this->input->post('c1'),
-            'lectorate_id' => $this->lectorate,
+            'lectorate_id' => $lid,
             'created' => $this->user_id
         );
         $this->db->set('date_created', 'NOW()', FALSE);
@@ -405,7 +422,9 @@ public function edit_head() {
         $this->profile->update_profile_table(DB_STUDENT,$id,$data);
     }
     if($this->user->is_admin()) {    
-        $lid = $this->profile->get_lectorate_id(DB_STUDENT,$id);
+        if(!isset($lid)) {
+            $lid = $this->profile->get_lectorate_id(DB_STUDENT,$id);
+        }
         ciredirect('admin/page/students/'.$lid);
     } else {
         ciredirect('profile_edit');
@@ -426,11 +445,16 @@ public function edit_head() {
   public function edit_additional() {
     $id = $this->input->post('id');
     if($id==NULL) {
+        if($this->user->is_admin()) {
+            $lid = $this->input->post('idl');
+        } else {
+            $lid = $this->lectorate;
+        }
         $data = array(
             'info' => $this->input->post('info'),
             'plans' => $this->input->post('plans'),
             'comments' => $this->input->post('comments'),
-            'lectorate_id' => $this->lectorate,
+            'lectorate_id' => $lid,
             'created' => $this->user_id
         );
         $this->db->set('date_created', 'NOW()', FALSE);
@@ -445,10 +469,12 @@ public function edit_head() {
         $this->profile->update_profile_table(DB_ADDIT,$id,$data);
     }
     if($this->user->is_admin()) {
-        $lid = $this->profile->get_lectorate_id(DB_ADDIT,$id);
+        if(!isset($lid)) {
+            $lid = $this->profile->get_lectorate_id(DB_ADDIT,$id);
+        }
         ciredirect('admin/page/additional/'.$lid);
-      } else {
+    } else {
         ciredirect('profile_edit');
-      }
+    }
   }
 }
