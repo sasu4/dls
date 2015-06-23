@@ -71,7 +71,21 @@ class Admin extends CI_Controller {
         } elseif($title=='additional') {
             $data['query'] = $this->profile->get_profile_table(DB_ADDIT,$id);
         } elseif($title=='head') {
-            $data['query'] = $this->profile->get_profile_table(DB_HEAD,$id);
+            if($this->profil->is_head($id)) {
+                $data = $this->profil->get_head($id);
+                $data['idl'] = $id;
+                $data['name'] = $this->lectorate->get_name($id);
+                $this->load->view('header');
+                $this->load->view('Auth/profile/head',$data);
+                $this->load->view('footer');
+            } else {
+                $data['users'] = $this->user->get_user_drop();
+                $data['idl'] = $id;
+                $data['name'] = $this->lectorate->get_name($id);
+                $this->load->view('header');
+                $this->load->view('Auth/profile/head_choose',$data);
+                $this->load->view('footer');
+            }
         } elseif($title=='publications') {
             $data['query'] = $this->profile->get_profile_table(DB_PUBL,$id);
         } elseif($title=='students') {
@@ -81,11 +95,13 @@ class Admin extends CI_Controller {
         } else {
             ciredirect('show_404');
         }
-        $data['idl'] = $id;
-        $data['name'] = $this->lectorate->get_name($id);
-        $this->load->view('header');
-        $this->load->view('admin/profile',$data);
-        $this->load->view('admin/'.$title,$data);
-        $this->load->view('footer');
+        if($title!='head') {
+            $data['idl'] = $id;
+            $data['name'] = $this->lectorate->get_name($id);
+            $this->load->view('header');
+            $this->load->view('admin/profile',$data);
+            $this->load->view('admin/'.$title,$data);
+            $this->load->view('footer');
+        }
     }
 }

@@ -43,7 +43,7 @@ if($query->num_rows()>0) {
         } ?></td>
 </tr>
 <tr>
-    <td><b>zip</b></td>
+    <td><b>PSČ</b></td>
     <td><?php echo form_input('psc',$row->zip); ?></td>
 </tr>
 <tr>

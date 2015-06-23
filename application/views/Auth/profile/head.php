@@ -7,6 +7,7 @@ if($query->num_rows()>0) {
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/edit_head'); 
     echo form_hidden('id',$row->id);
+    echo form_hidden('idl',$idl);
     if(!$can_update) {
         echo form_hidden('head',1);
     }    
@@ -78,6 +79,7 @@ if($query->num_rows()>0) {
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/edit_head'); 
     echo form_hidden('id',NULL);
+    echo form_hidden('idl',$idl);
     ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>

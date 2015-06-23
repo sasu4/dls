@@ -201,6 +201,11 @@ class Profile_edit extends CI_Controller {
   public function choose_head() {
       $user = $this->input->post('user_id');
       $id = $this->user->get_user_id($user);
+      if($this->user->is_admin()) {
+          $data['idl'] = $this->input->post('idl');
+      } else {
+          $data['idl'] = NULL;
+      }
       if($id>0) {
           $data['edit'] = FALSE;
           $data['can_update'] = FALSE;
@@ -217,6 +222,7 @@ class Profile_edit extends CI_Controller {
 public function edit_head() {
     $id = $this->input->post('id');
     if($id==NULL) {
+        $lid = $this->id_lectorate();
         $data = array(
             'name' => $this->input->post('name'),
             'surname' => $this->input->post('surname'),
@@ -225,25 +231,26 @@ public function edit_head() {
             'about' => $this->input->post('about'),
             'email' => $this->input->post('email'),
             'created' => $this->user_id,
-            'lectorate_id' => $this->lectorate
+            'lectorate_id' => $lid
         );
         $this->db->set('date_created', 'NOW()', FALSE);
         $this->profile->add_profile_table(DB_HEAD,$data);
-        $id_head = $this->profile->get_head_id($data['email'],$this->lectorate);
+        $id_head = $this->profile->get_head_id($data['email'],$lid);
         $data2['head_id'] = $id_head;
-        $this->profile->update_profile_table('lectorate',$this->lectorate,$data2);
+        $this->profile->update_profile_table('lectorate',$lid,$data2);
     } else {
         //asi by sa nemalo dovolit editovat, len sa zmeni na head
+        $lid = $this->id_lectorate();
         $hed = $this->input->post('head');
         if($hed==1) {
             $data = array(
-                'head' => $this->input->post('head')
+                'head' => $hed
             );
             $this->user->update_user($id,$data);
             $data2 = array(
                 'head_user' => $id
             );
-            $this->profile->update_profile_table('lectorate',$this->lectorate,$data2);
+            $this->profile->update_profile_table('lectorate',$lid,$data2);
         } else {
             $data = array(
                 'name' => $this->input->post('name'),
@@ -257,7 +264,11 @@ public function edit_head() {
             $this->profile->update_profile_table(DB_HEAD,$id,$data);
         }
     }
-    ciredirect('profile_edit');
+    if($this->user->is_admin()) {   
+        ciredirect('admin/page/head/'.$lid);
+    } else {
+        ciredirect('profile_edit');
+    }
 }
 
 /*

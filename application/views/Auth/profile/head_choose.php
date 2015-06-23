@@ -3,6 +3,7 @@
 <table style="max-width: 800px;">
     <?php
     echo form_open('profile_edit/choose_head'); 
+    echo form_hidden('idl',$idl);
     $users = $users+array('-1'=>'Iné');?>
     <tr>
         <td><?php echo form_label('Registrovaní používatelia');?></td>
