@@ -157,7 +157,11 @@ class Profile_edit extends CI_Controller {
         'last_edited' => $this->user_id
     );
     $this->profile->update_profile_table('lectorate',$id,$data);
-    ciredirect('profile_edit');
+    if($this->user->is_admin()) {
+          ciredirect('admin/profile/'.$id);
+      } else {
+          ciredirect('profile_edit');
+      }
   }
   
   /*
@@ -306,6 +310,11 @@ public function edit_head() {
   
   public function add_publication() {
       $data['query'] = $this->profil->publicat(0);
+      if($this->user->is_admin()) {
+          $data['idl'] = $this->uri->segment(3);
+      } else {
+          $data['idl'] = NULL;
+      }
       $this->load->view('header');
       $this->load->view('Auth/profile/publication',$data);
       $this->load->view('footer');
@@ -313,27 +322,38 @@ public function edit_head() {
   
   public function edit_publication() {
     $id = $this->input->post('id');
-    //tu by to bolo mozno lepsie natahovat priamo z DB, ale ako vyriesit potom pridavanie...
     if($id==NULL) {
+        if($this->user->is_admin()) {
+            $lid = $this->input->post('idl');
+        } else {
+            $lid = $this->lectorate;
+        }
         $data = array(
             'publication_info' => $this->input->post('publication_info'),
             'category' => $this->input->post('category'),
             'year' => $this->input->post('year'),
-            'lectorate_id' => $this->lectorate,
+            'lectorate_id' => $lid,
             'created' => $this->user_id
         );
         $this->db->set('date_created', 'NOW()', FALSE);
         $this->profile->add_profile_table(DB_PUBL,$data);
     } else {
         $data = array(
-            'publication_info' => $this->input->post('publication'),
+            'publication_info' => $this->input->post('publication_info'),
             'category' => $this->input->post('category'),
             'year' => $this->input->post('year'),
             'last_edited' => $this->user_id
         );
         $this->profile->update_profile_table(DB_PUBL,$id,$data);
     }
-    ciredirect('profile_edit');
+    if($this->user->is_admin()) {   
+        if(!isset($lid)) {
+            $lid = $this->profile->get_lectorate_id(DB_PUBL,$id);
+        }
+        ciredirect('admin/page/publications/'.$lid);
+    } else {
+        ciredirect('profile_edit');
+    }
   }
   
   /*
@@ -384,7 +404,12 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_STUDENT,$id,$data);
     }
-    ciredirect('profile_edit');
+    if($this->user->is_admin()) {    
+        $lid = $this->profile->get_lectorate_id(DB_STUDENT,$id);
+        ciredirect('admin/page/students/'.$lid);
+    } else {
+        ciredirect('profile_edit');
+    }
   }
   
   /*
@@ -419,6 +444,11 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_ADDIT,$id,$data);
     }
-    ciredirect('profile_edit');
+    if($this->user->is_admin()) {
+        $lid = $this->profile->get_lectorate_id(DB_ADDIT,$id);
+        ciredirect('admin/page/additional/'.$lid);
+      } else {
+        ciredirect('profile_edit');
+      }
   }
 }

@@ -40,6 +40,7 @@ class Admin extends CI_Controller {
     public function profile($id) {
         $data['idl'] = $id;
         $data['query'] = $this->profile->get_lectorate('lectorate',$id);
+        $data['countries'] = $this->lectorate->get_country_drop();
         $this->load->view('header');
         $this->load->view('admin/profile',$data);
         $this->load->view('admin/workplace',$data);
@@ -71,7 +72,7 @@ class Admin extends CI_Controller {
             $data['query'] = $this->profile->get_profile_table(DB_ADDIT,$id);
         } elseif($title=='head') {
             $data['query'] = $this->profile->get_profile_table(DB_HEAD,$id);
-        } elseif($title=='publication') {
+        } elseif($title=='publications') {
             $data['query'] = $this->profile->get_profile_table(DB_PUBL,$id);
         } elseif($title=='students') {
             $data['query'] = $this->profile->get_profile_table(DB_STUDENT,$id);
@@ -81,6 +82,7 @@ class Admin extends CI_Controller {
             ciredirect('show_404');
         }
         $data['idl'] = $id;
+        $data['name'] = $this->lectorate->get_name($id);
         $this->load->view('header');
         $this->load->view('admin/profile',$data);
         $this->load->view('admin/'.$title,$data);

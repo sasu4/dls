@@ -1,4 +1,4 @@
-<h2>Aktivity</h2>
+<h2><?php echo $name; ?></h2>
 <p></p>
 <table class="table table-hover">
 <?php 

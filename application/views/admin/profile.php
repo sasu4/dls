@@ -5,7 +5,7 @@
         echo anchor('admin/page/types_study/'.$idl,'Druh štúdia').' | ';
         echo anchor('admin/page/students/'.$idl,'Študenti').' | ';
         echo anchor('admin/page/activity/'.$idl,'Aktivity').' | ';
-        echo anchor('admin/page/publication/'.$idl,'Publikácie').' | ';
+        echo anchor('admin/page/publications/'.$idl,'Publikácie').' | ';
         echo anchor('admin/page/additional/'.$idl,'Ďalšie informácie');
     ?>
 </div>
