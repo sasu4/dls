@@ -6,7 +6,10 @@ if($query->num_rows()>0) {
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/lector_edit');
     echo form_hidden('id',$row->id);
-    $country = $this->model_lectorate->get_country_name($row->country_id);?>
+    if($row->country_id!=0) {
+        $country = $this->model_lectorate->get_country_name($row->country_id);
+    } 
+            ?>
     <tr>
         <td><?php echo form_label('Meno');?></td>
         <td><?php echo form_input('name',$row->name);?></td>
@@ -25,7 +28,13 @@ if($query->num_rows()>0) {
     </tr>
     <tr>
         <td><?php echo form_label('Krajina');?></td>
-        <td><?php echo form_dropdown('country_id',$countries,$country);?></td>
+        <td><?php 
+        if(isset($country)) {
+            echo form_dropdown('country_id',$countries,$country);
+        } else {
+            echo form_dropdown('country_id',$countries);
+        }
+        ?></td>
     </tr>
     <tr>
         <td><?php echo form_submit('profile_edit/lector_edit','Uložiť'); ?></td>
