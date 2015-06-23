@@ -47,3 +47,5 @@ if ($query->num_rows() > 0) {
     echo anchor('admin','Zobraziť lektoráty');
 }
 ?></i></p>
+<br>
+<p><?php echo anchor('lectorate/new_lectorate','Vytvoriť novú organizáciu');?></p>
