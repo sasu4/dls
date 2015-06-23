@@ -7,6 +7,7 @@ class Profile extends CI_Controller {
         parent::__construct();
         $this->load->model('model_profile','profile');
         $this->load->model('model_lectorate');
+        $this->load->library('profil');
     }
 
   public function index() {
@@ -29,7 +30,10 @@ class Profile extends CI_Controller {
       } elseif($title=='additional') {
           $data['query'] = $this->profile->get_profile_table(DB_ADDIT,$id);
       } elseif($title=='head') {
-          $data['query'] = $this->profile->get_profile_table(DB_HEAD,$id);
+          if($this->profil->is_head($id)) {
+              $data = $this->profil->get_head($id);
+          }
+          //$data['query'] = $this->profile->get_profile_table(DB_HEAD,$id);
           //zistit kde je head
       } elseif($title=='publication') {
           $data['query'] = $this->profile->get_profile_table(DB_PUBL,$id);
