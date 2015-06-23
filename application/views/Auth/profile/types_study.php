@@ -3,6 +3,7 @@
 <table style="max-width: 800px;">
     <?php echo form_open('profile_edit/edit_study'); 
     echo form_hidden('id',$id);
+    echo form_hidden('idl',$idl);
     $types = array(
         'Slovakistika ako samostatný odbor/program' => 'Slovakistika ako samostatný odbor/program',
         'Slovakistika ako súčasť širšieho štúdia (napr. v kombinácii)' => 'Slovakistika ako súčasť širšieho štúdia (napr. v kombinácii)',

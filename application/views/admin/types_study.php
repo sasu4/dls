@@ -12,6 +12,6 @@
         <?php } 
     }?>
     <tr>
-        <td><?php echo anchor('profile_edit/study_more/0','Pridať nový typ štúdia');?></td>
+        <td><?php echo anchor('profile_edit/study_more/0/'.$idl,'Pridať nový typ štúdia');?></td>
     </tr>
 </table>

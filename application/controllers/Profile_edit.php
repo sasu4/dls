@@ -105,6 +105,7 @@ class Profile_edit extends CI_Controller {
   public function edit_activities() {
       $id = $this->input->post('id');
       if($id==NULL) {
+          //zmenit na jednu funkciu
           if($this->user->is_admin()) {
               $lid = $this->input->post('idl');
           } else {
@@ -114,7 +115,7 @@ class Profile_edit extends CI_Controller {
               'category_id' => $this->input->post('category_id'),
               'info' => $this->input->post('info'),
               'year' => $this->input->post('year'),
-              'lectorate_id' => $idl,
+              'lectorate_id' => $lid,
               'created' => $this->user_id
           );
           $this->db->set('date_created', 'NOW()', FALSE);
@@ -270,6 +271,11 @@ public function edit_head() {
   public function study_more() {
       $id = $this->uri->segment(3);
       $data = $this->profil->study($id);
+      if($this->user->is_admin()) {
+          $data['idl'] = $this->uri->segment(4);
+      } else {
+          $data['idl'] = NULL;
+      }
       $this->load->view('header');
       $this->load->view('Auth/profile/types_study',$data);
       $this->load->view('footer');
@@ -278,12 +284,17 @@ public function edit_head() {
   public function edit_study() {
     $id = $this->input->post('id');
     if($id==NULL) {
+        if($this->user->is_admin()) {
+            $lid = $this->input->post('idl');
+        } else {
+            $lid = $this->lectorate;
+        }
         $data = array(
             'type' => $this->input->post('type'),
             'target_group' => $this->input->post('target_group'),
             'period' => $this->input->post('period'),
             'info' => $this->input->post('info'),
-            'lectorate_id' => $this->lectorate,
+            'lectorate_id' => $lid,
             'created' => $this->user_id
         );
         $this->db->set('date_created', 'NOW()', FALSE);
@@ -298,7 +309,14 @@ public function edit_head() {
         );
         $this->profile->update_profile_table(DB_STUDY,$id,$data);
     }
-    ciredirect('profile_edit');
+    if($this->user->is_admin()) {   
+        if(!isset($lid)) {
+            $lid = $this->profile->get_lectorate_id(DB_STUDY,$id);
+        }
+        ciredirect('admin/page/types_study/'.$lid);
+    } else {
+        ciredirect('profile_edit');
+    }
   }
   
   /*
