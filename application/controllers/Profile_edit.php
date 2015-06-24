@@ -55,6 +55,9 @@ class Profile_edit extends CI_Controller {
         'name' => $this->input->post('name'),
         'surname' => $this->input->post('surname'),
         'telephone' => $this->input->post('telephone'),
+        'expertise' => $this->input->post('expertise'),
+        'about' => $this->input->post('about'),
+        'website' => $this->input->post('website'),
         'country_id' => $country
     );
     $this->profile->update_profile_table('users',$id,$data);

@@ -7,7 +7,7 @@ if($query->num_rows()>0) {
     <?php echo form_open('profile_edit/lector_edit');
     echo form_hidden('id',$row->id);
     if($row->country_id!=0) {
-        $country = $this->model_lectorate->get_country_name($row->country_id);
+        $country = $this->lectorate->get_country_name($row->country_id);
     } 
             ?>
     <tr>
