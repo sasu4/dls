@@ -36,12 +36,16 @@ class Backend extends CI_Controller {
                 // If ban button pressed
                 if (isset($_POST['ban'])) {
                     // Ban user based on checkbox value (id)
-                    $this->users->ban_user($value);
+                    //$this->users->ban_user($value);
+                    //hide user
+                    $this->users->hide_user($value);
                 }
                 // If unban button pressed
                 else if (isset($_POST['unban'])) {
                     // Unban user
-                    $this->users->unban_user($value);
+                    //$this->users->unban_user($value);
+                    //Unhide user
+                    $this->users->unhide_user($value);
                 } else if (isset($_POST['reset_pass'])) {
                     // Set default message
                     $data['reset_message'] = 'Reset password failed';

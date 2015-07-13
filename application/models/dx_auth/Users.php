@@ -82,6 +82,22 @@ class Users extends CI_Model
 		$this->db->where('LOWER(email)=', strtolower($email));
 		return $this->db->get($this->_table);
 	}
+        
+        function hide_user($user_id)
+        {
+		$data = array(
+			'visible' 			=> 0
+		);
+		return $this->set_user($user_id, $data);
+	}
+        
+        function unhide_user($user_id)
+        {
+		$data = array(
+			'visible' 			=> 1
+		);
+		return $this->set_user($user_id, $data);
+	}
 		
 	function ban_user($user_id, $reason = NULL)
 	{
