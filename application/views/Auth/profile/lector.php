@@ -57,6 +57,18 @@
                                             <?php echo form_label('Webová stránka'); ?>
                                             <?php echo form_input('website', $row->website, 'class="form-control"'); ?>
                                         </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Facebook'); ?>
+                                            <?php echo form_input('facebook', $row->facebook, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Twitter'); ?>
+                                            <?php echo form_input('twitter', $row->twitter, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('LinkedIn'); ?>
+                                            <?php echo form_input('linkedin', $row->linkedin, 'class="form-control"'); ?>
+                                        </div>
                                         <hr/>
                                         <?php echo form_submit('profile_edit/lector_edit', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
                                         <?php echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>

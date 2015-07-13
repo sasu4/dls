@@ -60,6 +60,9 @@ class Profile_edit extends CI_Controller {
             'expertise' => $this->input->post('expertise'),
             'about' => $this->input->post('about'),
             'website' => $this->input->post('website'),
+            'facebook' => $this->input->post('facebook'),
+            'linkedin' => $this->input->post('linkedin'),
+            'twitter' => $this->input->post('twitter'),
             'visible' => $visible,
             'country_id' => $country
         );

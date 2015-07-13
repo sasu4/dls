@@ -47,11 +47,11 @@
                                         echo substr($row->expertise, 0, 200) . ' ... ' . anchor('lectors/profile/' . $row->id, 'Zobraziť viac', 'class="btn btn-default btn-xs"')
                                 ?></p>
                                             <ul class="list-inline">
-                                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                                        <li><a href="<?php echo $row->facebook;?>" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
                                         </li>
-                                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                                        <li><a href="<?php echo $row->linkedin;?>" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
                                         </li>
-                                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                                        <li><a href="<?php echo $row->twitter;?>" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
                                         </li>
                                     </ul>
                                 </div>
