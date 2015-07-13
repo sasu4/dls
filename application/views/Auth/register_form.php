@@ -1,10 +1,4 @@
 <?php
-//$username = array(
-//	'name'	=> 'username',
-//	'id'	=> 'username',
-//	'size'	=> 30,
-//	'value' =>  set_value('username')
-//);
 
 $first_name = array(
     'name' => 'first_name',
@@ -52,11 +46,6 @@ $email = array(
                 <div class="panel-body">
                     <?php echo form_open($this->uri->uri_string()) ?>
                     <fieldset>
-                        <div class="form-group">
-                            <?php echo form_label('Username', $username['id']); ?>
-                            <?php echo form_input($username, '', 'class="form-control" placeholder="Username"') ?>
-                            <?php echo form_error($username['name']); ?>
-                        </div>
                         <div class="form-group">
                             <?php echo form_label('Meno', $first_name['id']); ?>
                             <?php echo form_input($first_name, '', 'class="form-control" placeholder="Meno"') ?>
