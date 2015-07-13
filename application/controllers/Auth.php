@@ -158,6 +158,7 @@ class Auth extends CI_Controller {
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
                 } else {
+                    redirect('auth/reg_suc');
                     $data['auth_message'] = 'Úspešne ste sa zaregistrovali. Váš účet bude čoskoro aktivovaný správcom systému.';
                 }
                 $this->upozornenie($val->set_value('email'));
@@ -182,6 +183,13 @@ class Auth extends CI_Controller {
         }
     }
 
+    function reg_suc() {
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/register_success');
+        $this->load->view('footer');
+    }
+    
     function activate() {
         // Get username and key
         $username = $this->uri->segment(3);
