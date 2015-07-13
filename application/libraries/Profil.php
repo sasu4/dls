@@ -66,7 +66,10 @@ class Profil {
                     'psc' => $row->zip,
                     'tel' => $row->telephone,
                     'web' => $row->website,
-                    'focus' => $row->focus
+                    'focus' => $row->focus,
+                    'facebook' => $row->facebook,
+                    'twitter' => $row->twitter,
+                    'linkedin' => $row->linkedin
                 );
             }
         }

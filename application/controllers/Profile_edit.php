@@ -188,6 +188,9 @@ class Profile_edit extends CI_Controller {
             'zip' => $this->input->post('psc'),
             'telephone' => $this->input->post('tel'),
             'website' => $this->input->post('web'),
+            'facebook' => $this->input->post('facebook'),
+            'twitter' => $this->input->post('twitter'),
+            'linkedin' => $this->input->post('linkedin'),
             'focus' => $this->input->post('focus'),
             'last_edited' => $this->user_id
         );

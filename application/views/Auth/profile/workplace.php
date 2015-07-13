@@ -58,6 +58,18 @@
         <?php echo form_input('web', $web, 'class="form-control"'); ?>
     </div>
     <div class="form-group">
+        <?php echo form_label('Facebook pracoviska');?>
+        <?php echo form_input('facebook', $facebook, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Twitter pracoviska ');?>
+        <?php echo form_input('twitter', $twitter, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('LinkedIn pracoviska ');?>
+        <?php echo form_input('linkedin', $linkedin, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
         <?php echo form_label('Na čo sa pracovisko konkrétne zameriava? (uveďte jeho krátky profil) ');?>
         <?php echo form_textarea('focus', $focus, 'class="form-control"'); ?>
     </div>
