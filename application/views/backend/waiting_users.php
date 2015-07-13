@@ -15,7 +15,6 @@
                         </div>
                         <?php
                     }
-                    echo form_open($this->uri->uri_string());
                     ?>
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -25,26 +24,21 @@
                                     <th>Meno</th>
                                     <th>Priezvisko</th>
                                     <th>Email</th>
-                                    <th>Rola</th>
-                                    <th>Zablokovaný</th>
                                     <th>Posledná IP</th>
-                                    <th>Posledné prihlásenie</th>
                                     <th>Vytvorený</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+                                echo form_open($this->uri->uri_string());
                                 foreach ($users as $user) {
                                     ?>
                                 <tr>
-                                        <td><?php echo form_checkbox('checkbox_' . $user->id, $user->id) ?></td>
+                                        <td><?php echo form_checkbox('checkbox_' . $user->id, $user->username) ?></td>
                                         <td><?php echo $user->name; ?></td>
                                         <td><?php echo $user->surname; ?></td>
                                         <td><?php echo $user->email; ?></td>
-                                        <td><?php echo $user->role_name; ?></td>
-                                        <td><?php echo $banned; ?></td>
                                         <td><?php echo $user->last_ip; ?></td>
-                                        <td><?php echo date('Y-m-d', strtotime($user->last_login)); ?></td>
                                         <td><?php echo date('Y-m-d', strtotime($user->created)); ?></td>
                                     </tr>
 <?php } ?>
