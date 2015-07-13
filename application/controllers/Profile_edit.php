@@ -18,9 +18,6 @@ class Profile_edit extends CI_Controller {
         $this->load->library('profil');
         $this->user_id = $this->dx_auth->get_user_id();
         $this->lectorate = $this->user->get_lectorate($this->user_id);
-        if ($this->lectorate == NULL) {
-            ciredirect('lectorate/new_lectorate');
-        }
     }
 
     public function index() {
@@ -54,10 +51,16 @@ class Profile_edit extends CI_Controller {
     public function lector_edit() {
         $id = $this->input->post('id');
         $country = $this->model_lectorate->get_country_id($this->input->post('country_id'));
+        if($this->dx_auth->is_admin()) { $visible = 0; }
+        else {$visible = 1;}
         $data = array(
             'name' => $this->input->post('name'),
             'surname' => $this->input->post('surname'),
             'telephone' => $this->input->post('telephone'),
+            'expertise' => $this->input->post('expertise'),
+            'about' => $this->input->post('about'),
+            'website' => $this->input->post('website'),
+            'visible' => $visible,
             'country_id' => $country
         );
         $this->profile->update_profile_table('users', $id, $data);
@@ -69,6 +72,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function activities() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data['query'] = $this->profile->get_activities($this->lectorate);
         $this->load->view('header');
         $this->load->view('navigation');
@@ -77,6 +81,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function activity_more() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->uri->segment(3);
         $data = $this->profil->activ($id);
         $type = $this->profile->get_category($data['category_id']);
@@ -96,6 +101,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function add_activities($type) {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         if ($type == 1) {
             $data['categ'] = $this->profile->get_categories_drop('Vzdelávanie');
         } elseif ($type == 2) {
@@ -117,6 +123,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_activities() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
@@ -153,6 +160,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function workplace() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data = $this->profil->work($this->lectorate);
         $data['countries'] = $this->model_lectorate->get_country_drop();
         $this->load->view('header');
@@ -162,6 +170,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_workplace() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         $country = $this->model_lectorate->get_country_id($this->input->post('country'));
         $data = array(
@@ -192,6 +201,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function head() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         if ($this->profil->is_head($this->lectorate)) {
             $data = $this->profil->get_head($this->lectorate);
             $data['idl'] = NULL; // toto
@@ -210,6 +220,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function choose_head() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $user = $this->input->post('user_id');
         $id = $this->user->get_user_id($user);
         if ($this->user->is_admin()) {
@@ -233,6 +244,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_head() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
@@ -289,6 +301,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function types_of_study() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data['query'] = $this->profil->studie($this->lectorate);
         $this->load->view('header');
         $this->load->view('navigation');
@@ -297,6 +310,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function study_more() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->uri->segment(3);
         $data = $this->profil->study($id);
         if ($this->user->is_admin()) {
@@ -311,6 +325,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_study() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
@@ -349,6 +364,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function publication() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data['query'] = $this->profil->publicat($this->lectorate);
         $this->load->view('header');
         $this->load->view('navigation');
@@ -357,6 +373,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function publication_more() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->uri->segment(3);
         $data['query'] = $this->profil->publicat_one($id);
         $this->load->view('header');
@@ -366,6 +383,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function add_publication() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data['query'] = $this->profil->publicat(0);
         if ($this->user->is_admin()) {
             $data['idl'] = $this->uri->segment(3);
@@ -379,6 +397,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_publication() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
@@ -415,6 +434,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function students() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data = $this->profil->students($this->lectorate);
         $this->load->view('header');
         $this->load->view('navigation');
@@ -423,6 +443,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_students() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
@@ -475,6 +496,7 @@ class Profile_edit extends CI_Controller {
      */
 
     public function additional() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $data = $this->profil->addit($this->lectorate);
         $this->load->view('header');
         $this->load->view('navigation');
@@ -483,6 +505,7 @@ class Profile_edit extends CI_Controller {
     }
 
     public function edit_additional() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
