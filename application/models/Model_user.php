@@ -117,6 +117,7 @@ class Model_user extends CI_Model {
     function get_users() {
         $this->db->select('*');
         $this->db->from('users');
+        $this->db->where('visible',1);
         return $this->db->get();
     }
 }
