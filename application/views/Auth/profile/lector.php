@@ -42,8 +42,20 @@
                                                 echo form_dropdown('country_id', $countries, $country, 'class="form-control"');
                                             } else {
                                                 echo form_dropdown('country_id', $countries, '', 'class="form-control"');
-        }
+                                            }
                                             ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Odborné zameranie'); ?>
+                                            <?php echo form_input('expertise', $row->expertise, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Profil'); ?>
+                                            <?php echo form_input('about', $row->about, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Webová stránka'); ?>
+                                            <?php echo form_input('website', $row->website, 'class="form-control"'); ?>
                                         </div>
                                         <hr/>
                                         <?php echo form_submit('profile_edit/lector_edit', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
