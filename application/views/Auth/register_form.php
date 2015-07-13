@@ -7,116 +7,126 @@
 //);
 
 $first_name = array(
-	'name'	=> 'first_name',
-	'id'	=> 'first_name',
-	'size'	=> 30,
-	'value' => set_value('first_name')
+    'name' => 'first_name',
+    'id' => 'first_name',
+    'size' => 30,
+    'value' => set_value('first_name')
 );
 
 $surname = array(
-	'name'	=> 'surname',
-	'id'	=> 'surname',
-	'size'	=> 30,
-	'value' => set_value('surname')
+    'name' => 'surname',
+    'id' => 'surname',
+    'size' => 30,
+    'value' => set_value('surname')
 );
 
 $password = array(
-	'name'	=> 'password',
-	'id'	=> 'password',
-	'size'	=> 30,
-	'value' => set_value('password')
+    'name' => 'password',
+    'id' => 'password',
+    'size' => 30,
+    'value' => set_value('password')
 );
 
 $confirm_password = array(
-	'name'	=> 'confirm_password',
-	'id'	=> 'confirm_password',
-	'size'	=> 30,
-	'value' => set_value('confirm_password')
+    'name' => 'confirm_password',
+    'id' => 'confirm_password',
+    'size' => 30,
+    'value' => set_value('confirm_password')
 );
 
 $email = array(
-	'name'	=> 'email',
-	'id'	=> 'email',
-	'maxlength'	=> 80,
-	'size'	=> 30,
-	'value'	=> set_value('email')
+    'name' => 'email',
+    'id' => 'email',
+    'maxlength' => 80,
+    'size' => 30,
+    'value' => set_value('email')
 );
 ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registrácia</h3>
+                </div>
+                <div class="panel-body">
+                    <?php echo form_open($this->uri->uri_string()) ?>
+                    <fieldset>
+                        <div class="form-group">
+                            <?php echo form_label('Username', $username['id']); ?>
+                            <?php echo form_input($username, '', 'class="form-control" placeholder="Username"') ?>
+                            <?php echo form_error($username['name']); ?>
+                        </div>
+                        <div class="form-group">
+                            <?php echo form_label('Meno', $first_name['id']); ?>
+                            <?php echo form_input($first_name, '', 'class="form-control" placeholder="Meno"') ?>
+                            <?php echo form_error($first_name['name']); ?>
+                        </div>
+                        <div class="form-group">
+                            <?php echo form_label('Priezvisko', $surname['id']); ?>
+                            <?php echo form_input($surname, '', 'class="form-control" placeholder="Priezvisko"') ?>
+                            <?php echo form_error($surname['name']); ?>
+                        </div>
+                        <div class="form-group">
+                            <?php echo form_label('Heslo', $password['id']); ?>
+                            <?php echo form_password($password, '', 'class="form-control" placeholder="Heslo"') ?>
+                            <?php echo form_error($password['name']); ?>
+                        </div>
+                        <div class="form-group">
+                            <?php echo form_label('Potvrdiť heslo', $confirm_password['id']); ?>
+                            <?php echo form_password($confirm_password, '', 'class="form-control" placeholder="Potvrdiť heslo"'); ?>
+                            <?php echo form_error($confirm_password['name']); ?>
+                        </div>
+                        <div class="form-group">
+                            <?php echo form_label('Email', $email['id']); ?>
+                            <?php echo form_input($email, '', 'class="form-control" placeholder="E-mail"'); ?>
+                            <?php echo form_error($email['name']); ?>
+                        </div>
 
-<html>
-<body>
+                        <?php if ($this->dx_auth->captcha_registration): ?>
 
-<fieldset><legend>Registrácia</legend>
-<?php echo form_open($this->uri->uri_string())?>
 
-<dl>
-<!--	<dt><?php echo form_label('Username', $username['id']);?></dt>
-	<dd>
-		<?php echo form_input($username)?>
-    <?php echo form_error($username['name']); ?>
-	</dd>-->
-        
-        <dt><?php echo form_label('Meno', $first_name['id']);?></dt>
-	<dd>
-		<?php echo form_input($first_name)?>
-    <?php echo form_error($first_name['name']); ?>
-	</dd>
-        
-        <dt><?php echo form_label('Priezvisko', $surname['id']);?></dt>
-	<dd>
-		<?php echo form_input($surname)?>
-    <?php echo form_error($surname['name']); ?>
-	</dd>
+                        <div class="form-group">
+                                <?php
+                                // Show recaptcha imgage
 
-	<dt><?php echo form_label('Heslo', $password['id']);?></dt>
-	<dd>
-		<?php echo form_password($password)?>
-    <?php echo form_error($password['name']); ?>
-	</dd>
+                                echo $this->dx_auth->get_recaptcha_image();
+                                // Show reload captcha link
+                                ?>
+                                    </div>
+                                <div class="form-group">
+                                    <?php
+                                    echo $this->dx_auth->get_recaptcha_reload_link();
+                                    // Show switch to image captcha or audio link
+                                    echo $this->dx_auth->get_recaptcha_switch_image_audio_link();
+                                    ?>
+                                </div>
+                                <div class="form-group">
 
-	<dt><?php echo form_label('Potvrdiť heslo', $confirm_password['id']);?></dt>
-	<dd>
-		<?php echo form_password($confirm_password);?>
-		<?php echo form_error($confirm_password['name']); ?>
-	</dd>
+                                    <?php echo $this->dx_auth->get_recaptcha_label(); ?>
 
-	<dt><?php echo form_label('Email', $email['id']);?></dt>
-	<dd>
-		<?php echo form_input($email);?>
-		<?php echo form_error($email['name']); ?>
-	</dd>
-		
-<?php if ($this->dx_auth->captcha_registration): ?>
+                                    <?php echo $this->dx_auth->get_recaptcha_input(); ?>
+                                    <?php echo form_error('recaptcha_response_field'); ?>
 
-	<dt></dt>
-	<dd>
-		<?php 
-			// Show recaptcha imgage
-			echo $this->dx_auth->get_recaptcha_image(); 
-			// Show reload captcha link
-			echo $this->dx_auth->get_recaptcha_reload_link(); 
-			// Show switch to image captcha or audio link
-			echo $this->dx_auth->get_recaptcha_switch_image_audio_link(); 
-		?>
-	</dd>
 
-	<dt><?php echo $this->dx_auth->get_recaptcha_label(); ?></dt>
-	<dd>
-		<?php echo $this->dx_auth->get_recaptcha_input(); ?>
-		<?php echo form_error('recaptcha_response_field'); ?>
-	</dd>
-	
-	<?php 
-		// Get recaptcha javascript and non javasript html
-		echo $this->dx_auth->get_recaptcha_html();
-	?>
-<?php endif; ?>
+                                    <?php
+                                    // Get recaptcha javascript and non javasript html
+                                    echo $this->dx_auth->get_recaptcha_html();
+                                    ?>
+                                </div>
+                            <?php endif; ?>
 
-	<dt></dt>
-	<dd><?php echo form_submit('register','Registrovať');?></dd>
-</dl>
 
-<?php echo form_close()?>
-</fieldset>
-</body>
-</html>
+                        <?php echo form_submit('register', 'Registrovať', 'class="btn btn-lg btn-success btn-block"'); ?>
+
+                    </fieldset>
+                    <?php echo form_close() ?>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container je ukonceny vo footer -->

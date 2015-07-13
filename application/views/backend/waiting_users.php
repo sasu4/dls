@@ -1,35 +1,64 @@
-<html>
-	<head><title>Manage waiting users</title></head>
-	<body>
-	<?php  				
-		// Show error
-		echo validation_errors();
-		
-		$this->table->set_heading('', 'Meno ', 'Priezvisko ', 'Email', 'Registrovaný na IP', 'Vytvorený');
-		
-		foreach ($users as $user) 
-		{
-			$this->table->add_row(
-				form_checkbox('checkbox_'.$user->id, $user->username),
-				$user->name, 
-                                $user->surname,
-				$user->email, 
-				$user->last_ip,
-				date('Y-m-d', strtotime($user->created)));
-		}
-		
-		echo form_open($this->uri->uri_string());
-				
-		echo form_submit('activate', 'Aktivovať používateľov');
-		
-		echo '<hr/>';
-		
-		echo $this->table->generate(); 
-		
-		echo form_close();
-		
-		echo $pagination;
-			
-	?>
-	</body>
-</html>
+<div class="container">
+    <div class="row"><br /></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Aktivovať používateľov</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="well well-sm">
+                    </div>
+                    <?php if (validation_errors()) { ?>
+                        <div class="alert alert-warning">
+                            <?php echo validation_errors(); // Show error  ?>
+                        </div>
+                        <?php
+                    }
+                    echo form_open($this->uri->uri_string());
+                    ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Označiť</th>
+                                    <th>Meno</th>
+                                    <th>Priezvisko</th>
+                                    <th>Email</th>
+                                    <th>Rola</th>
+                                    <th>Zablokovaný</th>
+                                    <th>Posledná IP</th>
+                                    <th>Posledné prihlásenie</th>
+                                    <th>Vytvorený</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($users as $user) {
+                                    ?>
+                                <tr>
+                                        <td><?php echo form_checkbox('checkbox_' . $user->id, $user->id) ?></td>
+                                        <td><?php echo $user->name; ?></td>
+                                        <td><?php echo $user->surname; ?></td>
+                                        <td><?php echo $user->email; ?></td>
+                                        <td><?php echo $user->role_name; ?></td>
+                                        <td><?php echo $banned; ?></td>
+                                        <td><?php echo $user->last_ip; ?></td>
+                                        <td><?php echo date('Y-m-d', strtotime($user->last_login)); ?></td>
+                                        <td><?php echo date('Y-m-d', strtotime($user->created)); ?></td>
+                                    </tr>
+<?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr />
+                                        <?php
+                    echo form_submit('activate', 'Aktivovať používateľov', 'class="btn btn-lg btn-success"');
+                    echo anchor('home', 'Späť', 'class="btn btn-lg btn-info"');
+                    echo form_close();
+?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container je ukonceny vo footer -->

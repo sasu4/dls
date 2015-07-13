@@ -93,7 +93,14 @@ class Model_profile extends CI_Model {
     function get_profile_table($table,$lec_id) {
         $this->db->select('*');
         $this->db->from($table);
-        $this->db->where('lectorate_id',$lec_id);
+        $this->db->where('lectorate_id', $lec_id);
+        if ($table == DB_PUBL) {
+            $this->db->order_by('category');
+            $this->db->order_by('year', 'DESC');
+        }
+        if ($table == DB_ACTIV) {
+            $this->db->order_by('year', 'DESC');
+        }
         return $this->db->get();
     }
     

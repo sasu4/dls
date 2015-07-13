@@ -6,24 +6,27 @@ class Lectorate extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('date');
-        $this->load->model('Model_lectorate','lectorate');
+        $this->load->model('Model_lectorate', 'lectorate');
         $this->load->model('Model_user','user');
     }
     
     function index() {
+        $data['coun'] = $this->lectorate->get_countries();
+        $data['typ'] = 'Lektorát';
         $data['list'] = $this->lectorate->get_lectorates();
         $this->load->view('header');
+        $this->load->view('navigation');
         $this->load->view('lectorates',$data);
         $this->load->view('footer');
     }
     
-    function lect() {
+    function profile() {
         $id = $this->uri->segment(3);
-        $data['list'] = $this->lectorate->get_lectorate($id);
+        $data['query'] = $this->lectorate->get_lectorate($id);
         $data['id'] = $id;
-        
         $this->load->view('header');
-        $this->load->view('lectorate',$data);
+        $this->load->view('navigation');
+        $this->load->view('lectorate_profil', $data);
         $this->load->view('footer');
     }
     
@@ -40,6 +43,7 @@ class Lectorate extends CI_Controller {
         }
         $data['countries'] = $this->lectorate->get_country_drop();
         $this->load->view('header');
+        $this->load->view('navigation');
         $this->load->view('new_lectorate',$data);
         $this->load->view('footer');
     }

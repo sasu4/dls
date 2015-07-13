@@ -5,6 +5,7 @@ class Model_lectorate extends CI_Model {
     function get_lectorates() {
         $this->db->select('*');
         $this->db->from('lectorate');
+        $this->db->order_by('country_id, name_sk');
         $this->db->where('organization','lektorát');
         return $this->db->get();
     }
@@ -71,7 +72,7 @@ class Model_lectorate extends CI_Model {
     function get_lectorate_c($c) {
         $this->db->select('*');
         $this->db->from('country');
-        $this->db->where('id',$c);
+        $this->db->where('id', $c);
         $query = $this->db->get();
         if($query->num_rows()>0) {
             foreach($query->result() as $row) {

@@ -1,61 +1,61 @@
-<h2>Profil</h2>
-<?php 
-if($query->num_rows()>0) {
-    foreach($query->result() as $row) {
-?>
-<table style="max-width: 800px;">
-    <?php echo form_open('profile_edit/lector_edit');
-    echo form_hidden('id',$row->id);
-    if($row->country_id!=0) {
-        $country = $this->model_lectorate->get_country_name($row->country_id);
-    } 
-            ?>
-    <tr>
-        <td><?php echo form_label('Meno');?></td>
-        <td><?php echo form_input('name',$row->name);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Priezvisko');?></td>
-        <td><?php echo form_input('surname',$row->surname);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('E-mail');?></td>
-        <td><?php echo form_input('email',$row->email);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Telefon');?></td>
-        <td><?php echo form_input('telephone',$row->telephone);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Krajina');?></td>
-        <td><?php 
-        if(isset($country)) {
-            echo form_dropdown('country_id',$countries,$country);
-        } else {
-            echo form_dropdown('country_id',$countries);
+<div class="container">
+    <div class="row"><br /></div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Môj profil</h3>
+                </div>
+                <div class="panel-body">
+
+                    <?php if ($query->num_rows() > 0) { ?>
+                        <?php foreach ($query->result() as $row) {
+                            ?>
+                    <fieldset>
+                                <?php
+                                echo form_open('profile_edit/lector_edit');
+                                echo form_hidden('id', $row->id);
+                                if ($row->country_id != 0) {
+                                    $country = $this->model_lectorate->get_country_name($row->country_id);
+                                }
+                                ?>
+                                                <div class="form-group">
+                                            <?php echo form_label('Meno'); ?>
+                                            <?php echo form_input('name', $row->name, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Priezvisko'); ?>
+                                            <?php echo form_input('surname', $row->surname, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('E-mail'); ?>
+                                            <?php echo form_input('email', $row->email, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Telefon'); ?>
+                                            <?php echo form_input('telephone', $row->telephone, 'class="form-control"'); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo form_label('Krajina'); ?>
+                                            <?php
+                                            if (isset($country)) {
+                                                echo form_dropdown('country_id', $countries, $country, 'class="form-control"');
+                                            } else {
+                                                echo form_dropdown('country_id', $countries, '', 'class="form-control"');
         }
-        ?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Odborné zameranie');?></td>
-        <td><?php echo form_textarea('expertise',$row->expertise);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Profil');?></td>
-        <td><?php echo form_textarea('about',$row->about);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_label('Webová stránka');?></td>
-        <td><?php echo form_input('website',$row->website);?></td>
-    </tr>
-    <tr>
-        <td><?php echo form_submit('profile_edit/lector_edit','Uložiť'); ?></td>
-    </tr>
-<?php
-    echo form_close();
-?>
-</table>
-<?php 
-    }
-}
-?>
+                                            ?>
+                                        </div>
+                                        <hr/>
+                                        <?php echo form_submit('profile_edit/lector_edit', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
+                                        <?php echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                                    </fieldset>
+                                    <?php
+                                    echo form_close();
+                                }
+                            }
+                            ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container je ukonceny vo footer -->

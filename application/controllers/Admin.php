@@ -22,31 +22,6 @@ class Admin extends CI_Controller {
         $this->load->view('footer');
     }
     
-    public function lector() {
-        $id = $this->uri->segment(3);
-        $data['query'] = $this->user->get_user_profile($id);
-        $data['countries'] = $this->lectorate->get_country_drop();
-        $this->load->view('header');
-        $this->load->view('admin/user_profile',$data);
-        $this->load->view('footer');  
-    }
-    
-    public function lector_edit() {
-        $id = $this->input->post('id');
-        $country = $this->lectorate->get_country_id($this->input->post('country_id'));
-        $data = array(
-            'name' => $this->input->post('name'),
-            'surname' => $this->input->post('surname'),
-            'telephone' => $this->input->post('telephone'),
-            'expertise' => $this->input->post('expertise'),
-            'about' => $this->input->post('about'),
-            'website' => $this->input->post('website'),
-            'country_id' => $country
-        );
-        $this->profile->update_profile_table('users',$id,$data);
-        ciredirect('backend');
-    }
-    
     public function other() {
         $data['query']=$this->lectorate->get_lectorates_other();
         $data['typ'] = 'Ostatné organizácie';

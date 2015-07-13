@@ -1,5 +1,4 @@
 <?php
-
 $login = array(
 	'name'	=> 'login',
 	'id'	=> 'login',
@@ -7,22 +6,33 @@ $login = array(
 	'size'	=> 30,
 	'value' => set_value('login')
 );
-
 ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Prihlásenie</h3>
+                </div>
+                <div class="panel-body">
 
-<fieldset><legend accesskey="D" tabindex="1">Forgotten Password</legend>
 <?php echo form_open($this->uri->uri_string()); ?>
-
+<fieldset>
 <?php echo $this->dx_auth->get_auth_error(); ?>
-
-<dl>
-	<dt><?php echo form_label('Enter your Username or Email Address', $login['id']);?></dt>
-	<dd>
-		<?php echo form_input($login); ?> 
-		<?php echo form_error($login['name']); ?>
-		<?php echo form_submit('reset', 'Reset Now'); ?>
-	</dd>
-</dl>
-
-<?php echo form_close()?>
+    <?php echo form_label('Vložte vaše používateľské meno alebo email', $login['id']); ?>
+    <div class="form-group">
+        <?php echo form_input($login, '', 'class="form-control"'); ?>
+        <?php echo form_error($login['name']); ?>
+    </div>
+    <?php echo form_submit('reset', 'Reset', 'class="btn btn-lg btn-success btn-block"'); ?>
 </fieldset>
+<?php echo form_close() ?>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /.container je ukonceny vo footer -->

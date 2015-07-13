@@ -1,42 +1,35 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Country extends CI_Controller {
 
     function __construct() {
         parent::__construct();
         $this->load->helper('url');
-    }
-
-    public function index() {
+        $this->load->helper('date');
         $this->load->model('Model_lectorate', 'lectorate');
-
+        $this->load->model('Model_user','user');
+    }
+    
+    function index() {
         $data['coun'] = $this->lectorate->get_countries();
         $data['typ'] = 'Lektorát';
+        $data['list'] = $this->lectorate->get_lectorates();
         $this->load->view('header');
         $this->load->view('navigation');
-        $this->load->view('home', $data);
+        $this->load->view('countries', $data);
         $this->load->view('footer');
     }
-
-    public function other() {
-        $this->load->model('Model_lectorate', 'lectorate');
-
-        $data['coun'] = $this->lectorate->get_countries_other();
-        $data['typ'] = 'Ostatné organizácie';
-        $this->load->view('navigation');
-        $this->load->view('header');
-        $this->load->view('home', $data);
-        $this->load->view('footer');
-    }
-
-    public function pages($title) {
+    
+    function profile() {
+        $id = $this->uri->segment(3);
+        $data['query'] = $this->lectorate->get_lectorate($id);
+        $data['id'] = $id;
         $this->load->view('header');
         $this->load->view('navigation');
-        $this->load->view($title);
+        $this->load->view('lectorate_profil', $data);
         $this->load->view('footer');
     }
+    
 
 }
-
