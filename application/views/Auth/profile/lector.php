@@ -41,7 +41,7 @@
                                             if (isset($country)) {
                                                 echo form_dropdown('country_id', $countries, $country, 'class="form-control"');
                                             } else {
-                                                echo form_dropdown('country_id', $countries, '', 'class="form-control"');
+                                                echo form_dropdown('country_id', $countries, 'Slovakia', 'class="form-control"');
                                             }
                                             ?>
                                         </div>
