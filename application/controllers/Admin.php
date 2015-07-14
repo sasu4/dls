@@ -18,6 +18,7 @@ class Admin extends CI_Controller {
         $data['query']=$this->lectorate->get_lectorates();
         $data['typ'] = 'Lektorát';
         $this->load->view('header');
+        $this->load->view('navigation');
         $this->load->view('admin/home',$data);
         $this->load->view('footer');
     }
@@ -26,6 +27,7 @@ class Admin extends CI_Controller {
         $data['query']=$this->lectorate->get_lectorates_other();
         $data['typ'] = 'Ostatné organizácie';
         $this->load->view('header');
+        $this->load->view('navigation');
         $this->load->view('admin/home',$data);
         $this->load->view('footer');
     }
@@ -42,6 +44,7 @@ class Admin extends CI_Controller {
         $data['query'] = $this->profile->get_lectorate('lectorate',$id);
         $data['countries'] = $this->lectorate->get_country_drop();
         $this->load->view('header');
+        $this->load->view('navigation');
         $this->load->view('admin/profile',$data);
         $this->load->view('admin/workplace',$data);
         $this->load->view('footer');
@@ -61,6 +64,7 @@ class Admin extends CI_Controller {
             ciredirect('error_404');
         }
         $this->load->view('header');
+        $this->load->view('navigation');
         $this->load->view('Auth/profile/activity_add',$data);
         $this->load->view('footer');
     }
@@ -76,6 +80,7 @@ class Admin extends CI_Controller {
                 $data['idl'] = $id;
                 $data['name'] = $this->lectorate->get_name($id);
                 $this->load->view('header');
+                $this->load->view('navigation');
                 $this->load->view('Auth/profile/head',$data);
                 $this->load->view('footer');
             } else {
@@ -83,6 +88,7 @@ class Admin extends CI_Controller {
                 $data['idl'] = $id;
                 $data['name'] = $this->lectorate->get_name($id);
                 $this->load->view('header');
+                $this->load->view('navigation');
                 $this->load->view('Auth/profile/head_choose',$data);
                 $this->load->view('footer');
             }
@@ -99,6 +105,7 @@ class Admin extends CI_Controller {
             $data['idl'] = $id;
             $data['name'] = $this->lectorate->get_name($id);
             $this->load->view('header');
+            $this->load->view('navigation');
             $this->load->view('admin/profile',$data);
             $this->load->view('admin/'.$title,$data);
             $this->load->view('footer');

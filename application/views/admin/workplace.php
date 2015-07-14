@@ -1,69 +1,91 @@
-<table class="table table-hover">
-<?php
-if($query->num_rows()>0) {
-    foreach($query->result() as $row) {
-        echo form_open('profile_edit/edit_workplace');
-        echo form_hidden('id',$row->id);?>
-    <h1><?php echo $row->name_orig; ?></h1>
-<tr>
-    <td><b>Name</b></td>
-    <td><?php echo form_input('lect_name_o',$row->name_orig); ?></td>
-</tr>
-<tr>
-    <td><b>Názov(svk)</b></td>
-    <td><?php echo form_input('lect_name_s',$row->name_sk); ?></td>
-</tr>
-<tr>
-    <td><b>University</b></td>
-    <td><?php echo form_input('uni_name_o',$row->univ_orig); ?></td>
-</tr>
-<tr>
-    <td><b>Univerzita (svk)</b></td>
-    <td><?php echo form_input('uni_name_s',$row->univ_sk); ?></td>
-</tr>
-<tr>
-    <td><b>Ulica</b></td>
-    <td><?php echo form_input('street',$row->street); ?></td>
-</tr>
-<tr>
-    <td><b>Číslo</b></td>
-    <td><?php echo form_input('numb',$row->number); ?></td>
-</tr>
-<tr>
-    <td><b>Mesto</b></td>
-    <td><?php echo form_input('city',$row->city); ?></td>
-</tr>
-<tr>
-    <td><b>Krajina</b></td>
-    <td><?php $c_sel = $this->lectorate->get_country_name($row->country_id);
+<div class="container">
+    <div class="row"><br /></div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pracovisko</h3>
+                </div>
+                <div class="panel-body">
+    <?php 
+    if($query->num_rows()>0) {
+        foreach($query->result() as $row) {
+        echo form_open('profile_edit/edit_workplace'); 
+        echo form_hidden('id',$row->id);
+    ?>
+                    <div class="form-group">
+        <?php echo form_label('Aký je presný názov pracoviska, pod ktoré spadá lektorát slovenského jazyka a kultúry, respektíve kde sa vyučuje slovenský jazyk a kultúra? (uveďte originálny aj preložený názov).');?>
+                        <?php echo form_input('lect_name_o', $row->name_orig, 'class="form-control"'); ?><br>
+                        <?php echo form_input('lect_name_s', $row->name_sk, 'class="form-control"'); ?>
+                    </div>
+    <div class="form-group">
+        <?php echo form_label('Na akej fakulte a univerzite pracovisko pôsobí? (napíšte originálny názov a preklad).');?>
+        <?php echo form_input('uni_name_o', $row->univ_orig, 'class="form-control"'); ?><br>
+        <?php echo form_input('uni_name_s', $row->univ_sk, 'class="form-control"'); ?>
+    </div>
+                    <div class="well well-sm">
+                        Vyplňte identifikačné údaje pracoviska.
+                    </div>
+    <hr />
+    <div class="form-group">
+        <?php echo form_label('Ulica');?>
+        <?php echo form_input('street', $row->street, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Číslo');?>
+        <?php echo form_input('numb', $row->number, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Mesto');?>
+        <?php echo form_input('city', $row->city, 'class="form-control"'); ?>
+    </div>
+    <div>
+        <?php echo form_label('Krajina');?>
+        <?php $c_sel = $this->lectorate->get_country_name($row->country_id);
         if($c_sel==NULL) {
-            echo form_dropdown('country',$countries);
-        } else {
-            echo form_dropdown('country',$countries,$c_sel);
-        } ?></td>
-</tr>
-<tr>
-    <td><b>PSČ</b></td>
-    <td><?php echo form_input('psc',$row->zip); ?></td>
-</tr>
-<tr>
-    <td><b>Telefonický kontakt</b></td>
-    <td><?php echo form_input('tel',$row->telephone); ?></td>
-</tr>
-<tr>
-    <td><b>Webová stránka</b></td>
-    <td><?php echo form_input('web',$row->website); ?></td>
-</tr>
-<tr>
-    <td><b>Zameranie</b></td>
-    <td><?php echo form_input('focus',$row->focus); ?></td>
-</tr>
-<tr>
-        <td colspan="2"><?php echo form_submit('profile_edit/edit_workplace','Upraviť');?></td>
-    </tr>
-</table>
+            echo form_dropdown('country', $countries, 'class="form-control"');
+} else {
+            echo form_dropdown('country', $countries, $c_sel, 'class="form-control"');
+} ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('PSČ');?>
+        <?php echo form_input('psc', $row->zip, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Telefonický kontakt');?>
+        <?php echo form_input('tel', $row->telephone, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Webová stránka pracoviska ');?>
+        <?php echo form_input('web', $row->website, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Facebook pracoviska');?>
+        <?php echo form_input('facebook', $row->facebook, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Twitter pracoviska ');?>
+        <?php echo form_input('twitter', $row->twitter, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('LinkedIn pracoviska ');?>
+        <?php echo form_input('linkedin', $row->linkedin, 'class="form-control"'); ?>
+    </div>
+    <div class="form-group">
+        <?php echo form_label('Na čo sa pracovisko konkrétne zameriava? (uveďte jeho krátky profil) ');?>
+        <?php echo form_textarea('focus', $row->focus, 'class="form-control"'); ?>
+    </div>
+    <hr />
+        <?php echo form_submit('profile_edit/edit_workplace', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
+        <?php echo anchor('admin', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
 <?php
-echo form_close();
+    echo form_close();
+        }
     }
-}
 ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container je ukonceny vo footer -->
