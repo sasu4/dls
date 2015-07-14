@@ -72,7 +72,7 @@ class Admin extends CI_Controller {
             $data['query'] = $this->profile->get_profile_table(DB_ADDIT,$id);
         } elseif($title=='head') {
             if($this->profil->is_head($id)) {
-                $data = $this->profil->get_head($id);
+                $data = $this->profil->get_head($id,1);
                 $data['idl'] = $id;
                 $data['name'] = $this->lectorate->get_name($id);
                 $this->load->view('header');

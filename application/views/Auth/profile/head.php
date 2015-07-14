@@ -19,9 +19,9 @@
                                 <?php
                                 echo form_hidden('id', $row->id);
                                 echo form_hidden('idl', $idl);
-                                if (!$can_update) {
+                                //if (!$can_update) {
                                     echo form_hidden('head', 1);
-                                }
+                                //}
                                 ?>
                                                 <div class="form-group">
                                             <?php echo form_label('Meno'); ?>

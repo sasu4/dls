@@ -34,7 +34,7 @@ class Profile extends CI_Controller {
             $data['query'] = $this->profile->get_profile_table(DB_ADDIT, $id);
         } elseif ($title == 'head') {
             if ($this->profil->is_head($id)) {
-                $data = $this->profil->get_head($id);
+                $data = $this->profil->get_head($id,1);
             }
             $data['query'] = $this->profile->get_profile_table(DB_HEAD,$id);
             //zistit kde je head

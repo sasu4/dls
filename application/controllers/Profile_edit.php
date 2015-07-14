@@ -209,7 +209,7 @@ class Profile_edit extends CI_Controller {
     public function head() {
         if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
         if ($this->profil->is_head($this->lectorate)) {
-            $data = $this->profil->get_head($this->lectorate);
+            $data = $this->profil->get_head($this->lectorate,$this->user_id);
             $data['idl'] = NULL; // toto
             $this->load->view('header');
             $this->load->view('navigation');
@@ -234,10 +234,14 @@ class Profile_edit extends CI_Controller {
         } else {
             $data['idl'] = NULL;
         }
-
         if ($id > 0) {
-            $data['edit'] = FALSE;
-            $data['can_update'] = FALSE;
+            if(($this->user_id == $id)&&($this->user_id == $user)) {
+                $data['edit'] = TRUE;
+                $data['can_update'] = TRUE;
+            } else {
+                $data['edit'] = FALSE;
+                $data['can_update'] = FALSE;
+            }
         } else {
             $data['edit'] = TRUE;
             $data['can_update'] = TRUE;
@@ -275,6 +279,11 @@ class Profile_edit extends CI_Controller {
             $hed = $this->input->post('head');
             if ($hed == 1) {
                 $data = array(
+                    'name' => $this->input->post('name'),
+                    'surname' => $this->input->post('surname'),
+                    'expertise' => $this->input->post('expertise'),
+                    'website' => $this->input->post('website'),
+                    'about' => $this->input->post('about'),
                     'head' => $hed
                 );
                 $this->user->update_user($id, $data);

@@ -175,7 +175,7 @@ class Profil {
         return $value;
     }
     
-    function get_head($lec_id) {
+    function get_head($lec_id,$user_id) {
         $this->Profil();
         $query = $this->ci->profile->get_lectorate('lectorate',$lec_id);
         if($query->num_rows()>0) {
@@ -187,9 +187,15 @@ class Profil {
                 } 
                 if($row->head_user!=NULL) {
                     $this->ci->load->model('model_user');
-                    $value['query'] = $this->ci->model_user->get_user_profile($row->head_user);
-                    $value['edit'] = FALSE;
-                    $value['can_update'] = FALSE;
+                    $hed_id = $row->head_user;
+                    $value['query'] = $this->ci->model_user->get_user_profile($hed_id);             
+                    if($hed_id===$user_id) {
+                        $value['edit'] = TRUE;
+                        $value['can_update'] = TRUE;
+                    } else {
+                        $value['edit'] = FALSE;
+                        $value['can_update'] = FALSE;
+                    }
                 }
             }
         }
