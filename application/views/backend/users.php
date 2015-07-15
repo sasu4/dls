@@ -39,7 +39,7 @@
                                     <th>Viditeľný</th>
                                     <th>Posledná IP</th>
                                     <th>Posledné prihlásenie</th>
-                                    <th>Vytvorený</th>
+                                    <th>Upraviť profil</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,12 @@
                                         <td><?php echo $visible; ?></td>
                                         <td><?php echo $user->last_ip; ?></td>
                                         <td><?php echo date('Y-m-d', strtotime($user->last_login)); ?></td>
-                                        <td><?php echo date('Y-m-d', strtotime($user->created)); ?></td>
+                                        <td><?php 
+                                        echo form_open('admin/lector');
+                                        echo form_hidden('id',$user->id);
+                                        echo form_submit('admin/lector', 'Upraviť', 'class="btn btn-outline btn-success btn-xs"');
+                                        echo form_close(); 
+                                        ?></td>
                                     </tr>
 <?php } ?>
                             </tbody>
