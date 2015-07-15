@@ -36,6 +36,7 @@
     <hr />
     <!-- Team Members -->
     <div class="row">
+        <div class="well well-sm"></div>
         <?php
         $nastavene = 0;
         if ($list->num_rows() > 0) {
@@ -45,11 +46,11 @@
                     $nastavene = 1;
                 }
                 if ($id == $row->country_id) {
-                    $data = $this->lectorate->get_lectorate_c($row->country_id);
+                    //$data = $this->lectorate->get_lectorate_c($row->country_id);
                     ?>
-        <div class="well well-sm">
-                        <?php echo $data['name']; ?>
-                    </div>
+<!--        <div class="well well-sm">
+                        <?php //echo $data['name']; ?>
+                    </div>-->
                     <?php
                     $id = $row->country_id;
                 }
