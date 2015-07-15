@@ -5,6 +5,7 @@ class Admin extends CI_Controller {
     
     function __construct() {
         parent::__construct();
+        $this->load->model('model_lectorate');
         $this->load->model('Model_lectorate','lectorate');
         $this->load->model('Model_profile','profile');
         $this->load->model('Model_user','user');
@@ -37,6 +38,16 @@ class Admin extends CI_Controller {
         $data['public'] = $this->input->post('publ');
         $this->lectorate->update_lectorate($id,$data);
         ciredirect('admin');
+    }
+    
+    public function lector() {
+        $id = $this->input->post('id');
+        $data['query'] = $this->user->get_user_profile($id);
+        $data['countries'] = $this->lectorate->get_country_drop();
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/profile/lector', $data);
+        $this->load->view('footer');
     }
     
     public function profile($id) {
@@ -81,6 +92,7 @@ class Admin extends CI_Controller {
                 $data['name'] = $this->lectorate->get_name($id);
                 $this->load->view('header');
                 $this->load->view('navigation');
+                $this->load->view('admin/profile',$data);
                 $this->load->view('Auth/profile/head',$data);
                 $this->load->view('footer');
             } else {
@@ -89,6 +101,7 @@ class Admin extends CI_Controller {
                 $data['name'] = $this->lectorate->get_name($id);
                 $this->load->view('header');
                 $this->load->view('navigation');
+                $this->load->view('admin/profile',$data);
                 $this->load->view('Auth/profile/head_choose',$data);
                 $this->load->view('footer');
             }
