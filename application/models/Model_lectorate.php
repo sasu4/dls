@@ -53,10 +53,11 @@ class Model_lectorate extends CI_Model {
     
     function get_countries() {
         $this->db->order_by('country_id');
-        $this->db->select('*');
+        $this->db->distinct();
+        $this->db->select('country_id');
         $this->db->from('lectorate');
         $this->db->where('public',1);
-        $this->db->where('organization','lektorát');
+        //$this->db->where('organization','lektorát');
         return $this->db->get();
     }
     
@@ -66,6 +67,15 @@ class Model_lectorate extends CI_Model {
         $this->db->from('lectorate');
         $this->db->where('public',1);
         $this->db->where('organization','iné');
+        return $this->db->get();
+    }
+    
+    function get_lectorate_of_country($coun) {
+        $this->db->select('*');
+        $this->db->from('lectorate');
+        $this->db->where('country_id',$coun);
+        $this->db->where('public',1);
+        //$this->db->where('organization','lektorát');
         return $this->db->get();
     }
     

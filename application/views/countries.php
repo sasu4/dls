@@ -32,16 +32,19 @@
                                 </h4>
                             </div>
                             <div id="collapse<?php echo $i;?>" class="panel-collapse collapse out">
+                                <?php $lects = $this->lectorate->get_lectorate_of_country($row->country_id);
+                                foreach($lects->result() as $row2) {?>
                                 <div class="panel-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    <?php echo anchor('profile/lectorate/'.$row2->id,$row2->name_orig);?>
+                                </div>
+                                <?php }?>
+                            </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                 <!-- .panel-body -->
                     <?php }
-                }
+                    }
                 ?>
             </div>
             <!-- /.panel -->
