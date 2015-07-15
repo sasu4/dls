@@ -42,7 +42,11 @@ $types = array(
                         </div>
                         <hr />
                         <?php echo form_submit('profile_edit/edit_study', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
-                        <?php echo anchor('profile_edit/types_of_study', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                        <?php if($this->dx_auth->is_admin()) {
+                                                echo anchor('admin', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } else {
+                                                echo anchor('profile_edit/types_of_study', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } ?>
                 </div>
                 </fieldset>
                 <?php

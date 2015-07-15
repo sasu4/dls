@@ -34,7 +34,11 @@
                         <?php echo anchor('profile_edit/add_activities/1', 'Pridať aktivitu kategórie <i>Vzdelávanie</i>', 'class="btn btn-lg btn-success btn-block"'); ?>
                         <?php echo anchor('profile_edit/add_activities/2', 'Pridať aktivitu kategórie <i>Veda</i>', 'class="btn btn-lg btn-success btn-block"'); ?>
                         <?php echo anchor('profile_edit/add_activities/3', 'Pridať aktivitu kategórie <i>Kultúra</i>', 'class="btn btn-lg btn-success btn-block"'); ?>
-                        <?php echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                        <?php if($this->dx_auth->is_admin()) {
+                                echo anchor('admin', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                            } else {
+                                echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                            } ?>
                 </div>
             </div>
         </div>

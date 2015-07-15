@@ -45,7 +45,12 @@
                                         </div>
                                         <hr />
                                         <?php echo form_submit('profile_edit/edit_publication', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
-                                        <?php echo anchor('profile_edit/publication', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                                        <?php if($this->dx_auth->is_admin()) {
+                                                echo anchor('admin', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } else {
+                                                echo anchor('profile_edit/publication', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            }
+                                        ?>
                                     </fieldset>
                                     <?php
                                     echo form_close();
@@ -86,7 +91,11 @@
                                 </div>
                                 <hr />
                                 <?php echo form_submit('profile_edit/edit_publication', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
-                                <?php echo anchor('profile_edit/publication', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                                <?php if($this->dx_auth->is_admin()) {
+                                                echo anchor('admin', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } else {
+                                                echo anchor('profile_edit/publication', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } ?>
                             <?php } ?>
                 </div>
             </div>

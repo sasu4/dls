@@ -71,7 +71,11 @@
                                         </div>
                                         <hr/>
                                         <?php echo form_submit('profile_edit/lector_edit', 'Uložiť', 'class="btn btn-lg btn-success btn-block"'); ?>
-                                        <?php echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                                        <?php if($this->dx_auth->is_admin()) {
+                                                echo anchor('backend', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } else {
+                                                echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                                            } ?>
                                     </fieldset>
                                     <?php
                                     echo form_close();

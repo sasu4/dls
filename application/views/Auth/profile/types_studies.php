@@ -27,7 +27,11 @@
                         <?php } ?>
                     <hr />
                     <?php echo anchor('profile_edit/study_more/0', 'Pridať nový typ štúdia', 'class="btn btn-lg btn-success btn-block"'); ?>
-                    <?php echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                    <?php if($this->dx_auth->is_admin()) {
+                            echo anchor('admin', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                        } else {
+                            echo anchor('home', 'Späť', 'class="btn btn-lg btn-info btn-block"');
+                        } ?>
                 </div>
             </div>
         </div>
