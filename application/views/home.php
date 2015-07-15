@@ -227,6 +227,7 @@
                 <!-- /.row -->
                 <!-- Service List -->
                 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+                <?php if (!$this->dx_auth->is_admin()) {?>
                 <div class="row">
                     <div class="col-lg-12">
                         <h2 class="page-header">Nastavenia</h2>
@@ -328,6 +329,7 @@
                     </div>
 
                 </div>
+        <?php }?>
                         <!-- /.row -->
                     <?php if ($this->dx_auth->is_admin()) { ?>
                         <!-- Service List -->
@@ -366,7 +368,7 @@
                                     </div>
                                 </div>
                             </div>
-<!--                            <p></p>
+                            <p></p>
                             <div class="col-md-6">
                                 <div class="media">
                                     <div class="pull-left">
@@ -381,7 +383,7 @@
                                                 <?php echo anchor('admin', 'Upraviť', 'class="btn btn-outline btn-primary btn-xs"'); ?>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
 
                         </div>
                         <!-- /.row -->
