@@ -54,6 +54,7 @@ class Admin extends CI_Controller {
         $data['idl'] = $id;
         $data['query'] = $this->profile->get_lectorate('lectorate',$id);
         $data['countries'] = $this->lectorate->get_country_drop();
+        $data['name'] = $this->lectorate->get_name($id);
         $this->load->view('header');
         $this->load->view('navigation');
         $this->load->view('admin/profile',$data);

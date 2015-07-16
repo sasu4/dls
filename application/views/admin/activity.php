@@ -1,7 +1,8 @@
-<div class="container">
+<!--<div class="container">
     <div class="row"><br /></div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">-->
+        <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Aktivity pracoviska <?php echo $name; ?></h3>

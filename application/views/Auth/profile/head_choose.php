@@ -1,7 +1,13 @@
+<?php if(!$this->dx_auth->is_admin()) {?>
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
+            <?php } else {?>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+<?php }?>
+            
                 <div class="panel-heading">
                     <h3 class="panel-title">Vedúci pracoviska</h3>
                 </div>
