@@ -69,6 +69,61 @@ class Profile_edit extends CI_Controller {
         $this->profile->update_profile_table('users', $id, $data);
         ciredirect('home');
     }
+    
+    public function news() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
+        $data['query'] = $this->profile->get_news_user($this->user_id);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/profile/news',$data);
+        $this->load->view('footer');
+    }
+    
+    public function news_more() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
+        $id = $this->uri->segment(3);
+        $data = $this->profil->news($id);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/profile/news_more', $data);
+        $this->load->view('footer');
+    }
+    
+    public function news_add() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
+        $data = $this->profil->news(0);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/profile/news_more', $data);
+        $this->load->view('footer');
+    }
+    
+    public function edit_news() {
+        if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
+        $id = $this->input->post('id');
+        if ($id == NULL) {
+            $data = array(
+                'title' => $this->input->post('title'),
+                'content' => $this->input->post('content'),
+                'user_id' => $this->user_id,
+                'created' => $this->user_id
+            );
+            $this->db->set('date_created', 'NOW()', FALSE);
+            $this->profile->add_profile_table('news', $data);
+        } else {
+            $data = array(
+                'title' => $this->input->post('title'),
+                'content' => $this->input->post('content'),
+                'last_edited' => $this->user_id
+            );
+            $this->profile->update_profile_table('news', $id, $data);
+        }
+        if ($this->user->is_admin()) {
+            ciredirect('admin/news');
+        } else {
+            ciredirect('profile_edit/news');
+        }
+    }
 
     /*
      * Sprava aktivit

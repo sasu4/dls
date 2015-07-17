@@ -152,6 +152,27 @@ class Profil {
         return $data;
     }
     
+    function news($id) {
+        $this->Profil();
+        $query = $this->ci->profile->get_news_one($id);
+        if($query->num_rows()>0) {
+            foreach ($query->result() as $row) {
+                $data = array(
+                    'id' => $row->id,
+                    'title' => $row->title,
+                    'content' => $row->content
+                );
+            }
+        } else {
+            $data = array(
+                'id' => NULL,
+                'title' => '',
+                'content' => ''
+            );
+        }
+        return $data;
+    }
+    
     function studie($lec_id) {
         $this->Profil();
         $query = $this->ci->profile->get_profile_table(DB_STUDY,$lec_id);

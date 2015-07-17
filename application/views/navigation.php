@@ -31,14 +31,14 @@
                 </li>
                 <li>
                     <?php
-                    echo anchor('services', 'Služby');
+                    echo anchor('news', 'Novinky');
                     ?>
                 </li>
-                <li>
+<!--                <li>
                     <?php
-                    echo anchor('faq', 'FAQ');
+                   // echo anchor('faq', 'FAQ');
                     ?>
-                </li>
+                </li>-->
                 <?php if (!$this->dx_auth->is_logged_in()) { ?>
                     <li>
                         <?php echo anchor('auth/login', 'Prihlásenie'); ?>

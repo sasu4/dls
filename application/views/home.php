@@ -271,7 +271,20 @@
                                 <p></p>
                                 <?php echo anchor('profile_edit/additional', 'Upraviť', 'class="btn btn-outline btn-primary btn-xs"'); ?>
                             </div>
-                                </div>
+                        </div>
+                        <div class="media">
+                            <div class="pull-left">
+                                <span class="fa-stack fa-2x">
+                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                    <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Novinky</h4>
+                                <p></p>
+                                <?php echo anchor('profile_edit/news', 'Upraviť', 'class="btn btn-outline btn-primary btn-xs"'); ?>
+                            </div>
+                        </div>
                     </div>
                             <div class="col-md-6">
                             <div class="media">
@@ -374,7 +387,7 @@
                                     <div class="pull-left">
                                         <span class="fa-stack fa-2x">
                                             <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                            <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                            <i class="fa fa-sliders fa-stack-1x fa-inverse"></i>
                                         </span>
                                     </div>
                                     <div class="media-body">
@@ -384,7 +397,21 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-6">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-newspaper-o fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                                        <h4 class="media-heading">Správa organizácií</h4>
+                                        <p></p>
+                                                <?php echo anchor('admin/news', 'Upraviť', 'class="btn btn-outline btn-primary btn-xs"'); ?>
+                                    </div>
+                                </div>
+                            </div>    
                         </div>
                         <!-- /.row -->
                     <?php } ?>

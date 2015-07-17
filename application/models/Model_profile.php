@@ -136,4 +136,24 @@ class Model_profile extends CI_Model {
         $this->db->where('id',$id);
         $this->db->update($table,$data);
     }
+    
+    function get_news() {
+        $this->db->select('*');
+        $this->db->from('news');
+        return $this->db->get();
+    }
+    
+    function get_news_user($user) {
+        $this->db->select('*');
+        $this->db->from('news');
+        $this->db->where('user_id',$user);
+        return $this->db->get();
+    }
+    
+    function get_news_one($id) {
+        $this->db->select('*');
+        $this->db->from('news');
+        $this->db->where('id',$id);
+        return $this->db->get();
+    }
 }
