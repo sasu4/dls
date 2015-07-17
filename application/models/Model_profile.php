@@ -143,6 +143,14 @@ class Model_profile extends CI_Model {
         return $this->db->get();
     }
     
+    function get_news_public() {
+        $this->db->order_by('id','desc');
+        $this->db->select('*');
+        $this->db->from('news');
+        $this->db->where('public',1);
+        return $this->db->get();
+    }
+    
     function get_news_user($user) {
         $this->db->select('*');
         $this->db->from('news');

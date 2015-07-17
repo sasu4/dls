@@ -107,6 +107,19 @@ class Model_user extends CI_Model {
         return $value;
     }
     
+    function get_user_name($id) {
+        $this->db->select('name, surname');
+        $this->db->from('users');
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        if($query->num_rows()>0) {
+            $value = $query->row()->name.' '.$query->row()->surname;
+        } else {
+            $value = NULL;
+        }        
+        return $value;
+    }
+    
     function get_user_profile($id) {
         $this->db->select('*');
         $this->db->from('users');

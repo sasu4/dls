@@ -406,7 +406,7 @@
                                         </span>
                                     </div>
                                     <div class="media-body">
-                                                        <h4 class="media-heading">Správa organizácií</h4>
+                                                        <h4 class="media-heading">Správa noviniek</h4>
                                         <p></p>
                                                 <?php echo anchor('admin/news', 'Upraviť', 'class="btn btn-outline btn-primary btn-xs"'); ?>
                                     </div>

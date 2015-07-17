@@ -1,5 +1,12 @@
 <!-- Page Content -->
 <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Novinky a zaujímavé odkazy
+                <small></small>
+            </h1>
+        </div>
+    </div>
 <!-- /.row -->
             <div class="row">
                 <div class="col-lg-8">
@@ -14,13 +21,24 @@
                                     if ($query->num_rows() > 0) {
                                         foreach ($query->result() as $row) {
                                 ?>
+                                <?php if($this->dx_auth->is_admin()) {?>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-gear"></i>  <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><?php echo anchor('profile_edit/news_more/'.$row->id,'Upraviť');?></li>
+                                        <li><?php echo anchor('admin/news_hide/'.$row->id,'Skryť');?></li>
+                                    </ul>
+                                </div>
+                                <?php }?>
                                 <li>
-                                    <div class="timeline-badge"><i class="fa fa-check"></i>
+                                    <div class="timeline-badge"><!--<i class="fa fa-check"></i>-->
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title"><?php echo $row->title; ?></h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?php echo $row->last_edited; ?></small>
+                                            <h4 class="timeline-title"><span style="text-transform: capitalize"><?php echo $row->title; ?></span></h4>
+                                            <p><small class="text-muted"><i class="fa fa-user"></i><?php echo ' '.anchor('lectors/profile/'.$row->created,$this->model_user->get_user_name($row->created)).' ';?><i class="fa fa-clock-o"></i> <?php echo $row->date_edited; ?></small>
                                             </p>
                                         </div>
                                         <div class="timeline-body">
@@ -30,45 +48,6 @@
                                 </li>
                                 <?php }
                                     }?>
-                                <li>
-                                    <div class="timeline-badge info"><i class="fa fa-save"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fa fa-gear"></i>  <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a>
-                                                    </li>
-                                                    <li><a href="#">Another action</a>
-                                                    </li>
-                                                    <li><a href="#">Something else here</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi fuga odio quibusdam. Iure expedita, incidunt unde quis nam! Quod, quisquam. Officia quam qui adipisci quas consequuntur nostrum sequi. Consequuntur, commodi.</p>
-                                        </div>
-                                    </div>
-                                </li>
                             </ul>
                         </div>
                         <!-- /.panel-body -->

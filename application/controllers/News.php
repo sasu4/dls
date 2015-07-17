@@ -23,13 +23,15 @@ class News extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('model_profile');
+        $this->load->model('model_user');
     }
     
     public function index() {
-        $data['query'] = $this->model_profile->get_news();
+        $data['query'] = $this->model_profile->get_news_public();
         $this->load->view('header');
         $this->load->view('navigation');
         $this->load->view('news',$data);
+        $this->load->view('links');
         $this->load->view('footer');
     }
 
