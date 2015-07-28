@@ -62,6 +62,28 @@ class Admin extends CI_Controller {
         $this->load->view('footer');
     }
     
+    public function news() {
+        $data['query'] = $this->profile->get_news();
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('admin/news',$data);
+        $this->load->view('footer');
+    }
+    
+    public function news_publ() {
+        $id = $this->uri->segment(3);
+        $data = array('public' => 1);
+        $this->profile->update_profile_table('news',$id,$data);
+        redirect('admin/news');
+    }
+    
+    public function news_hide() {
+        $id = $this->uri->segment(3);
+        $data = array('public' => 0);
+        $this->profile->update_profile_table('news',$id,$data);
+        redirect('admin/news');
+    }
+    
     public function activity_more() {
         $id = $this->uri->segment(3);
         $data = $this->profil->activ($id);
