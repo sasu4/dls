@@ -321,6 +321,18 @@ class Auth extends CI_Controller {
 
         $this->email->send();
     }
+    
+    function forum() {
+        $this->load->library('phpbb');
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $pass = $this->input->post('pass');
+        $this->phpbb->reg_from_ci_to_phpbb($name,$email,$pass);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/register_success');
+        $this->load->view('footer');
+    }
 
 }
 

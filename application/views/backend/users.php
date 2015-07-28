@@ -40,6 +40,7 @@
                                     <th>Posledná IP</th>
                                     <th>Posledné prihlásenie</th>
                                     <th>Upraviť profil</th>
+                                    <th>Forum</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,6 +64,13 @@
                                         echo form_submit('admin/lector', 'Upraviť', 'class="btn btn-outline btn-success btn-xs"');
                                         echo form_close(); 
                                         ?></td>
+                                        <td><?php 
+                                        echo form_open('auth/forum');
+                                        echo form_hidden('name',$user->username);
+                                        echo form_hidden('email',$user->email);
+                                        echo form_hidden('password',$user->password);
+                                        echo form_submit('auth/forum', 'Pridať', 'class="btn btn-outline btn-success btn-xs"');
+                                        echo form_close();  ?></td>
                                     </tr>
 <?php } ?>
                             </tbody>
