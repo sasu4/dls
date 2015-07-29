@@ -65,12 +65,14 @@
                                         echo form_close(); 
                                         ?></td>
                                         <td><?php 
-                                        echo form_open('auth/forum');
+                                        //echo anchor('forum_test/add_user/'.$user->username.'/'.$user->email.'/'.$user->password,'Pridat', 'class="btn btn-outline btn-success btn-xs"');
+                                        echo form_open('forum_test/add');
                                         echo form_hidden('name',$user->username);
                                         echo form_hidden('email',$user->email);
                                         echo form_hidden('password',$user->password);
-                                        echo form_submit('auth/forum', 'Pridať', 'class="btn btn-outline btn-success btn-xs"');
-                                        echo form_close();  ?></td>
+                                        echo form_submit('forum_test/add', 'Pridať', 'class="btn btn-outline btn-success btn-xs"');
+                                        echo form_close();  
+                                        ?></td>
                                     </tr>
 <?php } ?>
                             </tbody>

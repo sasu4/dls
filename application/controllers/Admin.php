@@ -74,14 +74,14 @@ class Admin extends CI_Controller {
         $id = $this->uri->segment(3);
         $data = array('public' => 1);
         $this->profile->update_profile_table('news',$id,$data);
-        redirect('admin/news');
+        ciredirect('admin/news');
     }
     
     public function news_hide() {
         $id = $this->uri->segment(3);
         $data = array('public' => 0);
         $this->profile->update_profile_table('news',$id,$data);
-        redirect('admin/news');
+        ciredirect('admin/news');
     }
     
     public function activity_more() {

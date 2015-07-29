@@ -152,13 +152,13 @@ class Auth extends CI_Controller {
             ini_set('display_errors', 0);
             // Run form validation and register user if it's pass the validation
             if ($val->run() AND $this->dx_auth->register($val->set_value('password'), $val->set_value('email'), $val->set_value('first_name'), $val->set_value('surname'))) {
-                //$this->load->library('Phpbb_bridge');
-                //$this->phpbb_bridge->user_add($val->set_value('email'),$val->set_value('username'),$val->set_value('password'),2);
+                
+                $this->forum_reg($val->set_value('email'),$val->set_value('username'),$val->set_value('password'));
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
                 } else {
-                    redirect('auth/reg_suc');
+                    ciredirect('auth/reg_suc');
                     $data['auth_message'] = 'Úspešne ste sa zaregistrovali. Váš účet bude čoskoro aktivovaný správcom systému.';
                 }
                 $this->upozornenie($val->set_value('email'));
@@ -322,17 +322,45 @@ class Auth extends CI_Controller {
         $this->email->send();
     }
     
-    function forum() {
-        $this->load->library('phpbb');
-        $name = $this->input->post('name');
-        $email = $this->input->post('email');
-        $pass = $this->input->post('pass');
-        $this->phpbb->reg_from_ci_to_phpbb($name,$email,$pass);
-        $this->load->view('header');
-        $this->load->view('navigation');
-        $this->load->view('Auth/register_success');
-        $this->load->view('footer');
+    function forum_reg($email,$username,$password) {
+        global $request;
+        global $phpbb_container;
+        global $phpbb_root_path, $phpEx, $user, $auth, $cache, $db, $config, $template, $table_prefix;
+        global $request;
+        global $phpbb_dispatcher;
+        global $symfony_request;
+        global $phpbb_filesystem;
+        
+        define('IN_PHPBB', true);
+        $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : 'forum/';
+        $phpEx = substr(strrchr(__FILE__, '.'), 1);
+        include($phpbb_root_path . 'common.' . $phpEx);
+        //require_once('forum/' . 'common.' . $phpEx);
+        require_once('forum/' . 'config.' . $phpEx);
+        require_once('forum/' . 'includes/functions_user.' . $phpEx);
+        require_once('forum/' . 'includes/functions_display.' . $phpEx);
+        require_once('forum/' . 'includes/functions_privmsgs.' . $phpEx);
+        require_once('forum/' . 'includes/functions_posting.' . $phpEx);
+        
+        // Start session management
+        $user->session_begin();
+        $auth->acl($user->data);
+        $user->setup();
+        $user_row = array(
+            'username' => $username,
+            'user_password' => phpbb_hash($password),
+            'user_email' => $email,
+            'group_id' => 2, // by default, the REGISTERED user group is id 2
+            'user_timezone' => (float) date('T'),
+            'user_lang' => 'bg',
+            'user_type' => USER_NORMAL,
+            'user_ip' => '',
+            'user_regdate' => time(),
+        );
+    
+        $us = user_add($user_row, false);
     }
+    
 
 }
 

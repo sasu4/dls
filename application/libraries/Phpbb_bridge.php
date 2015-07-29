@@ -19,7 +19,7 @@ public function __construct() {
     global $phpbb_root_path, $phpEx, $user, $auth, $cache, $db, $config, $template, $table_prefix;
     $rootPath = $this->CI->config->item('root_path');
     define('IN_PHPBB', TRUE);
-    define('FORUM_ROOT_PATH', $rootPath.'forum/');
+    define('FORUM_ROOT_PATH', './forum/');
 
     $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : FORUM_ROOT_PATH;
     $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -50,11 +50,18 @@ public function __construct() {
 */
 
 public function user_add($email, $username, $password,$grp) {
+    global $request;
+    global $phpbb_container;
+global $phpbb_root_path, $phpEx, $user, $auth, $cache, $db, $config, $template, $table_prefix;
+global $request;
+global $phpbb_dispatcher;
+global $symfony_request;
+global $phpbb_filesystem;
     $user_row = array(
         'username' => $username,
         'user_password' => phpbb_hash($password),
         'user_email' => $email,
-        'group_id' => $grp, // by default, the REGISTERED user group is id 2
+        'group_id' => 2, // by default, the REGISTERED user group is id 2
         'user_timezone' => (float) date('T'),
         'user_lang' => 'bg',
         'user_type' => USER_NORMAL,
@@ -71,6 +78,13 @@ public function user_add($email, $username, $password,$grp) {
 * @return bool
 */
 public function user_edit($username, $password) {
+    global $request;
+    global $phpbb_container;
+global $phpbb_root_path, $phpEx, $user, $auth, $cache, $db, $config, $template, $table_prefix;
+global $request;
+global $phpbb_dispatcher;
+global $symfony_request;
+global $phpbb_filesystem;
     return user_edit($username, $password);
 }
 
