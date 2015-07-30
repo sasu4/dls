@@ -322,6 +322,15 @@ class Backend extends CI_Controller {
 
         $this->email->send();
     }
+    
+    function add() {
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $pass = $this->input->post('pass');
+        $this->load->library('phpbb_bridge');
+        $this->phpbb_bridge->add_user($name,$email,$pass);
+        $this->index();
+    }
 
 }
 

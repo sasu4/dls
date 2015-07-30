@@ -153,19 +153,19 @@ class Auth extends CI_Controller {
             // Run form validation and register user if it's pass the validation
             if ($val->run() AND $this->dx_auth->register($val->set_value('password'), $val->set_value('email'), $val->set_value('first_name'), $val->set_value('surname'))) {
                 
-                $this->forum_reg($val->set_value('email'),$val->set_value('username'),$val->set_value('password'));
+                $this->load->library('phpbb_bridge');
+                $this->phpbb_bridge->add_user($val->set_value('email'),$val->set_value('email'),$val->set_value('password'));
+                //$this->forum_reg($val->set_value('email'),$val->set_value('email'),$val->set_value('password'));
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
                 } else {
-                    ciredirect('auth/reg_suc');
                     $data['auth_message'] = 'Úspešne ste sa zaregistrovali. Váš účet bude čoskoro aktivovaný správcom systému.';
                 }
                 $this->upozornenie($val->set_value('email'));
-                // Load registration success page
                 $this->load->view('header');
                 $this->load->view('navigation');
-                $this->load->view($this->dx_auth->register_success_view, $data);
+                $this->load->view('Auth/register_success');
                 $this->load->view('footer');
             } else {
                 // Load registration page
@@ -358,7 +358,7 @@ class Auth extends CI_Controller {
             'user_regdate' => time(),
         );
     
-        $us = user_add($user_row, false);
+        return user_add($user_row, false);
     }
     
 

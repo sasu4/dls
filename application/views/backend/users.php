@@ -70,7 +70,8 @@
                                         echo form_hidden('name',$user->username);
                                         echo form_hidden('email',$user->email);
                                         echo form_hidden('password',$user->password);
-                                        echo form_submit('forum_test/add', 'Pridať', 'class="btn btn-outline btn-success btn-xs"');
+                                        echo form_hidden('redirect',  base_url().'/forum');
+                                        echo form_submit('backend/add', 'Pridať', 'class="btn btn-outline btn-success btn-xs"');
                                         echo form_close();  
                                         ?></td>
                                     </tr>

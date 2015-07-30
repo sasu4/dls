@@ -24,18 +24,24 @@ class Forum_test extends CI_Controller{
          // Start session management
          $user->session_begin();
          $auth->acl($user->data);
-         $user->setup();
+         $user->setup('index');
     }
     
     function add() {
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $pass = $this->input->post('pass');
-        $this->add_user($name,$email,$pass);
+        $this->load->library('phpbb_bridge');
+        $this->phpbb_bridge->add_user($name,$email,$pass);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('home');
+        $this->load->view('footer');
     }
     
     function add_user($username, $email, $password) {
-        global $request;
+        $where = $this->input->post('redirect', TRUE);
+        global $redirect;
         global $phpbb_container;
         global $phpbb_root_path, $phpEx, $user, $auth, $cache, $db, $config, $template, $table_prefix;
         global $request;
@@ -70,8 +76,7 @@ class Forum_test extends CI_Controller{
             'user_regdate' => time(),
         );
     
-        $us = user_add($user_row, false);
-        print_r($us);
+        return user_add($user_row, false);
     }
     
     
