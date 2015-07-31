@@ -80,7 +80,13 @@ class Auth extends CI_Controller {
 
             if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember'))) {
                 // Redirect to homepage
-                ciredirect('home', 'location');
+                $this->load->library('phpbb_bridge');
+                $this->phpbb_bridge->user_login($val->set_value('username'),$val->set_value('password'));
+                $this->load->view('header');
+                $this->load->view('navigation');
+                $this->load->view('Auth/register_success');
+                $this->load->view('footer');
+                //ciredirect('home', 'location');
             } else {
                 // Check if the user is activated or not
                 $this->load->model('model_user');
