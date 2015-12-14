@@ -218,16 +218,20 @@
                                 <?php echo anchor('profile_edit/lector', 'Upraviť', 'class="btn btn-outline btn-success btn-xs"'); ?>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+                        <p>Vitajte na stránke databázy slovakistických pracovísk v Európe i vo vzdialenejšom svete. Viac informácií o konkrétnom pracovisku a jeho možnostiach možno nájsť cez vyhľadávacie parametre lektori,  lektoráty,  krajiny.</p>
 
+                            <p>DSL je produktom  Studia Academia Slovaca – Centrum pre slovenčinu ako cudzí jazyk a slúži:</p>
+                            <ul>
+                                <li>na informovanie verejnosti o možnostiach štúdia slovenského jazyka, kultúry a literatúry na univerzitách mimo územia Slovenskej republiky,</li>
+                                <li>na vzájomnú komunikáciu medzi jednotlivými pracoviskami, vyslanými lektormi a slovakistami v zahraničí,</li>
+                                <li>na sprehľadnenie vzdelávacích i kultúrnych aktivít  jednotlivých zahraničných slovakistických pracovísk a možnostiach spolupráce (organizovanie konferencií, seminárov, výstav atď).</li>
+                            </ul>
 
                         </div>
                     </div>
                 <!-- /.row -->
                 <!-- Service List -->
                 <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-                <?php if (!$this->dx_auth->is_admin()) {?>
                 <div class="row">
                     <div class="col-lg-12">
                         <h2 class="page-header">Nastavenia</h2>
@@ -342,7 +346,6 @@
                     </div>
 
                 </div>
-        <?php }?>
                         <!-- /.row -->
                     <?php if ($this->dx_auth->is_admin()) { ?>
                         <!-- Service List -->
