@@ -28,6 +28,7 @@ $confirmation_code = array(
 ?>
 <div class="container">
     <div class="row">
+        <p class="gap"></p>
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
@@ -79,4 +80,4 @@ $confirmation_code = array(
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</div>

@@ -56,7 +56,7 @@ class Admin extends CI_Controller {
         $data['countries'] = $this->lectorate->get_country_drop();
         $data['name'] = $this->lectorate->get_name($id);
         $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('navigation2');
         $this->load->view('admin/profile',$data);
         $this->load->view('admin/workplace',$data);
         $this->load->view('footer');

@@ -1,4 +1,5 @@
-<div class="container">
+<section id="success_message">
+    <div class="container">
     <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
@@ -8,3 +9,4 @@
         <p>Úspešne ste sa zaregistrovali. Váš účet bude čoskoro aktivovaný správcom systému.</p>
     </div>
 </div>
+</section>

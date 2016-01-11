@@ -7,6 +7,7 @@ $login = array(
 	'value' => set_value('login')
 );
 ?>
+<section>
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
@@ -35,4 +36,5 @@ $login = array(
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <!-- /.container je ukonceny vo footer -->
+</div>
+</section>

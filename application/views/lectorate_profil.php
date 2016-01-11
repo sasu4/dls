@@ -47,8 +47,8 @@
                                                     </td>
                                         </tr>
                                         <tr>
-                                            <td><?php echo form_label('Webová stránka'); ?></td>
-                                            <td><?php echo anchor($row->website, $row->website); ?></td>
+                                                            <td><?php echo form_label('Webová stránka'); ?></td>
+                                                    <td><?php echo anchor($row->website, ''); ?></td>
                                         </tr>
                                         <tr>
                                             <td><?php echo form_label('Zameranie'); ?></td>

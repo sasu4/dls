@@ -67,4 +67,4 @@
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</div>

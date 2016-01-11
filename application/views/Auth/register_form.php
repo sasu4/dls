@@ -36,6 +36,7 @@ $email = array(
     'value' => set_value('email')
 );
 ?>
+<section id="register_form">
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -106,7 +107,7 @@ $email = array(
                             <?php endif; ?>
 
 
-                        <?php echo form_submit('register', 'Registrovať', 'class="btn btn-lg btn-success btn-block"'); ?>
+                        <?php echo form_submit('register', 'Registrovať', 'class="btn btn-lg btn-success"'); ?>
 
                     </fieldset>
                     <?php echo form_close() ?>
@@ -118,4 +119,5 @@ $email = array(
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <!-- /.container je ukonceny vo footer -->
+</div>
+</section>

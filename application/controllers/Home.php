@@ -14,21 +14,10 @@ class Home extends CI_Controller {
 
         $data['coun'] = $this->lectorate->get_countries();
         $data['typ'] = 'Lektorát';
-        $this->load->view('header');
-        $this->load->view('navigation');
-        $this->load->view('home', $data);
-        $this->load->view('footer');
-    }
-
-    public function other() {
-        $this->load->model('Model_lectorate', 'lectorate');
-
-        $data['coun'] = $this->lectorate->get_countries_other();
-        $data['typ'] = 'Ostatné organizácie';
-        $this->load->view('navigation');
-        $this->load->view('header');
-        $this->load->view('home', $data);
-        $this->load->view('footer');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
+        $this->load->view('home2', $data);
+        $this->load->view('footer2');
     }
 
     public function pages($title) {

@@ -14,19 +14,19 @@ class Lectors extends CI_Controller {
 
 
         $data['query'] = $this->user->get_users();
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('list_lectors', $data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
     public function profile($id) {
         $this->load->model('model_lectorate');
         $data['query'] = $this->user->get_user_profile($id);
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('user_profile', $data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
 }

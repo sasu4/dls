@@ -60,7 +60,7 @@
                                 </tr>
                                 <tr>
                                     <td><b>Webová stránka </b></td>
-                                    <td><?php echo $row->website ?></td>
+                                    <td><?php echo anchor($row->website, '', array('target' => '_blank')); ?></td>
                                 </tr>
                                 <tr>
                                     <td><b>Zameranie </b></td>

@@ -20,10 +20,11 @@ class Welcome extends CI_Controller {
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
     public function index() {
-        $this->load->view('header');
-        $this->load->view('navigation');
-        $this->load->view('welcome_message');
-        $this->load->view('footer');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
+        //  $this->load->view('welcome_message');
+        $this->load->view('template');
+        $this->load->view('footer2');
     }
 
 }

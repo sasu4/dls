@@ -19,12 +19,12 @@ class Profile extends CI_Controller {
         $data['query'] = $this->profile->get_lectorate('lectorate', $id);
         $data['idl'] = $id;
         $data['name'] = $this->model_lectorate->get_name($id);
-        $this->load->view('header');
-        $this->load->view('navigation');  
-     //   $this->load->view('profile/navigation', $data);
+        $this->load->view('header2');
+        $this->load->view('navigation2');
+        //   $this->load->view('profile/navigation', $data);
         $this->load->view('profile/sidebar', $data);
         $this->load->view('profile/workplace', $data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
     public function pages($title, $id) {
@@ -49,12 +49,12 @@ class Profile extends CI_Controller {
         }
         $data['idl'] = $id;
         $data['name'] = $this->model_lectorate->get_name($id);
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         //$this->load->view('profile/navigation', $data);
         $this->load->view('profile/sidebar', $data);
         $this->load->view('profile/' . $title, $data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
 }

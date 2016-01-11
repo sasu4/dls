@@ -21,10 +21,10 @@ class Profile_edit extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('Auth/profile/profile');
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
     function id_lectorate() {
@@ -42,10 +42,10 @@ class Profile_edit extends CI_Controller {
     public function lector() {
         $data['query'] = $this->user->get_user_profile($this->user_id);
         $data['countries'] = $this->model_lectorate->get_country_drop();
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('Auth/profile/lector', $data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
     public function lector_edit() {

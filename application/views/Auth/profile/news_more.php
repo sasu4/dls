@@ -30,8 +30,8 @@ tinymce.init({
                 {title: 'Test template 2', content: 'Test 2'}
         ]
 });</script>
-<div class="container">
-    <div class="row"><br /></div>
+<section>
+    <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
@@ -88,4 +88,4 @@ tinymce.init({
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</section>

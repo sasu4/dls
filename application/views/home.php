@@ -83,7 +83,7 @@
                         </div>
                         <div class="panel-body">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                            <?php echo anchor('lectorate', 'Zobraziť viac', 'class="btn btn-default"') ?>
+                                <?php echo anchor('lectorate', 'Zobraziť viac', 'class="btn btn-default"') ?>
                         </div>
                     </div>
                 </div>
@@ -183,8 +183,6 @@
 
                 </div>
             <!-- /.row -->
-
-                <!-- /.container je ukonceny vo footer -->
             <?php
         } else {
             ?>
@@ -418,6 +416,5 @@
                         </div>
                         <!-- /.row -->
                     <?php } ?>
-                <!-- /.container je ukonceny vo footer -->
                 <?php }
                 ?>

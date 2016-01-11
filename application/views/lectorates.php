@@ -1,85 +1,70 @@
-<?php
-//var_dump($coun);
-?>
+
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-responsive" src="<?php echo base_url('assets/images/intro1.png'); ?>" alt="">
+            </div>
+            <div class="col-sm-6">
+                <h1><?php echo $typ; ?></h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+            </div>
+            <div class="col-sm-3">
+                <ul class="breadcrumb pull-right">
+                    <li><?php echo anchor('home', 'Domov'); ?></li>
+                    <li class="active"><?php echo $typ; ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section><!--/#title-->
 <!-- Page Content -->
-<div class="container">
-    <!-- Page Heading/Breadcrumbs -->
+<section id="lectorates" class="container">
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Lektoráty
-                <small></small>
-            </h1>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <!-- Intro Content -->
-    <div class="row">
-        <div class="col-md-6">
-            <img class="img-responsive" src="<?php echo base_url('assets/images/intro3.png') ?>" alt="">
-        </div>
-        <div class="col-md-6">
-            <h2>Slovenské lektoráty vo svete</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
-            <?php
-            if ($typ == 'Lektorát') {
-                echo anchor('lectorate', 'Zobraziť iné ogranizácie', 'class="btn btn-default btn-lg"');
-            } else {
-                echo anchor('lectorate', 'Zobraziť lektoráty', '');
-}
-            ?>
-        </div>
-
-    </div>
-    <!-- /.row -->
-    <hr />
-    <!-- Team Members -->
-    <div class="row">
-        <div class="well well-sm"></div>
         <?php
-        $nastavene = 0;
         if ($list->num_rows() > 0) {
             foreach ($list->result() as $row) {
-                if ($nastavene == 0) {
-                    $id = $row->country_id;
-                    $nastavene = 1;
-                }
-                if ($id == $row->country_id) {
-                    //$data = $this->lectorate->get_lectorate_c($row->country_id);
-                    ?>
-<!--        <div class="well well-sm">
-                        <?php //echo $data['name']; ?>
-                    </div>-->
-                    <?php
-                    $id = $row->country_id;
-                }
+                $data = $this->lectorate->get_lectorate_c($row->country_id);
                 ?>
         <div class="col-md-4 text-center">
                     <div class="thumbnail">
-        <!--<img class="img-responsive" src="http://placehold.it/750x450" alt="">-->
+        <!--<img class="img-responsive" src="http://placehold.it/750x150" alt="">-->
                         <div class="caption">
-                                            <h3><?php echo anchor('profile/lectorate/' . $row->id, $row->name_sk); ?><br />
+                            <h4><?php echo anchor('profile/lectorate/' . $row->id, $row->name_sk); ?><br />
 
                                                 <small>
                                             <?php echo $row->name_orig; ?>
                                         </small>
-                                    </h3>
+                                    </h4>
                                     <p>
-                                                <?php echo $row->street . ' ' . $row->number . '<br />' . $row->city . ', ' . $row->zip; ?>
-                                            <hr />
-                                                    <?php echo substr($row->focus, 0, 250) . '... ' . anchor('profile/lectorate/' . $row->id, 'Zobraziť viac', 'class="btn btn-default btn-xs"') ?>
-                                </p>
-                                    <hr />
+                                        <?php echo $data['name_sk'] . ', ' . $row->street . ' ' . $row->number . ',' . $row->city . ', ' . $row->zip; ?>
+                                    </p>
+                                    <p class="gap"></p>
+
+                                            <p>
+                                        <?php
+                                        echo anchor('profile/lectorate/' . $row->id, 'Zobraziť viac', 'class="btn btn-success"')
+// echo substr($row->focus, 0, 250) . '... ' . anchor('profile/lectorate/' . $row->id, 'Zobraziť viac', 'class="btn btn-info btn-xs"')
+                                        ?>
+                                    </p>
+                                   
                                     <ul class="list-inline">
-                                        <li><a href="<?php echo $row->facebook;?>" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
-                                        </li>
-                                        <li><a href="<?php echo $row->linkedin;?>" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                                        </li>
-                                        <li><a href="<?php echo $row->twitter;?>" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                                        </li>
-                                        <li>
-                                        </li>
+                                        <?php if (strlen($row->facebook) > 0) { ?>
+                                            <li><a href="<?php echo $row->facebook; ?>" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                                            </li>
+                                            <?php
+                                        }
+                                        if (strlen($row->linkedin) > 0) {
+                                            ?>
+                                            <li><a href="<?php echo $row->linkedin; ?>" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                                            </li>
+                                            <?php
+                                        }
+                                        if (strlen($row->twitter) > 0) {
+                                            ?>
+                                            <li><a href="<?php echo $row->twitter; ?>" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                                            </li>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                             </div>
@@ -87,6 +72,7 @@
                         <?php
                     }
                 }
-        ?>
+                ?>
     </div>
     <!-- /.row -->
+</section>

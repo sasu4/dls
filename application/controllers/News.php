@@ -28,11 +28,11 @@ class News extends CI_Controller {
     
     public function index() {
         $data['query'] = $this->model_profile->get_news_public();
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('news',$data);
         $this->load->view('links');
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
 
 }

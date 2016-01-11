@@ -1,5 +1,5 @@
+<section id="lector_profile_form">
 <div class="container">
-    <div class="row"><br /></div>
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel panel-default">
@@ -86,4 +86,5 @@
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</div>
+</section>

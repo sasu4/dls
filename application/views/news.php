@@ -1,21 +1,25 @@
 <!-- Page Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Novinky a zaujímavé odkazy
-                <small></small>
-            </h1>
+
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Novinky a zaujímavé odkazy</h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                    <li><?php echo anchor('home', 'Domov'); ?></li>
+                    <li class="active">Novinky a zaujímavé odkazy</li>
+                </ul>
+            </div>
         </div>
     </div>
-<!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Novinky lektorov
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
+</section>
+<section id="novinky">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
                             <ul class="timeline">
                                 <?php 
                                     if ($query->num_rows() > 0) {
@@ -49,9 +53,9 @@
                                 <?php }
                                     }?>
                             </ul>
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                    <!-- /.container je vo footer -->
+    </div>
+</div>
+</section>

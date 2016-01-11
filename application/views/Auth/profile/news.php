@@ -1,4 +1,5 @@
-<div class="container">
+<section>
+    <div class="container">
     <div class="row"><br /></div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -42,4 +43,5 @@
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</div></section>
+

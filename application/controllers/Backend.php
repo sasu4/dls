@@ -36,16 +36,12 @@ class Backend extends CI_Controller {
                 // If ban button pressed
                 if (isset($_POST['ban'])) {
                     // Ban user based on checkbox value (id)
-                    //$this->users->ban_user($value);
-                    //hide user
-                    $this->users->hide_user($value);
+                    $this->users->ban_user($value);
                 }
                 // If unban button pressed
                 else if (isset($_POST['unban'])) {
                     // Unban user
-                    //$this->users->unban_user($value);
-                    //Unhide user
-                    $this->users->unhide_user($value);
+                    $this->users->unban_user($value);
                 } else if (isset($_POST['reset_pass'])) {
                     // Set default message
                     $data['reset_message'] = 'Reset password failed';
@@ -315,9 +311,9 @@ class Backend extends CI_Controller {
 
         $this->email->subject('Aktivácia účtu');
         $sprava = "Dobrý deň,\r\n"
-                . "Váš účet na DLS - Database of Lectors and Lectorates bol aktivovaný administrátorom. "
-                . "Po prihlásení môžete vytvoriť profil pre Váš lektorát.\r\n";
-        $sprava .= "Táto správa bola vygenerovaná automaticky systémom. Prosím neodpovedajte na ňu.";
+                . "Váš účet na DLS - Databáze lektorov a lektorátov Slovenska - bol úspešne aktivovaný. "
+                . "Po prihlásení môžete vytvoriť/upraviť profil svojho lektorátu.\r\n";
+        $sprava .= "Táto správa bola automaticky vygenerovaná. Prosím neodpovedajte na ňu.";
         $this->email->message($sprava);
 
         $this->email->send();

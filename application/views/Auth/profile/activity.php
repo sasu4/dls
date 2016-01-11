@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row"><br /></div>
+<section id="activity">
+    <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -43,4 +43,5 @@
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</div>
+</section>

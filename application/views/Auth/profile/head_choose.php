@@ -1,5 +1,6 @@
-<?php if(!$this->dx_auth->is_admin()) {?>
-<div class="container">
+<?php if (!$this->dx_auth->is_admin()) { ?>
+    <section>
+        <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
@@ -40,4 +41,5 @@
             </div>
         </div>
     </div>
-<!-- /.container je ukonceny vo footer -->
+    </div>
+</section>

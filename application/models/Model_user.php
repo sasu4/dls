@@ -130,7 +130,8 @@ class Model_user extends CI_Model {
     function get_users() {
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where('visible',1);
+        $this->db->where('visible', 1);
+        $this->db->order_by('surname');
         return $this->db->get();
     }
 }

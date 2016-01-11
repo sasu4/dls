@@ -1,11 +1,22 @@
-<div class="container">
+<!-- Page Content -->
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Profil lektora</h1>
+                <p></p>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                    <li><?php echo anchor('home', 'Domov'); ?></li>
+                    <li class="active">Profil lektora</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section><!--/#title-->
+<section id="lektori" class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Profil lektora</h3>
-                </div>
-                <div class="panel-body">
                     <table class="table table-striped">
                         <?php
                         if ($query->num_rows() > 0) {
@@ -30,8 +41,8 @@
                                             echo '';
                                         } else {
                                             $cnt = $this->model_lectorate->get_lectorate_c($row->country_id);
-                                            echo $cnt['name'];
-                                                }
+                                            echo $cnt['name_sk'];
+        }
                                                 ?></td>
                                                 </tr>
                                         <tr>
@@ -48,7 +59,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <?php echo anchor('lectors', 'Späť', 'class="btn btn-lg btn-info btn-block"'); ?>
+                                                        <?php echo anchor('lectors', 'Späť', 'class="btn btn-success"'); ?>
                                             </td>
                                         </tr>
                                         <?php
@@ -56,7 +67,7 @@
                         }
                         ?>
                     </table>
-                </div>
             </div>
-        </div>
     </div>
+</div>
+</section>

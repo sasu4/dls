@@ -15,10 +15,10 @@ class Country extends CI_Controller {
         $data['coun'] = $this->lectorate->get_countries();
         $data['typ'] = 'Lektorát';
         $data['list'] = $this->lectorate->get_lectorates();
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('countries', $data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
     
     function profile() {

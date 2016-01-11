@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row"><br /></div>
+<section> <div class="container">
+        <div class="row"><br /></div>
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
@@ -76,4 +76,5 @@
         </div>
     </div>
 </div>
-<!-- /.container je ukonceny vo footer -->
+</div>
+</section>

@@ -1,22 +1,36 @@
-<div class="col-lg-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <i class="fa fa-link fa-fw"></i> Zaujímavé odkazy
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-            <div class="list-group">
-                <a href="http://fphil.uniba.sk/sas/" class="list-group-item" target="_blank">
-                    <i class="fa fa-link fa-fw"></i> Studia Academica Slovaca
-<!--                    <span class="pull-right text-muted small"><em>centrum pre slovenčinu ako cudzí jazyk</em></span>-->
-                </a>
-                <a href="#" class="list-group-item" target="_blank">
-                    <i class="fa fa-link fa-fw"></i> Ďalšie odkazy
-                    <!--<span class="pull-right text-muted small"><em>sprievodny text</em></span>-->
-                </a>
+<section id="news" class="carrot">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="center">
+                    <h2>Zaujímavé odkazy</h2>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                </div>
+                <div class="gap"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <blockquote>
+                            <p><a href="http://fphil.uniba.sk/sas/" target="_blank">Studia Academica Slovaca</a></p>
+                            <small>Someone famous in <cite title="Source Title">Studia Academica Slovaca</cite></small>
+                        </blockquote>
+                        <blockquote>
+                            <p><a href="http://myslovak.sk/cms/" target="_blank">My Slovak CMS</a></p>
+                            <small>Someone famous in <cite title="Source Title">My Slovak</cite></small>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-6">
+                        <blockquote>
+                            <p></p>
+                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                        </blockquote>
+                        <blockquote>
+                            <p>.</p>
+                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                        </blockquote>
+                    </div>
+                </div>
             </div>
-            <!-- /.list-group -->
         </div>
-        <!-- /.panel-body -->
     </div>
+</section><!--/#news-->
 </div>

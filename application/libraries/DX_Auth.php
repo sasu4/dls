@@ -644,15 +644,15 @@ class DX_Auth
 	
 		if ($uri == 'login')
 		{
-			redirect($this->ci->config->item('DX_login_uri'), 'location');
+			ciredirect($this->ci->config->item('DX_login_uri'), 'location');
 		}
 		else if ($uri == 'banned')
 		{
-			redirect($this->ci->config->item('DX_banned_uri'), 'location');
+			ciredirect($this->ci->config->item('DX_banned_uri'), 'location');
 		}
 		else
 		{
-			redirect($this->ci->config->item('DX_login_uri'), 'location');			
+			ciredirect($this->ci->config->item('DX_login_uri'), 'location');			
 		}
 		exit;
 	}

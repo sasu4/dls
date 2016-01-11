@@ -1,6 +1,6 @@
-<div class="container">
-    <div class="row"><br /></div>
-    <div class="row">
+<section>
+    <div class="container">
+        <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -85,4 +85,4 @@ echo form_close();
             </div>
         </div>
     </div>
-    <!-- /.container je ukonceny vo footer -->
+</section>

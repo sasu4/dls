@@ -11,15 +11,27 @@ class Lectorate extends CI_Controller {
     }
     
     function index() {
-        $data['coun'] = $this->lectorate->get_countries();
-        $data['typ'] = 'Lektorát';
+        $data['count'] = $this->lectorate->get_countries();
+        $data['typ'] = 'Lektoráty';
         $data['list'] = $this->lectorate->get_lectorates();
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('lectorates',$data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
-    
+
+    public function other() {
+        $this->load->model('Model_lectorate', 'lectorate');
+
+        $data['count'] = $this->lectorate->get_countries_other();
+        $data['typ'] = 'Iné slovakistické pracoviská';
+        $data['list'] = $this->lectorate->get_lectorates_other();
+        $this->load->view('header2');
+        $this->load->view('navigation2');
+        $this->load->view('lectorates', $data);
+        $this->load->view('footer2');
+    }
+
     function profile() {
         $id = $this->uri->segment(3);
         $data['query'] = $this->lectorate->get_lectorate($id);
@@ -42,10 +54,10 @@ class Lectorate extends CI_Controller {
             ciredirect('home');
         }
         $data['countries'] = $this->lectorate->get_country_drop();
-        $this->load->view('header');
-        $this->load->view('navigation');
+        $this->load->view('header2');
+        $this->load->view('navigation2');
         $this->load->view('new_lectorate',$data);
-        $this->load->view('footer');
+        $this->load->view('footer2');
     }
     
     function add_lect() {

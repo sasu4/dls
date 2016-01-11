@@ -88,6 +88,7 @@ class Model_lectorate extends CI_Model {
             foreach($query->result() as $row) {
                 $data['name'] = $row->name;
                 $data['id'] = $row->id;
+                $data['name_sk'] = $row->name_sk;
             }
         }
         return $data;
@@ -135,13 +136,13 @@ class Model_lectorate extends CI_Model {
     }
     
     function get_country_name($id) {
-        $this->db->select('name');
+        $this->db->select('name_sk');
         $this->db->from('country');
         $this->db->where('id',$id);
         $query = $this->db->get();
         if($query->num_rows()>0) {
             foreach($query->result() as $row) {
-                $value = $row->name;
+                $value = $row->name_sk;
             }
         }
         return $value;

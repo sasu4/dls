@@ -108,10 +108,10 @@ class Auth extends CI_Controller {
                     }
 
                     // Load login page view
-                    $this->load->view('header');
-                    $this->load->view('navigation');
+                    $this->load->view('header2');
+                    $this->load->view('navigation2');
                     $this->load->view($this->dx_auth->login_view, $data);
-                    $this->load->view('footer');
+                    $this->load->view('footer2');
                 }
             }
         } else {
@@ -163,16 +163,16 @@ class Auth extends CI_Controller {
                 }
                 $this->upozornenie($val->set_value('email'));
                 // Load registration success page
-                $this->load->view('header');
-                $this->load->view('navigation');
+                $this->load->view('header2');
+                $this->load->view('navigation2');
                 $this->load->view($this->dx_auth->register_success_view, $data);
-                $this->load->view('footer');
+                $this->load->view('footer2');
             } else {
                 // Load registration page
-                $this->load->view('header');
-                $this->load->view('navigation');
+                $this->load->view('header2');
+                $this->load->view('navigation2');
                 $this->load->view('Auth/register_form');
-                $this->load->view('footer');
+                $this->load->view('footer2');
             }
         } elseif (!$this->dx_auth->allow_registration) {
             $data['auth_message'] = 'Registration has been disabled.';
@@ -214,15 +214,15 @@ class Auth extends CI_Controller {
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
             $data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
-            $this->load->view('header');
-            $this->load->view('navigation');
+            $this->load->view('header2');
+            $this->load->view('navigation2');
             $this->load->view($this->dx_auth->forgot_password_success_view, $data);
-            $this->load->view('footer');
+            $this->load->view('footer2');
         } else {
-            $this->load->view('header');
-            $this->load->view('navigation');
+            $this->load->view('header2');
+            $this->load->view('navigation2');
             $this->load->view($this->dx_auth->forgot_password_view);
-            $this->load->view('footer');
+            $this->load->view('footer2');
         }
     }
 

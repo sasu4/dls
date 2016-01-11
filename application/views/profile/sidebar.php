@@ -1,23 +1,22 @@
 <!-- Page Content -->
+<section id="title" class="emerald">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1><?php echo $name; ?></h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+            </div>
+            <div class="col-sm-6">
+                <ul class="breadcrumb pull-right">
+                    <li><?php echo anchor('home', 'Domov'); ?></li>
+                    <li class="active"><?php echo $name ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="container">
-    <!-- Page Heading/Breadcrumbs -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header"><?php echo $name; ?>
-                <small></small>
-            </h1>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <!-- Image Header -->
-    <div class="row">
-        <div class="col-lg-12">
-            <img class="img-responsive" src="http://placehold.it/1200x300" alt="">
-        </div>
-    </div>
-    <!-- /.row -->
-    <hr />
+    <p class="gap"></p>
     <!-- Content Row -->
     <div class="row">
         <!-- Sidebar Column -->
@@ -34,4 +33,3 @@
                 ?>
             </div>
         </div>
-        <!-- Content Column -->

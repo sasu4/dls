@@ -1,3 +1,4 @@
+<!-- Content Column -->
 <div class="col-md-9">
     <div class="panel panel-default">
         <div class="panel-heading">Vedúci pracoviska</div>
@@ -38,6 +39,7 @@
     </div>
     <!-- /.panel -->
 </div>
+
 </div>
 <!-- /.row -->
 <!-- /.container je vo footer -->
