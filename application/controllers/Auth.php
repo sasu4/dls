@@ -18,6 +18,7 @@ class Auth extends CI_Controller {
 
         $this->load->library('Form_validation');
         $this->load->library('DX_Auth');
+        $this->load->library('Recaptcha');
 
         $this->load->config('dx_auth');
         $this->load->helper('url');
@@ -129,10 +130,26 @@ class Auth extends CI_Controller {
         //$data['auth_message'] = 'You have been logged out.';
         //$this->load->view($this->dx_auth->logout_view, $data);
     }
+    
+    public function getResponse($str){
+        $response = $this->recaptcha->verifyResponse($str);?>
+<script type="text/javascript">
+    alert(<?php echo $response['success'];?>);
+    </script>
+<?php
+        if ($response['success']) { 
+            return true;
+        } else {
+            $this->form_validation->set_message('getResponse', '%s missing'. var_dump($response) );
+            //$this->form_validation->set_message('getResponse', '%s missing or wrong');
+            return false;
+        }
+    }
 
     function register() {
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
+            $content['recaptcha_html'] = '';
 
             // Set form validation rules
             //$val->set_rules('username', 'Username', 'trim|required|min_length['.$this->min_username.']|max_length['.$this->max_username.']|callback_username_check|alpha_dash');
@@ -147,7 +164,9 @@ class Auth extends CI_Controller {
                 // Set recaptcha rules.
                 // IMPORTANT: Do not change 'recaptcha_response_field' because it's used by reCAPTCHA API,
                 // This is because the limitation of reCAPTCHA, not DX Auth library
-                $val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|required|callback_recaptcha_check');
+                $content['recaptcha_html'] = $this->recaptcha->render();
+                $this->form_validation->set_rules('g-recaptcha-response', '<b>Captcha</b>', 'callback_getResponse');
+                //$val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|required|callback_recaptcha_check');
             }
             ini_set('display_errors', 0);
             // Run form validation and register user if it's pass the validation
@@ -169,9 +188,10 @@ class Auth extends CI_Controller {
                 $this->load->view('footer2');
             } else {
                 // Load registration page
+                $this->session->set_flashdata('alert', '<div class="alert alert-danger">' . validation_errors() . '</div>');
                 $this->load->view('header2');
                 $this->load->view('navigation2');
-                $this->load->view('Auth/register_form');
+                $this->load->view('Auth/register_form', $content);
                 $this->load->view('footer2');
             }
         } elseif (!$this->dx_auth->allow_registration) {

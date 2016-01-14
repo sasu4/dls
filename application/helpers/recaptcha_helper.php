@@ -151,8 +151,8 @@ class ReCaptchaResponse {
 function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $extra_params = array())
 {
 	if ($privkey == null || $privkey == '') {
-		die ("To use reCAPTCHA you must get an API key from <a href='http://recaptcha.net/api/getkey'>http://recaptcha.net/api/getkey</a>");
-	}
+		die("To use reCAPTCHA you must get an API key from <a href='https://recaptcha.net/api/getkey'>https://recaptcha.net/api/getkey</a>");
+    }
 
 	if ($remoteip == null || $remoteip == '') {
 		die ("For security reasons, you must pass the remote ip to reCAPTCHA");
@@ -199,7 +199,7 @@ function recaptcha_check_answer ($privkey, $remoteip, $challenge, $response, $ex
  * @param string $appname The name of your application
  */
 function recaptcha_get_signup_url ($domain = null, $appname = null) {
-	return "http://recaptcha.net/api/getkey?" .  _recaptcha_qsencode (array ('domain' => $domain, 'app' => $appname));
+	return "http://recaptcha.net/api/getkey?" . _recaptcha_qsencode(array('domain' => $domain, 'app' => $appname));
 }
 
 function _recaptcha_aes_pad($val) {

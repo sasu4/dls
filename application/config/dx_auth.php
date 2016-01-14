@@ -142,8 +142,8 @@ $config['DX_forgot_password_expire'] = 900;
 |
 */
 
-$config['DX_recaptcha_public_key'] = '6LcNO9ISAAAAAHcRoGVQp1ZG56RDNdnwH3MyuBqU'; 
-$config['DX_recaptcha_private_key'] = '6LcNO9ISAAAAAIMeF9o2YIlAovWwvi2T-qArp0DE';
+$config['DX_recaptcha_public_key'] = '6LdEWBUTAAAAAO4EzzijfBcMEuG5MoWldjxLD4v9';
+$config['DX_recaptcha_private_key'] = '6LdEWBUTAAAAAOsIAyztVHfiR_BrrGAQ--K1kdaw';
 
 
 /*
@@ -185,7 +185,7 @@ $config['DX_reset_password_uri'] = '/auth/reset_password/';
 
 // Registration
 $config['DX_allow_registration'] = TRUE; 
-$config['DX_captcha_registration'] = TRUE;
+$config['DX_captcha_registration'] = FALSE;
 
 // Login
 $config['DX_captcha_login'] = FALSE;
