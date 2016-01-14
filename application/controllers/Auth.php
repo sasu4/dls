@@ -134,7 +134,7 @@ class Auth extends CI_Controller {
     public function getResponse($str){
         $response = $this->recaptcha->verifyResponse($str);?>
 <script type="text/javascript">
-    alert(<?php echo $response['success'];?>);
+    //alert(<?php echo $response['success'];?>);
     </script>
 <?php
         if ($response['success']) { 
