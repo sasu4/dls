@@ -153,8 +153,8 @@ class Auth extends CI_Controller {
 
             // Set form validation rules
             //$val->set_rules('username', 'Username', 'trim|required|min_length['.$this->min_username.']|max_length['.$this->max_username.']|callback_username_check|alpha_dash');
-            $val->set_rules('first_name', 'First name', 'trim|required|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|alpha_dash');
-            $val->set_rules('surname', 'Surname', 'trim|required|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|alpha_dash');
+            $val->set_rules('first_name', 'First name', 'trim|required|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']');
+            $val->set_rules('surname', 'Surname', 'trim|required|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']');
             $val->set_rules('password', 'Password', 'trim|required|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', 'Confirm Password', 'trim|required');
             $val->set_rules('email', 'Email', 'trim|required|valid_email|callback_email_check');
@@ -164,9 +164,9 @@ class Auth extends CI_Controller {
                 // Set recaptcha rules.
                 // IMPORTANT: Do not change 'recaptcha_response_field' because it's used by reCAPTCHA API,
                 // This is because the limitation of reCAPTCHA, not DX Auth library
-                $content['recaptcha_html'] = $this->recaptcha->render();
-                $this->form_validation->set_rules('g-recaptcha-response', '<b>Captcha</b>', 'callback_getResponse');
-                //$val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|required|callback_recaptcha_check');
+                //$content['recaptcha_html'] = $this->recaptcha->render();
+                //$this->form_validation->set_rules('g-recaptcha-response', '<b>Captcha</b>', 'callback_getResponse');
+                $val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|required|callback_recaptcha_check');
             }
             ini_set('display_errors', 0);
             // Run form validation and register user if it's pass the validation

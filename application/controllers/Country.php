@@ -31,5 +31,14 @@ class Country extends CI_Controller {
         $this->load->view('footer');
     }
     
+    function test() {
+        $data['coun'] = $this->lectorate->get_countries();
+        $data['typ'] = 'Lektorát';
+        $data['list'] = $this->lectorate->get_lectorates();
+        $this->load->view('header2');
+        $this->load->view('navigation2');
+        $this->load->view('countries2', $data);
+        $this->load->view('footer2');
+    }
 
 }
