@@ -948,7 +948,8 @@ class DX_Auth
 
 		$this->ci->load->helper('url');
 		
-                $username = $email;
+                $pom = explode('@',$email,-1);
+                $username = $pom[0];
                 
 		// Default return value
 		$result = FALSE;
@@ -1288,7 +1289,7 @@ class DX_Auth
 			</script>";					
 			
 		// Get reCAPTCHA javascript and non javascript HTML
-		$html = recaptcha_get_html($this->ci->config->item('DX_recaptcha_public_key'));
+		$html = recaptcha_get_html($this->ci->config->item('DX_recaptcha_public_key'),null,true);
 		
 		return $options.$html;
 	}
