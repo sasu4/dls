@@ -61,6 +61,24 @@ class Model_lectorate extends CI_Model {
         return $this->db->get();
     }
     
+    function get_mapa_data() {
+        $this->db->select('name_orig, street, number, city, name');
+        $this->db->from('lectorate');
+        $this->db->join('country','country.id=country_id');
+        $query = $this->db->get();
+        $i=0;
+        if($query->num_rows()>0) {
+            foreach($query->result() as $row) {
+                $data[] = array(
+                    "adresa" => $row->street.', '.$row->number.', '.$row->name,
+                    "nazov" => $row->name_orig
+                );
+                $i++;
+            }
+        }
+        return $data;        
+    }
+    
     function get_countries_other() {
         $this->db->order_by('country_id');
         $this->db->select('*');
@@ -108,14 +126,14 @@ class Model_lectorate extends CI_Model {
     }
     
     function get_country_drop() {
-        $this->db->select('name');
+        $this->db->select('name_sk');
         $this->db->from('country');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             $dropdowns = $query->result();
             foreach ($dropdowns as $dropdown)
             {
-                $dropdownlist[$dropdown->name] = $dropdown->name;
+                $dropdownlist[$dropdown->name_sk] = $dropdown->name_sk;
             }
             $finaldropdown = $dropdownlist;
             return $finaldropdown;
@@ -125,7 +143,7 @@ class Model_lectorate extends CI_Model {
     function get_country_id($name) {
         $this->db->select('id');
         $this->db->from('country');
-        $this->db->where('name',$name);
+        $this->db->where('name_sk',$name);
         $query = $this->db->get();
         if($query->num_rows()>0) {
             foreach($query->result() as $row) {
