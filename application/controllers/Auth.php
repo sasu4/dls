@@ -230,10 +230,11 @@ class Auth extends CI_Controller {
 
         // Set form validation rules
         $val->set_rules('login', 'Username or Email address', 'trim|required');
-
+        ini_set('display_errors', 0);
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
-            $data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
+            $data['auth_message'] = 'Na vašu emailovú adresu bol odoslaný email s pokynmi, ako aktivovať vaše nové heslo.';
+            //$data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
             $this->load->view('header2');
             $this->load->view('navigation2');
             $this->load->view($this->dx_auth->forgot_password_success_view, $data);
@@ -253,11 +254,17 @@ class Auth extends CI_Controller {
 
         // Reset password
         if ($this->dx_auth->reset_password($username, $key)) {
-            $data['auth_message'] = 'You have successfully reset your password, ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
+            $data['auth_message'] = 'Úspešne ste zmenili svoje heslo, ' . anchor(site_url($this->dx_auth->login_uri), 'Prihláste sa');
+            $this->load->view('header2');
+            $this->load->view('navigation2');
             $this->load->view($this->dx_auth->reset_password_success_view, $data);
+            $this->load->view('footer2');
         } else {
             $data['auth_message'] = 'Reset failed. Your username and key are incorrect. Please check your email again and follow the instructions.';
+            $this->load->view('header2');
+            $this->load->view('navigation2');
             $this->load->view($this->dx_auth->reset_password_failed_view, $data);
+            $this->load->view('footer2');
         }
     }
 
