@@ -37,7 +37,7 @@
                                         </div>
                                         <div class="form-group">
                                             <?php echo form_label('Krajina'); ?>
-                                            <?php
+                                            <?php 
                                             if (isset($country)) {
                                                 echo form_dropdown('country_id', $countries, $country, 'class="form-control"');
                                             } else {
