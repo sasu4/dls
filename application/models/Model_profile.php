@@ -5,6 +5,7 @@ class Model_profile extends CI_Model {
     function get_activities($lec_id) {
         $this->db->select('*');
         $this->db->from(DB_ACTIV);
+        $this->db->join(DB_CTG,'profil_activity.category_id=profil_category.id');
         $this->db->where('lectorate_id',$lec_id);
         return $this->db->get();
     }
