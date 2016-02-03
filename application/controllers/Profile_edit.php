@@ -67,7 +67,11 @@ class Profile_edit extends CI_Controller {
             'country_id' => $country
         );
         $this->profile->update_profile_table('users', $id, $data);
-        ciredirect('home');
+        if($this->user->is_admin()) {
+            ciredirect('backend');
+        } else {
+            ciredirect('home');
+        }
     }
     
     public function news() {
