@@ -12,6 +12,7 @@ class Home extends CI_Controller {
     public function index() {
         $this->load->model('Model_lectorate', 'lectorate');
         $this->load->model('model_profile');
+        $this->load->model('model_user');
         $this->load->helper('text');
 
         $data['coun'] = $this->lectorate->get_countries();
