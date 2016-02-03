@@ -84,6 +84,20 @@ class Admin extends CI_Controller {
         redirect('admin/news');
     }
     
+    public function news_delete() {
+        $data['id'] = $this->uri->segment(3);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('admin/delete', $data);
+        $this->load->view('footer');
+    }
+    
+    public function delete_news() {
+        $id = $this->uri->segment(3);
+        $this->model_lectorate->delete_data('news',$id);
+        ciredirect('admin/news');
+    }
+    
     public function activity_more() {
         $id = $this->uri->segment(3);
         $data = $this->profil->activ($id);
