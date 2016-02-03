@@ -28,7 +28,7 @@
                     echo form_open($this->uri->uri_string());
                     ?>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="dataTables-example">
                             <thead>
                                 <tr>
                                     <th>Označiť</th>
