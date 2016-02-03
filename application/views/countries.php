@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-5">
                 <h1>Naše pracoviská vo svete</h1>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                <p>Lektoráty slovenského jazyka a kultúry, ako aj ostatné slovakistické pracovniská, sídlia vo viacerých krajinách, ktoých zoznam nájdete v tejto sekcii.</p>
             </div>
             <div class="col-sm-3">
                 <ul class="breadcrumb pull-right">
