@@ -28,7 +28,7 @@
                                             } else {
                                                 echo ' ' . anchor('admin/news_publ/' . $row->id, 'Publikovať', 'class="btn btn-outline btn-warning btn-xs"');
                                             }
-                                            echo ' ' . anchor('home' . $row->id, 'Odstrániť', 'class="btn btn-outline btn-danger btn-xs"');
+                                            echo ' ' . anchor('admin/news_delete/' . $row->id, 'Odstrániť', 'class="btn btn-outline btn-danger btn-xs"');
                                             ?>
 
                                                         </td>
