@@ -425,7 +425,7 @@ class Profile_edit extends CI_Controller {
             }
             ciredirect('admin/page/types_study/' . $lid);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/types_of_study');
         }
     }
 
