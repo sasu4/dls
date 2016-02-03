@@ -21,8 +21,8 @@
                                     </td> 
                                     <td>
                                         <?php
-                                        echo anchor('profile_edit/activity_more/' . $row->id, 'Upraviť', 'class="btn btn-outline btn-success btn-xs"');
-                                        echo ' ' . anchor('home' . $row->id, 'Odstrániť', 'class="btn btn-outline btn-danger btn-xs"');
+                                        echo anchor('profile_edit/activity_more/' . $row->aid, 'Upraviť', 'class="btn btn-outline btn-success btn-xs"');
+                                        echo ' ' . anchor('home' . $row->aid, 'Odstrániť', 'class="btn btn-outline btn-danger btn-xs"');
                                         ?>
 
                                                     </td>
