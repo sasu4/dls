@@ -16,6 +16,7 @@
                             foreach ($query->result() as $row) {
                                 ?>
                                 <tr>
+                                    <td><?php echo $row->type; ?></td>
                                     <td><?php echo $row->info; ?>
                                     </td> 
                                     <td>
