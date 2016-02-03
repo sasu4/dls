@@ -392,6 +392,7 @@
         <!-- /.row -->
         <!-- Service List -->
         <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+        <?php if(!$this->model_user->is_admin()) {?>
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">Nastavenia</h2>
@@ -404,13 +405,11 @@
                             <i class="fa fa-university fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
-                    <?php if(!$this->model_user->is_admin()) {?>
                     <div class="media-body">
                         <h4 class="media-heading">Moje pracovisko</h4>
                                 <p>Vložte údaje o pracovisku</p>
                         <?php echo anchor('profile_edit/workplace', 'Upraviť', 'class="btn btn-outline btn-primary"'); ?>
                     </div>
-                    <?php } ?>
                 </div>
                 <div class="media">
                     <div class="pull-left">
@@ -506,8 +505,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <?php } ?>
         <!-- /.row -->
         <?php if ($this->dx_auth->is_admin()) { ?>
             <!-- Service List -->
