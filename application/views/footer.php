@@ -24,5 +24,16 @@
 <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery.prettyPhoto.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/main.js') ?>"></script>
+<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                //responsive: true;
+                language: {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.8/i18n/Slovak.json"
+                }
+        });
+    });
+</script>
 </body>
 </html>
