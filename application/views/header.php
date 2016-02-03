@@ -15,5 +15,6 @@
         <script src="<?php echo base_url('assets/js/html5shiv.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/respond.min.js') ?>"></script>
         <![endif]-->
+        <link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
         <link rel="shortcut icon" href="<?php echo base_url('assets/images/ico/favicon.png') ?>">
     </head><!--/head-->
