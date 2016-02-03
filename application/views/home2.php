@@ -27,7 +27,7 @@
                                 <h2 class="boxed animation animated-item-1">Slovak E-learning Courses</h2>
                                 <p class="animation animated-item-2"></p>
                                 <br>
-                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
+                                        <a class="btn btn-md animation animated-item-3" href="http://e-slovak.sk/" target="_blank">Learn More</a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             <div class="carousel-content centered">
                                 <h2 class="boxed animation animated-item-1">51st Summer School of Slovak Language and Culture</h2>
                                 <p class="boxed animation animated-item-2"></p>
-                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
+                                <!--                                <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>-->
                             </div>
                         </div>
                         <div class="col-sm-6 hidden-xs animation animated-item-4">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><?php echo anchor('lectors', 'Naši lektori'); ?></h3>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+                        <p>Vyslané lektorky a lektori sú nenahraditeľnými aktérmi vo vyučovaní slovenského jazyka v zahraničí, v propagácii Slovenska a jeho kultúrnych špecifík. V tejto sekcii nájdete profily v súčasnosti aktívnych aj prehľad bývalých lektorov a lektoriek.</p>
                     </div>
                 </div>
             </div><!--/.col-md-4-->
@@ -85,7 +85,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><?php echo anchor('lectorate', 'Naše pracoviská'); ?></h3>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+                        <p>Lektoráty slovenského jazyka a kultúry pôsobia v zahraničí na základe medzinárodnej spolupráce medzi Ministerstvom školstva, vedy, výskumu a športu Slovenskej republiky a ministerstvom školstva príslušnej krajiny alebo na základe priamych dohôd medzi MŠVVaŠ SR a univerzitou príslušnej krajiny.</p>
                     </div>
                 </div>
             </div><!--/.col-md-4-->
@@ -96,7 +96,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="media-heading"><?php echo anchor('country', 'Krajiny'); ?></h3>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.</p>
+                                <p>Lektoráty slovenského jazyka a kultúry, ako aj ostatné slovakistické pracovniská, sídlia vo viacerých krajinách, ktoých zoznam nájdete v tejto sekcii.</p>
                     </div>
                 </div>
             </div><!--/.col-md-4-->
@@ -108,8 +108,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <h3>Naše ostatné projekty</h3>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                        <h3>Ďalšie zaujímavé projekty</h3>
+                <p></p>
                 <div class="btn-group">
                     <a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
                     <a class="btn btn-danger" href="#scroller" data-slide="next"><i class="icon-angle-right"></i></a>
@@ -162,14 +162,14 @@
                                 </div>
                             </div><!--/.row-->
                         </div><!--/.item-->
-                        <div class="item">
-                            <div class="row">
+                        <!--                        <div class="item">
+                                                        <div class="row">
                                 <div class="col-xs-4">
                                     <div class="portfolio-item">
                                         <div class="item-inner">
                                             <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
                                             <h5>
-                                                Flat Theme - Business Theme
+                                               
                                             </h5>
                                             <div class="overlay">
                                                 <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
@@ -182,7 +182,7 @@
                                         <div class="item-inner">
                                             <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
                                             <h5>
-                                                Nova - Corporate site template
+                                                
                                             </h5>
                                             <div class="overlay">
                                                 <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
@@ -195,7 +195,7 @@
                                         <div class="item-inner">
                                             <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
                                             <h5>
-                                                Fornax - Apps site template
+                                                
                                             </h5>
                                             <div class="overlay">
                                                 <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
@@ -204,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><!--/.item-->
+                                                </div>/.item-->
                     </div>
                 </div>
             </div>
@@ -232,7 +232,9 @@
                             echo '</div><div class="col-md-6">';
                         } ?>
                             <blockquote>
-                                <p><?php echo word_limiter($row->content, 20) ?> <?php echo anchor('news','viac...');?></p>
+                                                        <h4><?php echo $row->title; ?></h4>
+                                            <p>
+                                                <?php echo word_limiter($row->content, 50) ?> <?php echo anchor('news', 'viac...'); ?></p>
                                 <small><?php echo $row->date_edited;?></small>
                             </blockquote>
                         <?php }
@@ -268,7 +270,7 @@
 <section id="bottom" class="wet-asphalt">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                 <h4>O nás</h4>
                         <p>DSL je produktom  Studia Academia Slovaca – Centrum pre slovenčinu ako cudzí jazyk a slúži:</p>
                     <ul>
@@ -278,8 +280,8 @@
                     </ul>
             </div><!--/.col-md-4-->
 
-            <div class="col-md-4 col-sm-6">
-                <h4>Studia Academica Slovaca</h4>
+            <!--            <div class="col-md-4 col-sm-6">
+                                <h4>Studia Academica Slovaca</h4>
                 <div>
                     <ul class="arrow">
                         <li><a href="#">Company Overview</a></li>
@@ -293,7 +295,7 @@
                         <li><a href="#">Copyright</a></li>
                     </ul>
                 </div>
-            </div><!--/.col-md-4-->
+                        </div>/.col-md-4-->
 
             <!--            <div class="col-md-3 col-sm-6">
                             <h4>Posledné novinky</h4>
@@ -328,9 +330,10 @@
                 </div>
                         </div>/.col-md-3-->
 
-            <div class="col-md-4 col-sm-6">
-                <h4>Adresa</h4>
-                <address>
+                    <div class="col-md-6 col-sm-6">
+                        <h4>Adresa</h4>
+                            <a href="#adresa"></a>
+                            <address>
                     <strong>Studia Academica Slovaca - centrum pre slovenčinu ako cudzí jazyk</strong><br>
                     Univerzita Komenského, Filozofická fakulta<br>
                     Gondova 2<br>
@@ -401,11 +404,13 @@
                             <i class="fa fa-university fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
+                    <?php if(!$this->model_user->is_admin()) {?>
                     <div class="media-body">
                         <h4 class="media-heading">Moje pracovisko</h4>
                                 <p>Vložte údaje o pracovisku</p>
                         <?php echo anchor('profile_edit/workplace', 'Upraviť', 'class="btn btn-outline btn-primary"'); ?>
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="media">
                     <div class="pull-left">
