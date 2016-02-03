@@ -8,9 +8,9 @@
             </div>
             <div class="col-lg-6">
                 <ul class="pull-right">
-                    <li><a href="#">Domov</a></li>
-                    <li><a href="#">O nás</a></li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="<?php echo base_url('home'); ?>">Domov</a></li>
+                    <li><a href="<?php echo base_url('home'); ?>">O nás</a></li>
+                    <li><a href="<?php echo base_url('contact'); ?>">Kontakt</a></li>
                     <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li><!--#gototop-->
                 </ul>
             </div>
