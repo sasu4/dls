@@ -10,9 +10,9 @@
                     <div class="form-group">
                         <?php echo form_label('Aký je presný názov pracoviska, pod ktoré spadá lektorát slovenského jazyka a kultúry, respektíve kde sa vyučuje slovenský jazyk a kultúra? (uveďte originálny aj preložený názov).');?>
                         <?php echo form_label('Originálny názov');?>
-                        <?php echo form_input('lect_name_o','','class="form-control"');?><br />
+                        <?php echo form_input('lect_name_o','','class="form-control" required="required"');?><br />
                         <?php echo form_label('Preložený názov');?>
-                        <?php echo form_input('lect_name_s','','class="form-control"');?>
+                        <?php echo form_input('lect_name_s','','class="form-control" required="required"');?>
                     </div>
                     <div class="form-group">
                         <?php echo form_label('Krajina');?>
