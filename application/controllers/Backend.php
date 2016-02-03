@@ -36,14 +36,15 @@ class Backend extends CI_Controller {
                 // If ban button pressed
                 if (isset($_POST['ban'])) {
                     // Ban user based on checkbox value (id)
-                    $this->users->ban_user($value);
+                    $this->users->hide_user($value);
                 }
                 // If unban button pressed
                 else if (isset($_POST['unban'])) {
                     // Unban user
-                    $this->users->unban_user($value);
+                    $this->users->unhide_user($value);
                 } else if (isset($_POST['reset_pass'])) {
                     // Set default message
+                    ini_set('display_errors', 0);
                     $data['reset_message'] = 'Reset password failed';
 
                     // Get user and check if User ID exist
@@ -71,19 +72,20 @@ class Backend extends CI_Controller {
         /* Showing page to user */
 
         // Get offset and limit for page viewing
-        $offset = (int) $this->uri->segment(3);
+        //$offset = (int) $this->uri->segment(3);
         // Number of record showing per page
-        $row_count = 10;
+        //$row_count = 10;
 
         // Get all users
-        $data['users'] = $this->users->get_all($offset, $row_count)->result();
+        //$data['users'] = $this->users->get_all($offset, $row_count)->result();
+        $data['users'] = $this->users->get_all()->result();
 
         // Pagination config
         $p_config['base_url'] = '/backend/users/';
         $p_config['uri_segment'] = 3;
         $p_config['num_links'] = 2;
         $p_config['total_rows'] = $this->users->get_all()->num_rows();
-        $p_config['per_page'] = $row_count;
+        $p_config['per_page'] = 10;
 
         // Init pagination
         $this->pagination->initialize($p_config);
