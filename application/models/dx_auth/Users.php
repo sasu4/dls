@@ -30,6 +30,11 @@ class Users extends CI_Model
 		}
 		else
 		{
+                        $this->db->select("$users_table.*", FALSE);
+			$this->db->select("$roles_table.name AS role_name", FALSE);
+			$this->db->join($roles_table, "$roles_table.id = $users_table.role_id");
+			$this->db->order_by("$users_table.id", "ASC");
+                        
 			$query = $this->db->get($this->_table);
 		}
 		
