@@ -213,7 +213,7 @@ class Profile_edit extends CI_Controller {
             }
             ciredirect('admin/page/activity/' . $lid);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/activities');
         }
     }
 
@@ -410,6 +410,20 @@ class Profile_edit extends CI_Controller {
         $id = $this->uri->segment(3);
         $this->model_lectorate->delete_data('profil_study',$id);
         ciredirect('profile_edit/types_of_study');
+    }
+    
+    public function delete_a() {
+        $data['id'] = $this->uri->segment(3);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/profile/deletea', $data);
+        $this->load->view('footer');
+    }
+    
+    public function delete_activity() {
+        $id = $this->uri->segment(3);
+        $this->model_lectorate->delete_data('profil_activity',$id);
+        ciredirect('profile_edit/activities');
     }
 
     public function edit_study() {
