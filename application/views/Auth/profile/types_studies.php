@@ -15,14 +15,14 @@
                             <?php foreach ($query->result() as $row) {
                                 ?>
                             <tr>
-                                        <td><?php echo $row->type; ?></td>
-                                        <td>
-                                                    <?php
-                                                    echo anchor('profile_edit/study_more/' . $row->id, 'Upraviť', 'class="btn btn-outline btn-success btn-xs"');
-                                                    echo ' ' . anchor('home' . $row->id, 'Odstrániť', 'class="btn btn-outline btn-danger btn-xs"');
-                                                    ?>
-                                        </td>
-                                    </tr>
+                                <td><?php echo $row->type; ?></td>
+                                <td>
+                                    <?php
+                                    echo anchor('profile_edit/study_more/' . $row->id, 'Upraviť', 'class="btn btn-outline btn-success btn-xs"');
+                                    echo ' ' . anchor('profile_edit/delete/' . $row->id, 'Odstrániť', 'class="btn btn-outline btn-danger btn-xs"');
+                                    ?>
+                                </td>
+                            </tr>
                                 <?php } ?>
                             </table>
                         <?php } ?>
