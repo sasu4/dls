@@ -33,6 +33,7 @@ class Country extends CI_Controller {
     
     function test() {
         $data['coun'] = $this->lectorate->get_countries();
+        $data['adressa'] = $this->lectorate->get_mapa_data();
         $data['typ'] = 'Lektorát';
         $data['list'] = $this->lectorate->get_lectorates();
         $this->load->view('header2');
