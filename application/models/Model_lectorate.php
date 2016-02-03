@@ -7,6 +7,7 @@ class Model_lectorate extends CI_Model {
         $this->db->from('lectorate');
         $this->db->order_by('country_id, name_sk');
         $this->db->where('organization','lektorát');
+        $this->db->where('public',1);
         return $this->db->get();
     }
     
