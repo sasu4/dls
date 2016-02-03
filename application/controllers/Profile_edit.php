@@ -253,7 +253,7 @@ class Profile_edit extends CI_Controller {
         if ($this->user->is_admin()) {
             ciredirect('admin/profile/' . $id);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/workplace');
         }
     }
 
@@ -362,7 +362,7 @@ class Profile_edit extends CI_Controller {
         if ($this->user->is_admin()) {
             ciredirect('admin/page/head/' . $lid);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/head');
         }
     }
 
@@ -509,7 +509,7 @@ class Profile_edit extends CI_Controller {
             }
             ciredirect('admin/page/publications/' . $lid);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/publication');
         }
     }
 
@@ -571,7 +571,7 @@ class Profile_edit extends CI_Controller {
             }
             ciredirect('admin/page/students/' . $lid);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/students');
         }
     }
 
@@ -617,7 +617,7 @@ class Profile_edit extends CI_Controller {
             }
             ciredirect('admin/page/additional/' . $lid);
         } else {
-            ciredirect('home');
+            ciredirect('profile_edit/additional');
         }
     }
 
