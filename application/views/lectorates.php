@@ -2,14 +2,14 @@
 <section id="title" class="emerald">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <img class="img-responsive" src="<?php echo base_url('assets/images/intro1.png'); ?>" alt="">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-5">
                 <h1><?php echo $typ; ?></h1>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                <p>Vyslané lektorky a lektori sú nenahraditeľnými aktérmi vo vyučovaní slovenského jazyka v zahraničí, v propagácii Slovenska a jeho kultúrnych špecifík. V tejto sekcii nájdete profily v súčasnosti aktívnych aj prehľad bývalých lektorov a lektoriek.</p>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3" class="right">
                 <ul class="breadcrumb pull-right">
                     <li><?php echo anchor('home', 'Domov'); ?></li>
                     <li class="active"><?php echo $typ; ?></li>
@@ -30,12 +30,16 @@
                     <div class="thumbnail">
         <!--<img class="img-responsive" src="http://placehold.it/750x150" alt="">-->
                         <div class="caption">
-                            <h4><?php echo anchor('profile/lectorate/' . $row->id, $row->name_sk); ?><br />
-
-                                                <small>
-                                            <?php echo $row->name_orig; ?>
-                                        </small>
-                                    </h4>
+                            <h4><?php 
+                            if($row->name_sk!="") {
+                                echo anchor('profile/lectorate/' . $row->id, $row->name_sk); 
+                            } else {
+                                echo anchor('profile/lectorate/' . $row->id, $row->name_orig); 
+                            }
+                                ?>                                
+                                <br />
+                                <small><?php echo $row->name_orig; ?></small>
+                            </h4>
                                     <p>
                                         <?php echo $data['name_sk'] . ', ' . $row->street . ' ' . $row->number . ',' . $row->city . ', ' . $row->zip; ?>
                                     </p>
