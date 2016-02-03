@@ -393,6 +393,20 @@ class Profile_edit extends CI_Controller {
         $this->load->view('Auth/profile/types_study', $data);
         $this->load->view('footer');
     }
+    
+    public function delete() {
+        $data['id'] = $this->uri->segment(3);
+        $this->load->view('header');
+        $this->load->view('navigation');
+        $this->load->view('Auth/profile/delete', $data);
+        $this->load->view('footer');
+    }
+    
+    public function delete_type() {
+        $id = $this->uri->segment(3);
+        $this->model_lectorate->delete_data('profil_study',$id);
+        ciredirect('profile_edit/types_of_study');
+    }
 
     public function edit_study() {
         if ($this->lectorate == NULL) { ciredirect('lectorate/new_lectorate'); }
