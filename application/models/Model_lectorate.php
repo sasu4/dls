@@ -42,6 +42,11 @@ class Model_lectorate extends CI_Model {
         $this->db->insert('lectorate',$data);
     }
     
+    function delete_data($table, $id) {
+        $this->db->where('id', $id);
+        $this->db->delete($table); 
+    }
+    
     /**
 	 * Update lectorate
 	 *
