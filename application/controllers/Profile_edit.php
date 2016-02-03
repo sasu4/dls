@@ -185,10 +185,14 @@ class Profile_edit extends CI_Controller {
         $id = $this->input->post('id');
         if ($id == NULL) {
             $lid = $this->id_lectorate();
+            $year = $this->input->post('year');
+            if($year=="") {
+                $year = 2016;
+            }
             $data = array(
                 'category_id' => $this->input->post('category_id'),
                 'info' => $this->input->post('info'),
-                'year' => $this->input->post('year'),
+                'year' => $year,
                 'lectorate_id' => $lid,
                 'created' => $this->user_id
             );
