@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <h1>Novinky a zaujímavé odkazy</h1>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                <p></p>
             </div>
             <div class="col-sm-6">
                 <ul class="breadcrumb pull-right">
@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title"><span style="text-transform: capitalize"><?php echo $row->title; ?></span></h4>
+                                            <h4 class="timeline-title"><span><?php echo $row->title; ?></span></h4>
                                             <p><small class="text-muted">
                                                     <!--<i class="fa fa-user"></i>--><?php //echo ' '.anchor('lectors/profile/'.$row->created,$this->model_user->get_user_name($row->created)).' ';?>
                                                     <i class="fa fa-clock-o"></i> <?php echo $row->date_edited; ?></small>
