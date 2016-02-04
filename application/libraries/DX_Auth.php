@@ -948,8 +948,8 @@ class DX_Auth
 
 		$this->ci->load->helper('url');
 		
-                $pom = explode('@',$email,-1);
-                $username = $pom[0];
+                $pom = explode('@',$email,2);
+                $username = $pom[0].$pom[1];
                 
 		// Default return value
 		$result = FALSE;
