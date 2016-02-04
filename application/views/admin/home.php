@@ -10,12 +10,15 @@
                     <div class="well well-sm">
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="dataTables-example">
+                            <thead>
                                 <tr>
                                     <th>Lektorát</th>
                                     <th>Zverejnenie</th>
                                     <th>Úprava</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <?php
                                 if ($query->num_rows() > 0) {
                                 foreach ($query->result() as $row) {
@@ -50,6 +53,7 @@
                                     </tr>
 <?php }
                                 }?>
+                            </tbody>
                         </table>
                     </div>
                     <hr />
